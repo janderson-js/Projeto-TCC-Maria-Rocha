@@ -3,10 +3,10 @@
 class Agendamento{
     private int $id;
     private string $tipo;
-    private DateTime $data;
+    private string $data;
     private string $hora;
-    private DateTime $dataRegistroAgendamento;
-    private DateTime $dataAlteracao;
+    private string $dataRegistroAgendamento;
+    private string $dataAlteracao;
     private string $quemRegistrou;
     private string $quemAlterou;
     private string $statusAgendamento;
@@ -41,12 +41,12 @@ class Agendamento{
         return $this;
     }
 
-    public function getData(): DateTime
+    public function getData(): string
     {
         return $this->data;
     }
 
-    public function setData(DateTime $data): self
+    public function setData(string $data): self
     {
         $this->data = $data;
 
@@ -65,24 +65,24 @@ class Agendamento{
         return $this;
     }
 
-    public function getDataRegistroAgendamento(): DateTime
+    public function getDataRegistroAgendamento(): string
     {
         return $this->dataRegistroAgendamento;
     }
 
-    public function setDataRegistroAgendamento(DateTime $dataRegistroAgendamento): self
+    public function setDataRegistroAgendamento(string $dataRegistroAgendamento): self
     {
         $this->dataRegistroAgendamento = $dataRegistroAgendamento;
 
         return $this;
     }
 
-    public function getDataAlteracao(): DateTime
+    public function getDataAlteracao(): string
     {
         return $this->dataAlteracao;
     }
 
-    public function setDataAlteracao(DateTime $dataAlteracao): self
+    public function setDataAlteracao(string $dataAlteracao): self
     {
         $this->dataAlteracao = $dataAlteracao;
 

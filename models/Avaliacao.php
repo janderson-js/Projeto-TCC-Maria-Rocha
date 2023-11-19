@@ -2,7 +2,7 @@
 
 class Avaliacao{
     private int $id;
-    private DateTime $dataAvaliacao;
+    private string $dataAvaliacao;
     private string $horaAgendamento;
     private string $observacoes;
     private string $diagnosticoInicial;
@@ -24,12 +24,12 @@ class Avaliacao{
         return $this;
     }
 
-    public function getDataAvaliacao(): DateTime
+    public function getDataAvaliacao(): string
     {
         return $this->dataAvaliacao;
     }
 
-    public function setDataAvaliacao(DateTime $dataAvaliacao): self
+    public function setDataAvaliacao(string $dataAvaliacao): self
     {
         $this->dataAvaliacao = $dataAvaliacao;
 

@@ -2,7 +2,7 @@
 
 class Consulta{
     private int $id;
-    private DateTime $data;
+    private string $data;
     private string $hora;
     private string $tipo;
     private string $observacoesEspecificas;
@@ -25,12 +25,12 @@ class Consulta{
         return $this;
     }
 
-    public function getData(): DateTime
+    public function getData(): string
     {
         return $this->data;
     }
 
-    public function setData(DateTime $data): self
+    public function setData(string $data): self
     {
         $this->data = $data;
 
