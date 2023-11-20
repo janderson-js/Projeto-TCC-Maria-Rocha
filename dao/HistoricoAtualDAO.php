@@ -32,36 +32,34 @@ class HistoricoAtualDAO{
             $this->conn->desconectar();
         }
     }
-    /*
-    public function editarHistoricoAtual(HistoricoAtual $HistoricoAtual){
+    
+    public function editarHistoricoAtual(HistoricoAtual $historicoAtual){
 
         $sqlEditarHistoricoAtual = "UPDATE historico_atual SET 
-        doencas_previas=':doencasPrevias',
-        cirurgias=':cirurgias',
-        alergias=':cirurgias',
-        medicamento_em_uso=':medicamentoEmUso',
-        historico_familiar_relevante=':historicoFamiliarRelevante'
+        data_inicio_sintomas=':dataInicioSintomas', 
+        fatores_desencadeiam_sintomas=':fatoresDesencadeiamSintomas', 
+        nivel_dor=':nivelDor',
+        localizacao_dor=':localizacaoDor'
         WHERE id=':id'";
 
         try {
             $stmt = $this->conn->getConexao()->prepare($sqlEditarHistoricoAtual);
-            $stmt->bindValue(":doencas_previas", $HistoricoAtual->getDoencasPrevias(), PDO::PARAM_STR);
-            $stmt->bindValue(":cirurgias", $HistoricoAtual->getCirurgias(), PDO::PARAM_STR);
-            $stmt->bindValue(":alergias", $HistoricoAtual->getAlergias(), PDO::PARAM_STR);
-            $stmt->bindValue(":medicamento_em_uso", $HistoricoAtual->getMedicamentoEmUso(), PDO::PARAM_STR);
-            $stmt->bindValue(":historico_familia_relevante", $HistoricoAtual->getHistoricoFamiliarRelevante(), PDO::PARAM_STR);
-            $stmt->bindValue(":id", $HistoricoAtual->getId(), PDO::PARAM_INT);
+            $stmt->bindValue(":dataInicioSintomas", $historicoAtual->getDataInicioSintomas(), PDO::PARAM_STR);
+            $stmt->bindValue(":fatoresDesencadeiamSintomas", $historicoAtual->getFatoresDesencadeiamSintomas(), PDO::PARAM_STR);
+            $stmt->bindValue(":nivelDor", $historicoAtual->getNivelDor(), PDO::PARAM_STR);
+            $stmt->bindValue(":localizacaoDor", $historicoAtual->getLocalizacaoDor(), PDO::PARAM_STR);
+            $stmt->bindValue(":id", $historicoAtual->getId(), PDO::PARAM_INT);
 
             $stmt->execute();
             
 
         } catch (\PDOException $e) {
-            error_log("Erro ao editar Historico Medico:" . $e->getMessage());
+            error_log("Erro ao editar Historico Atual:" . $e->getMessage());
         }finally{
             $this->conn->desconectar();
         }
     }
-
+/*
     public function excluirHistoricoAtual(int $id) {
         $sqlExcluirHistoricoAtual = "DELETE FROM historico_atual WHERE id=':id'";
 
