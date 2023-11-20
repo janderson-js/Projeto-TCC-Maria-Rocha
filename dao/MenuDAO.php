@@ -55,4 +55,22 @@ class MenuDAO{
             $this->conn->desconectar();
         }
     }
+
+    public function excluirMenu(int $id){
+
+        $sqlInserirMenu = "DELETE FROM menu WHERE id=':id'";
+
+        try {
+            $stmt = $this->conn->getConexao()->prepare($sqlInserirMenu);
+            $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+
+            $stmt->execute();
+            
+
+        } catch (\PDOException $e) {
+            error_log("Erro ao excluir Menu: " . $e->getMessage());
+        }finally{
+            $this->conn->desconectar();
+        }
+    }
 }
