@@ -93,8 +93,11 @@ class HistoricoMedicoDAO{
             foreach($resul as $row){
                 $historicoMedico[] = [
                     'id' => $row['id'],
-                    'titulo' => $row['titulo'],
-                    'descricao' => $row['descricao']
+                    'doencasPrevias' => $row['doencas_previas'],
+                    'cirurgias' => $row['cirurgias'],
+                    'alergias' => $row['alergias'],
+                    'medicamentoEmUso' => $row['medicamento_em_uso'],
+                    'historicoFamiliarRelevante' => $row['historico_familiar_relevante']
                 ];
             }
         return $historicoMedico;
@@ -105,10 +108,10 @@ class HistoricoMedicoDAO{
             $this->conn->desconectar();
         }
     }
-    /*
+    
     public function listarHistoricoMedico(){
 
-        $sqlListarHistoricoMedico = "SELECT * FROM HistoricoMedico";
+        $sqlListarHistoricoMedico = "SELECT * FROM historico_medico";
 
         try {
             $stmt = $this->conn->getConexao()->prepare($sqlListarHistoricoMedico);
@@ -117,13 +120,16 @@ class HistoricoMedicoDAO{
             $resul = $stmt->fetchALL(PDO::FETCH_ASSOC);
             
             foreach($resul as $row){
-                $HistoricoMedicos[] = [
+                $historicosMedicos[] = [
                     'id' => $row['id'],
-                    'titulo' => $row['titulo'],
-                    'descricao' => $row['descricao'],
+                    'doencasPrevias' => $row['doencas_previas'],
+                    'cirurgias' => $row['cirurgias'],
+                    'alergias' => $row['alergias'],
+                    'medicamentoEmUso' => $row['medicamento_em_uso'],
+                    'historicoFamiliarRelevante' => $row['historico_familiar_relevante']
                 ];
             }
-        return $HistoricoMedicos;
+        return $historicosMedicos;
 
         } catch (\PDOException $e) {
             error_log("Erro ao carregar por id o HistoricoMedico: " . $e->getMessage());
@@ -131,5 +137,4 @@ class HistoricoMedicoDAO{
             $this->conn->desconectar();
         }
     }
-    */
 }
