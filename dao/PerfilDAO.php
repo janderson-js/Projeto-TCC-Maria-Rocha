@@ -55,7 +55,7 @@ class PerfilDAO{
 
     public function carregaPorIdPerfil(int $id){
 
-        $sqlCarregaPorIdPerfil = "SELECT * FROM Perfil WHERE id=':id'";
+        $sqlCarregaPorIdPerfil = "SELECT * FROM perfil WHERE id=':id'";
 
         try {
             $stmt = $this->conn->getConexao()->prepare($sqlCarregaPorIdPerfil);
@@ -81,4 +81,29 @@ class PerfilDAO{
         }
     }
     
+    public function listarPerfil(){
+
+        $sqlListarPerfil = "SELECT * FROM perfil";
+
+        try {
+            $stmt = $this->conn->getConexao()->prepare($sqlListarPerfil);
+            $stmt->execute();
+
+            $resul = $stmt->fetchALL(PDO::FETCH_ASSOC);
+            
+            foreach($resul as $row){
+                $perfis[] = [
+                    'id' => $row['id'],
+                    'titulo' => $row['titulo'],
+                    'descricao' => $row['descricao'],
+                ];
+            }
+        return $perfis;
+
+        } catch (\PDOException $e) {
+            error_log("Erro ao carregar por id o Perfil: " . $e->getMessage());
+        }finally{
+            $this->conn->desconectar();
+        }
+    }
 }
