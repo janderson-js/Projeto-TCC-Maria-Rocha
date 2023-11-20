@@ -59,7 +59,7 @@ class HistoricoAtualDAO{
             $this->conn->desconectar();
         }
     }
-/*
+
     public function excluirHistoricoAtual(int $id) {
         $sqlExcluirHistoricoAtual = "DELETE FROM historico_atual WHERE id=':id'";
 
@@ -70,12 +70,12 @@ class HistoricoAtualDAO{
             $stmt->execute();
             
         } catch (\PDOException $e) {
-            error_log("Erro ao exlcuir o HistoricoAtual: " . $e->getMessage());
+            error_log("Erro ao exlcuir o Historico Atual: " . $e->getMessage());
         }finally{
             $this->conn->desconectar();
         }
     }
-
+/*
     public function carregaPorIdHistoricoAtual(int $id){
 
         $sqlCarregaPorIdHistoricoAtual = "SELECT * FROM historico_atual WHERE id=':id'";
