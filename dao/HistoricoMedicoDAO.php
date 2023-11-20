@@ -61,9 +61,9 @@ class HistoricoMedicoDAO{
             $this->conn->desconectar();
         }
     }
-/*
+
     public function excluirHistoricoMedico(int $id) {
-        $sqlExcluirHistoricoMedico = "DELETE FROM HistoricoMedico WHERE id=':id'";
+        $sqlExcluirHistoricoMedico = "DELETE FROM historico_medico WHERE id=':id'";
 
         try {
             $stmt = $this->conn->getConexao()->prepare($sqlExcluirHistoricoMedico);
@@ -77,7 +77,7 @@ class HistoricoMedicoDAO{
             $this->conn->desconectar();
         }
     }
-
+/*
     public function carregaPorIdHistoricoMedico(int $id){
 
         $sqlCarregaPorIdHistoricoMedico = "SELECT * FROM HistoricoMedico WHERE id=':id'";
