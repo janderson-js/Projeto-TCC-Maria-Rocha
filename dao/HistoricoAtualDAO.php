@@ -105,7 +105,7 @@ class HistoricoAtualDAO{
             $this->conn->desconectar();
         }
     }
-    /*
+
     public function listarHistoricoAtual(){
 
         $sqlListarHistoricoAtual = "SELECT * FROM historico_atual";
@@ -117,16 +117,15 @@ class HistoricoAtualDAO{
             $resul = $stmt->fetchALL(PDO::FETCH_ASSOC);
             
             foreach($resul as $row){
-                $historicosMedicos[] = [
+                $historicosAtuais[] = [
                     'id' => $row['id'],
-                    'doencasPrevias' => $row['doencas_previas'],
-                    'cirurgias' => $row['cirurgias'],
-                    'alergias' => $row['alergias'],
-                    'medicamentoEmUso' => $row['medicamento_em_uso'],
-                    'historicoFamiliarRelevante' => $row['historico_familiar_relevante']
+                    'dataInicioSintomas' => $row['data_inicio_sintomas'],
+                    'fatoresDesencadeiamSintomas' => $row['fatores_desencadeiam_sintomas'],
+                    'nivelDor' => $row['nivel_dor'],
+                    'localizacaoDor' => $row['localizacao_dor']
                 ];
             }
-        return $historicosMedicos;
+        return $historicosAtuais;
 
         } catch (\PDOException $e) {
             error_log("Erro ao carregar por id o HistoricoAtual: " . $e->getMessage());
@@ -134,5 +133,4 @@ class HistoricoAtualDAO{
             $this->conn->desconectar();
         }
     }
-    */
 }
