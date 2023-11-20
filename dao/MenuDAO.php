@@ -44,7 +44,7 @@ class MenuDAO{
             $stmt->bindValue(":titulo", $menu->getTitulo(), PDO::PARAM_STR);
             $stmt->bindValue(":descricao", $menu->getDescricao(), PDO::PARAM_STR);
             $stmt->bindValue(":url", $menu->getUrl(), PDO::PARAM_STR);
-            $stmt->bindValue(":id", $menu->getUrl(), PDO::PARAM_INT);
+            $stmt->bindValue(":id", $menu->getId(), PDO::PARAM_INT);
 
             $stmt->execute();
             
