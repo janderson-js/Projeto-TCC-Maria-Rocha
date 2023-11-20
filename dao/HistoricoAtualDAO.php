@@ -75,7 +75,7 @@ class HistoricoAtualDAO{
             $this->conn->desconectar();
         }
     }
-/*
+
     public function carregaPorIdHistoricoAtual(int $id){
 
         $sqlCarregaPorIdHistoricoAtual = "SELECT * FROM historico_atual WHERE id=':id'";
@@ -91,11 +91,10 @@ class HistoricoAtualDAO{
             foreach($resul as $row){
                 $HistoricoAtual[] = [
                     'id' => $row['id'],
-                    'doencasPrevias' => $row['doencas_previas'],
-                    'cirurgias' => $row['cirurgias'],
-                    'alergias' => $row['alergias'],
-                    'medicamentoEmUso' => $row['medicamento_em_uso'],
-                    'historicoFamiliarRelevante' => $row['historico_familiar_relevante']
+                    'dataInicioSintomas' => $row['data_inicio_sintomas'],
+                    'fatoresDesencadeiamSintomas' => $row['fatores_desencadeiam_sintomas'],
+                    'nivelDor' => $row['nivel_dor'],
+                    'localizacaoDor' => $row['localizacao_dor']
                 ];
             }
         return $HistoricoAtual;
@@ -106,7 +105,7 @@ class HistoricoAtualDAO{
             $this->conn->desconectar();
         }
     }
-    
+    /*
     public function listarHistoricoAtual(){
 
         $sqlListarHistoricoAtual = "SELECT * FROM historico_atual";
