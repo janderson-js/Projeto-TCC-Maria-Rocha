@@ -35,7 +35,7 @@ class HistoricoMedicoDAO{
     
     public function editarHistoricoMedico(HistoricoMedico $historicoMedico){
 
-        $sqlEditarHistoricoMedico = "UPDATE HistoricoMedico SET 
+        $sqlEditarHistoricoMedico = "UPDATE historico_medico SET 
         doencas_previas=':doencasPrevias',
         cirurgias=':cirurgias',
         alergias=':cirurgias',
@@ -77,10 +77,10 @@ class HistoricoMedicoDAO{
             $this->conn->desconectar();
         }
     }
-/*
+
     public function carregaPorIdHistoricoMedico(int $id){
 
-        $sqlCarregaPorIdHistoricoMedico = "SELECT * FROM HistoricoMedico WHERE id=':id'";
+        $sqlCarregaPorIdHistoricoMedico = "SELECT * FROM historico_medico WHERE id=':id'";
 
         try {
             $stmt = $this->conn->getConexao()->prepare($sqlCarregaPorIdHistoricoMedico);
@@ -91,21 +91,21 @@ class HistoricoMedicoDAO{
             $resul = $stmt->fetchALL(PDO::FETCH_ASSOC);
             
             foreach($resul as $row){
-                $HistoricoMedico[] = [
+                $historicoMedico[] = [
                     'id' => $row['id'],
                     'titulo' => $row['titulo'],
                     'descricao' => $row['descricao']
                 ];
             }
-        return $HistoricoMedico;
+        return $historicoMedico;
 
         } catch (\PDOException $e) {
-            error_log("Erro ao carregar por id o HistoricoMedico: " . $e->getMessage());
+            error_log("Erro ao carregar por id o Historico Medico: " . $e->getMessage());
         }finally{
             $this->conn->desconectar();
         }
     }
-    
+    /*
     public function listarHistoricoMedico(){
 
         $sqlListarHistoricoMedico = "SELECT * FROM HistoricoMedico";
