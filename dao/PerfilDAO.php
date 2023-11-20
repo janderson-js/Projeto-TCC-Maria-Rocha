@@ -12,7 +12,7 @@ class PerfilDAO{
 
     public function inserirPerfil(Perfil $perfil){
 
-        $sqlInserirPerfil = "INSERT INTO perfil (titulo, descricao, url) VALUES
+        $sqlInserirPerfil = "INSERT INTO perfil (titulo, descricao) VALUES
         (:titulo, :descricao, :url)";
 
         try {
