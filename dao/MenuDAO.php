@@ -102,4 +102,31 @@ class MenuDAO{
             $this->conn->desconectar();
         }
     }
+
+    public function listarMenu(){
+
+        $sqlListarMenu = "SELECT * FROM menu";
+
+        try {
+            $stmt = $this->conn->getConexao()->prepare($sqlListarMenu);
+            $stmt->execute();
+
+            $resul = $stmt->fetchALL(PDO::FETCH_ASSOC);
+            
+            foreach($resul as $row){
+                $menus[] = [
+                    'id' => $row['id'],
+                    'titulo' => $row['titulo'],
+                    'descricao' => $row['descricao'],
+                    'url' => $row['url']
+                ];
+            }
+        return $menus;
+
+        } catch (\PDOException $e) {
+            error_log("Erro ao carregar por id o Menu: " . $e->getMessage());
+        }finally{
+            $this->conn->desconectar();
+        }
+    }
 }
