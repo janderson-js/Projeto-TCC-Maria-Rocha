@@ -53,4 +53,21 @@ class EspecialidadeDAO{
         }
     }
 
+    public function excluirEspecialidade(int $id) {
+        $sqlExcluirEspecialidade = "DELETE FROM especialidade WHERE id=':id'";
+
+        try {
+            $stmt = $this->conn->getConexao()->prepare($sqlExcluirEspecialidade);
+            $stmt->bindvalue(':id', $id, PDO::PARAM_INT);
+
+            $stmt->execute();
+            
+        } catch (\PDOException $e) {
+            error_log("Erro ao exlcuir o Especialidade: " . $e->getMessage());
+        }finally{
+            $this->conn->desconectar();
+        }
+    }
+
+    
 }
