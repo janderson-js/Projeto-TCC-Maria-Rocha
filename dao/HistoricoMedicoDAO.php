@@ -12,8 +12,8 @@ class HistoricoMedicoDAO{
 
     public function inserirHistoricoMedico(HistoricoMedico $historicoMedico){
 
-        $sqlInserirHistoricoMedico = "INSERT INTO historico_medico (doencas_previas, cirurgias, alergias, medicamento_em_uso, historico_familia_relevante) VALUES
-        (:doencas_previas, :cirurgias, :alergias, :medicamento_em_uso, :historico_familia_relevante)";
+        $sqlInserirHistoricoMedico = "INSERT INTO historico_medico (doencas_previas, cirurgias, alergias, medicamento_em_uso, historico_familiar_relevante) VALUES
+        (:doencas_previas, :cirurgias, :alergias, :medicamento_em_uso, :historico_familiar_relevante)";
 
         try {
             $stmt = $this->conn->getConexao()->prepare($sqlInserirHistoricoMedico);
@@ -21,7 +21,7 @@ class HistoricoMedicoDAO{
             $stmt->bindValue(":cirurgias", $historicoMedico->getCirurgias(), PDO::PARAM_STR);
             $stmt->bindValue(":alergias", $historicoMedico->getAlergias(), PDO::PARAM_STR);
             $stmt->bindValue(":medicamento_em_uso", $historicoMedico->getMedicamentoEmUso(), PDO::PARAM_STR);
-            $stmt->bindValue(":historico_familia_relevante", $historicoMedico->getHistoricoFamiliarRelevante(), PDO::PARAM_STR);
+            $stmt->bindValue(":historico_familiar_relevante", $historicoMedico->getHistoricoFamiliarRelevante(), PDO::PARAM_STR);
 
             $stmt->execute();
             
@@ -32,30 +32,36 @@ class HistoricoMedicoDAO{
             $this->conn->desconectar();
         }
     }
-    /*
-    public function editarHistoricoMedico(HistoricoMedico $HistoricoMedico){
+    
+    public function editarHistoricoMedico(HistoricoMedico $historicoMedico){
 
         $sqlEditarHistoricoMedico = "UPDATE HistoricoMedico SET 
-        titulo=':titulo', 
-        descricao=':descricao',
+        doencas_previas=':doencasPrevias',
+        cirurgias=':cirurgias',
+        alergias=':cirurgias',
+        medicamento_em_uso=':medicamentoEmUso',
+        historico_familiar_relevante=':historicoFamiliarRelevante'
         WHERE id=':id'";
 
         try {
             $stmt = $this->conn->getConexao()->prepare($sqlEditarHistoricoMedico);
-            $stmt->bindValue(":titulo", $HistoricoMedico->getTitulo(), PDO::PARAM_STR);
-            $stmt->bindValue(":descricao", $HistoricoMedico->getDescricao(), PDO::PARAM_STR);
-            $stmt->bindValue(":id", $HistoricoMedico->getId(), PDO::PARAM_INT);
+            $stmt->bindValue(":doencas_previas", $historicoMedico->getDoencasPrevias(), PDO::PARAM_STR);
+            $stmt->bindValue(":cirurgias", $historicoMedico->getCirurgias(), PDO::PARAM_STR);
+            $stmt->bindValue(":alergias", $historicoMedico->getAlergias(), PDO::PARAM_STR);
+            $stmt->bindValue(":medicamento_em_uso", $historicoMedico->getMedicamentoEmUso(), PDO::PARAM_STR);
+            $stmt->bindValue(":historico_familia_relevante", $historicoMedico->getHistoricoFamiliarRelevante(), PDO::PARAM_STR);
+            $stmt->bindValue(":id", $historicoMedico->getId(), PDO::PARAM_INT);
 
             $stmt->execute();
             
 
         } catch (\PDOException $e) {
-            error_log("Erro ao editar HistoricoMedico:" . $e->getMessage());
+            error_log("Erro ao editar Historico Medico:" . $e->getMessage());
         }finally{
             $this->conn->desconectar();
         }
     }
-
+/*
     public function excluirHistoricoMedico(int $id) {
         $sqlExcluirHistoricoMedico = "DELETE FROM HistoricoMedico WHERE id=':id'";
 
