@@ -33,14 +33,14 @@ class MenuDAO{
 
     public function editarMenu(Menu $menu){
 
-        $sqlInserirMenu = "UPDATE menu SET 
+        $sqlEditarMenu = "UPDATE menu SET 
         titulo=':titulo', 
         descricao=':descricao',
         url=':url'
         WHERE id=':id'";
 
         try {
-            $stmt = $this->conn->getConexao()->prepare($sqlInserirMenu);
+            $stmt = $this->conn->getConexao()->prepare($sqlEditarMenu);
             $stmt->bindValue(":titulo", $menu->getTitulo(), PDO::PARAM_STR);
             $stmt->bindValue(":descricao", $menu->getDescricao(), PDO::PARAM_STR);
             $stmt->bindValue(":url", $menu->getUrl(), PDO::PARAM_STR);
@@ -58,10 +58,10 @@ class MenuDAO{
 
     public function excluirMenu(int $id){
 
-        $sqlInserirMenu = "DELETE FROM menu WHERE id=':id'";
+        $sqlExcluirMenu = "DELETE FROM menu WHERE id=':id'";
 
         try {
-            $stmt = $this->conn->getConexao()->prepare($sqlInserirMenu);
+            $stmt = $this->conn->getConexao()->prepare($sqlExcluirMenu);
             $stmt->bindValue(":id", $id, PDO::PARAM_INT);
 
             $stmt->execute();
@@ -69,6 +69,35 @@ class MenuDAO{
 
         } catch (\PDOException $e) {
             error_log("Erro ao excluir Menu: " . $e->getMessage());
+        }finally{
+            $this->conn->desconectar();
+        }
+    }
+
+    public function carregaPorIdMenu(int $id){
+
+        $sqlCarregaPorIdMenu = "SELECT * FROM menu WHERE id=':id'";
+
+        try {
+            $stmt = $this->conn->getConexao()->prepare($sqlCarregaPorIdMenu);
+            $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+
+            $stmt->execute();
+
+            $resul = $stmt->fetchALL(PDO::FETCH_ASSOC);
+            
+            foreach($resul as $row){
+                $menu[] = [
+                    'id' => $row['id'],
+                    'titulo' => $row['titulo'],
+                    'descricao' => $row['descricao'],
+                    'url' => $row['url']
+                ];
+            }
+        return $menu;
+
+        } catch (\PDOException $e) {
+            error_log("Erro ao carregar por id o Menu: " . $e->getMessage());
         }finally{
             $this->conn->desconectar();
         }
