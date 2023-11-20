@@ -31,5 +31,28 @@ class MenuDAO{
         }
     }
 
+    public function editarMenu(Menu $menu){
 
+        $sqlInserirMenu = "UPDATE menu SET 
+        titulo=':titulo', 
+        descricao=':descricao',
+        url=':url'
+        WHERE id=':id'";
+
+        try {
+            $stmt = $this->conn->getConexao()->prepare($sqlInserirMenu);
+            $stmt->bindValue(":titulo", $menu->getTitulo(), PDO::PARAM_STR);
+            $stmt->bindValue(":descricao", $menu->getDescricao(), PDO::PARAM_STR);
+            $stmt->bindValue(":url", $menu->getUrl(), PDO::PARAM_STR);
+            $stmt->bindValue(":id", $menu->getUrl(), PDO::PARAM_INT);
+
+            $stmt->execute();
+            
+
+        } catch (\PDOException $e) {
+            error_log("Erro ao editar Menu:" . $e->getMessage());
+        }finally{
+            $this->conn->desconectar();
+        }
+    }
 }
