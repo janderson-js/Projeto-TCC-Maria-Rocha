@@ -69,5 +69,33 @@ class EspecialidadeDAO{
         }
     }
 
+    public function carregaPorIdEspecialidade(int $id){
+
+        $sqlCarregaPorIdEspecialidade = "SELECT * FROM especialidade WHERE id=':id'";
+
+        try {
+            $stmt = $this->conn->getConexao()->prepare($sqlCarregaPorIdEspecialidade);
+            $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+
+            $stmt->execute();
+
+            $resul = $stmt->fetchALL(PDO::FETCH_ASSOC);
+            
+            foreach($resul as $row){
+                $especialidade[] = [
+                    'id' => $row['id'],
+                    'titulo' => $row['titulo'],
+                    'descricao' => $row['descricao']
+                ];
+            }
+        return $especialidade;
+
+        } catch (\PDOException $e) {
+            error_log("Erro ao carregar por id o Especialidade: " . $e->getMessage());
+        }finally{
+            $this->conn->desconectar();
+        }
+    }
     
+
 }
