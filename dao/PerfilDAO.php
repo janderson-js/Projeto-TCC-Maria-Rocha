@@ -53,6 +53,22 @@ class PerfilDAO{
         }
     }
 
+    public function excluirPerfil(int $id) {
+        $sqlExcluirPerfil = "DELETE FROM perfil WHERE id=':id'";
+
+        try {
+            $stmt = $this->conn->getConexao()->prepare($sqlExcluirPerfil);
+            $stmt->bindvalue(':id', $id, PDO::PARAM_INT);
+
+            $stmt->execute();
+            
+        } catch (\PDOException $e) {
+            error_log("Erro ao exlcuir o Perfil: " . $e->getMessage());
+        }finally{
+            $this->conn->desconectar();
+        }
+    }
+
     public function carregaPorIdPerfil(int $id){
 
         $sqlCarregaPorIdPerfil = "SELECT * FROM perfil WHERE id=':id'";
