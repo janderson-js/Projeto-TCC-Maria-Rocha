@@ -3,6 +3,7 @@
 class HisotoricoFisioterapeutico{
     private int $id;
     private string $tratamentoAnterior;
+    private string $motivoTratamentoAnterior;
     private string $resultadoTratamentoAnterior;
     private string $problemaFisicoRecorrente;
 
@@ -50,6 +51,18 @@ class HisotoricoFisioterapeutico{
     public function setProblemaFisicoRecorrente(string $problemaFisicoRecorrente): self
     {
         $this->problemaFisicoRecorrente = $problemaFisicoRecorrente;
+
+        return $this;
+    }
+
+    public function getMotivoTratamentoAnterior(): string
+    {
+        return $this->motivoTratamentoAnterior;
+    }
+
+    public function setMotivoTratamentoAnterior(string $motivoTratamentoAnterior): self
+    {
+        $this->motivoTratamentoAnterior = $motivoTratamentoAnterior;
 
         return $this;
     }
