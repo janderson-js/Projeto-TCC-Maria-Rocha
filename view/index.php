@@ -12,7 +12,7 @@
     <body>
         <header>
             <nav class="navbar navbar-expand-lg navbar-dark" id="backgroudnav">
-                <img src="Image/Marciarocha.png" alt="" id="image_logotipoheader">
+                <img src="../public/img/Marciarocha.png" alt="" id="image_logotipoheader">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
                 <span class="navbar-toggler-icon"></span>
                 </button>
@@ -85,7 +85,7 @@
                     <div class="cont_modal cont_modal_active">
                         <div class="cont_photo">
                             <div class="cont_img_back">
-                                <img src="mulher-em-sessao-de-fisioterapia.jpg" alt="" />
+                                <img src="../public/img/mulher-em-sessao-de-fisioterapia.jpg" alt="" />
                             </div>
                             <div class="cont_mins">
                                 <div class="sub_mins">
