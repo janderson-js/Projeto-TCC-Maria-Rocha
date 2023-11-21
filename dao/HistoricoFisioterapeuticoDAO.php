@@ -58,4 +58,20 @@ class HistoricoFisioterapeuticoDAO{
             $this->conn->desconectar();
         }
     }
+
+    public function excluirHistoricoFisioterapeutico(int $id) {
+        $sqlExcluirHistoricoFisioterapeutico = "DELETE FROM historico_fisioterapeutico WHERE id=':id'";
+
+        try {
+            $stmt = $this->conn->getConexao()->prepare($sqlExcluirHistoricoFisioterapeutico);
+            $stmt->bindvalue(':id', $id, PDO::PARAM_INT);
+
+            $stmt->execute();
+            
+        } catch (\PDOException $e) {
+            error_log("Erro ao exlcuir o Historico Fisioterapeutico: " . $e->getMessage());
+        }finally{
+            $this->conn->desconectar();
+        }
+    }
 }
