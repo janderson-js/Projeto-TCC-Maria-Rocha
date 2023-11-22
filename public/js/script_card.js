@@ -1,14 +1,21 @@
-window.onload = function(){
-    document.querySelector('.cont_modal').className = "cont_modal";    
-    }
-    var c = 0;
-    function open_close(){
-      if(c % 2 == 0){    
-    document.querySelector('.cont_modal').className = "cont_modal cont_modal_active";  
-    c++;
-      }else {
-    document.querySelector('.cont_modal').className = "cont_modal";  
-    c++;    
-      }  
-    } 
-     
+window.onload = function() {
+  // Inicializar os cards fechados
+  document.querySelectorAll('.cont_modal').forEach(function(card) {
+      card.classList.remove('cont_modal_active');
+  });
+}
+
+function open_close(cardId) {
+  var card = document.getElementById(cardId);
+
+  if (card.classList.contains('cont_modal_active')) {
+      card.classList.remove('cont_modal_active');
+  } else {
+      // Fechar outros cards abertos antes de abrir este
+      document.querySelectorAll('.cont_modal_active').forEach(function(openCard) {
+          openCard.classList.remove('cont_modal_active');
+      });
+
+      card.classList.add('cont_modal_active');
+  }
+}
