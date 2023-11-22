@@ -14,10 +14,6 @@ class Paciente{
     private string $celular;
     private string $queixaPrincipal;
 
-    private HistoricoAtual $historicoAtual;
-    private HistoricoMedico $historicoMedico;
-    private HisotoricoFisioterapeutico $historicoFisioterapeutico;
-
     public function getId(): int
     {
         return $this->id;
@@ -146,42 +142,6 @@ class Paciente{
     public function setQueixaPrincipal(string $queixaPrincipal): self
     {
         $this->queixaPrincipal = $queixaPrincipal;
-
-        return $this;
-    }
-
-    public function getHistoricoFisioterapeutico(): HisotoricoFisioterapeutico
-    {
-        return $this->historicoFisioterapeutico;
-    }
-
-    public function setHistoricoFisioterapeutico(HisotoricoFisioterapeutico $historicoFisioterapeutico): self
-    {
-        $this->historicoFisioterapeutico = $historicoFisioterapeutico;
-
-        return $this;
-    }
-
-    public function getHistoricoMedico(): HistoricoMedico
-    {
-        return $this->historicoMedico;
-    }
-
-    public function setHistoricoMedico(HistoricoMedico $historicoMedico): self
-    {
-        $this->historicoMedico = $historicoMedico;
-
-        return $this;
-    }
-
-    public function getHistoricoAtual(): HistoricoAtual
-    {
-        return $this->historicoAtual;
-    }
-
-    public function setHistoricoAtual(HistoricoAtual $historicoAtual): self
-    {
-        $this->historicoAtual = $historicoAtual;
 
         return $this;
     }
