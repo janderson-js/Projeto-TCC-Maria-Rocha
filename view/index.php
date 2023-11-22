@@ -8,6 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
 
+<<<<<<< HEAD
 </head>
 
 <body>
@@ -15,6 +16,14 @@
         <nav class="navbar navbar-expand-lg navbar-dark" id="backgroudnav">
             <img src="../public/img/Marciarocha.png" alt="" id="image_logotipoheader">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+=======
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-dark" id="backgroudnav">
+                <img src="Image/Marciarocha.png" alt="" id="image_logotipoheader">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+>>>>>>> 2f87c050405cc1ac53ff4585992c0489ea1c30fa
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
@@ -75,15 +84,98 @@
                     <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="sr-only">Next</span>
-                    </a>
+                        </a>
+                    </div>
                 </div>
             </div>
+<<<<<<< HEAD
         </div>
     </header>
     <main>
     <div class="cont_principal">
                 <div class="cont_central" >
                     <div class="cont_modal cont_modal_active"id="modal4">
+=======
+        </header>
+        <main>
+            <div class="cont_principal">
+                <div class="cont_central" id="cont_central_config">
+                    <div class="cont_modal cont_modal_active">
+                        <div class="cont_photo">
+                            <div class="cont_img_back">
+                                <img src="mulher-em-sessao-de-fisioterapia.jpg" alt="" />
+                            </div>
+                            <div class="cont_mins">
+                                <div class="sub_mins">
+                                <h3>429</h3>
+                                <span>Cubic</span>
+                            </div>
+                            <div class="cont_icon_right">
+                                <a href="#"><i class="fa-regular fa-bookmark"></i></a>
+                            </div>
+                        </div>
+                        <div class="cont_servings">
+                            <img src="../public//img/coluna.png" alt="">
+                        </div>
+                        <div class="cont_detalles">
+                            <h3>Quem somos</h3>
+                            <p>
+                                A consultorio Fisioterapêutica Marcia rocha, fundada em 2023, emerge como um farol de inovação e cuidado na área da saúde. Localizada em um espaço moderno e acolhedor,
+                                a clínica foi concebida com a visão de proporcionar tratamentos fisioterapêuticos de vanguarda, focados na recuperação integral dos pacientes.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="cont_text_ingredients">
+                        <div class="cont_over_hidden">
+
+                            <div class="cont_tabs">
+                                <ul>
+                                    <li><a href="#">
+                                            <h4>DESCRIPTION</h4>
+                                        </a></li>
+                                </ul>
+                            </div>
+
+                            <div class="cont_text_det_preparation">
+                                <div class="cont_title_preparation">
+                                    <p>Criada</p>
+                                </div>
+                                <div class="cont_info_preparation">
+                                    <p>Dezembro de 2023 para entrar em funcionamento em janeiro de 2024</p>
+                                </div>
+                                <div class="cont_text_det_preparation">
+
+                                    <div class="cont_title_preparation">
+                                        <p>Features</p>
+                                    </div>
+                                    <div class="cont_info_preparation">
+                                        <p>5.0-liter V8 engine</br>
+                                            480 horsepower and 420 lb-ft of torque</br>
+                                            6-speed manual transmission or 10-speed automatic transmission</br>
+                                            Unique suspension</br>
+                                            Unique grille, hood, and rear spoiler</br>
+                                            Brembo front brakes</br>
+                                            19-inch wheels</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cont_btn_mas_dets">
+                                <a href="#"><i class="fa-solid fa-chevron-down"></i></a>
+                            </div>
+
+                        </div>
+                        <div class="cont_btn_open_dets">
+                            <a href="#e" onclick="open_close()"><i class="fa-solid fa-chevron-left"></i></a>
+                        </div>
+
+                    </div>
+                </div> 
+            </div>
+            <!-- card 3-->
+            <div class="card3">
+                <div class="cont_central">
+                    <div class="cont_modal cont_modal_active">
+>>>>>>> 2f87c050405cc1ac53ff4585992c0489ea1c30fa
                         <div class="cont_photo">
                             <div class="cont_img_back">
                                 <img src="../public/img/mulher-em-sessao-de-fisioterapia.jpg" alt="" />
