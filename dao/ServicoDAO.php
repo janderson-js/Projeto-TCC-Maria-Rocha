@@ -89,5 +89,32 @@ class ServicoDAO {
         }
     }
     
-    
+    public function listarServicos(){
+
+        $sqlListarServicos = "SELECT * FROM servico";
+
+        try {
+            $stmt = $this->conn->getConexao()->prepare($sqlListarServicos);
+            $stmt->execute();
+
+            $resul = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            $listaServicos = [];
+            foreach($resul as $res){
+                $servico = new Servico();
+                $servico->setId($res['id']);
+                $servico->setNome($res['nome']);
+                $servico->setDescricao($res['descricao']);
+                $servico->setTipo($res['tipo']);
+                $listaServicos[] = $servico;
+            }
+            
+            return $listaServicos;
+
+        } catch (\PDOException $e) {
+            error_log("Erro ao listar os serviços: " . $e->getMessage());
+        }finally{
+            $this->conn->desconectar();
+        }
+    }
 }
