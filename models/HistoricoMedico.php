@@ -7,7 +7,6 @@ class HistoricoMedico{
     private string $alergias;
     private string $medicamentoEmUso;
     private string $historicoFamiliarRelevante;
-    
 
     public function getId(): int
     {
