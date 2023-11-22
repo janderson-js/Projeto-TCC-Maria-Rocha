@@ -99,11 +99,38 @@ class HistoricoFisioterapeuticoDAO{
         return $historicoFisioterapeutico;
 
         } catch (\PDOException $e) {
-            error_log("Erro ao carregar por id o Historico Medico: " . $e->getMessage());
+            error_log("Erro ao carregar por id o Historico Fisioterapeutico: " . $e->getMessage());
         }finally{
             $this->conn->desconectar();
         }
     }
     
+    public function listarHistoricoMedico(){
+
+        $sqlListarHistoricoFisioterapeutico = "SELECT * FROM historico_Fisioterapeutico";
+
+        try {
+            $stmt = $this->conn->getConexao()->prepare($sqlListarHistoricoFisioterapeutico);
+            $stmt->execute();
+
+            $resul = $stmt->fetchALL(PDO::FETCH_ASSOC);
+            
+            foreach($resul as $row){
+                $historicosFisioterapeuticos[] = [
+                    'id' => $row['id'],
+                    'tratamentoAnterior' => $row['tratamento_anterior'],
+                    'motivoTratamentoAnterior' => $row['motivo_tratamento_anterior'],
+                    'reultadoTratamentoAnterior' => $row['resultado_tratamento_anterior'],
+                    'problemaFisicoRecorrente' => $row['problema_fisico_recorrente']
+                ];
+            }
+        return $historicosFisioterapeuticos;
+
+        } catch (\PDOException $e) {
+            error_log("Erro ao carregar por id o Historico Fisioterapeutico: " . $e->getMessage());
+        }finally{
+            $this->conn->desconectar();
+        }
+    }
    
 }
