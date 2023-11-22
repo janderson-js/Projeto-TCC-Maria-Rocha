@@ -92,5 +92,44 @@ class PacienteDAO
         }
     }
 
-    
+    public function carregarPorIdPaciente(int $id)
+    {
+        $sqlCarregarPorIdPaciente = "SELECT * FROM paciente WHERE id=:id";
+
+        try {
+            $stmt = $this->conn->getConexao()->prepare($sqlCarregarPorIdPaciente);
+            $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+
+            $stmt->execute();
+
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if (!$result) {
+                return null; // Paciente não encontrado
+            }
+
+            $paciente = new Paciente();
+            $paciente->setId($result['id']);
+            $paciente->setNome($result['nome']);
+            $paciente->setIdade($result['idade']);
+            $paciente->setCpf($result['cpf']);
+            $paciente->setLogin($result['login']);
+            $paciente->setSenha($result['senha']);
+            $paciente->setGenero($result['genero']);
+            $paciente->setProfissao($result['profissao']);
+            $paciente->setTelefone($result['telefone']);
+            $paciente->setCelular($result['celular']);
+            $paciente->setQueixaPrincipal($result['queixaPrincipal']);
+
+            // Adicione aqui o código para carregar os objetos relacionados (HistoricoAtual, HistoricoMedico, HistoricoFisioterapeutico)
+
+            return $paciente;
+        } catch (\PDOException $e) {
+            error_log("Erro ao carregar por id o paciente: " . $e->getMessage());
+        } finally {
+            $this->conn->desconectar();
+        }
+    }
+
+   
 }
