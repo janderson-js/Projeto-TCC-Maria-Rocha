@@ -46,5 +46,21 @@ class ServicoDAO {
         }
     }
 
-   
+    public function excluirServico(int $id) {
+        $sqlExcluirServico = "DELETE FROM servico WHERE id=:id";
+
+        try {
+            $stmt = $this->conn->getConexao()->prepare($sqlExcluirServico);
+            $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+
+            $stmt->execute();
+            
+        } catch (\PDOException $e) {
+            error_log("Erro ao excluir o serviço: " . $e->getMessage());
+        }finally{
+            $this->conn->desconectar();
+        }
+    }
+
+    
 }
