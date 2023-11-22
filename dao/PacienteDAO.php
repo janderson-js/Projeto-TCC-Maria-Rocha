@@ -74,5 +74,23 @@ class PacienteDAO
         }
     }
 
+    public function excluirPaciente(int $id)
+    {
+        $sqlExcluirPaciente = "DELETE FROM paciente WHERE id=:id";
+
+        try {
+            $stmt = $this->conn->getConexao()->prepare($sqlExcluirPaciente);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+            // Adicione aqui o código para excluir os objetos relacionados (HistoricoAtual, HistoricoMedico, HistoricoFisioterapeutico)
+
+            $stmt->execute();
+        } catch (\PDOException $e) {
+            error_log("Erro ao excluir o paciente: " . $e->getMessage());
+        } finally {
+            $this->conn->desconectar();
+        }
+    }
+
     
 }
