@@ -62,5 +62,32 @@ class ServicoDAO {
         }
     }
 
+    public function carregaPorIdServico(int $id){
+
+        $sqlCarregaPorIdServico = "SELECT * FROM servico WHERE id=:id";
+
+        try {
+            $stmt = $this->conn->getConexao()->prepare($sqlCarregaPorIdServico);
+            $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+
+            $stmt->execute();
+
+            $resul = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            $servico = new Servico();
+            $servico->setId($resul['id']);
+            $servico->setNome($resul['nome']);
+            $servico->setDescricao($resul['descricao']);
+            $servico->setTipo($resul['tipo']);
+            
+            return $servico;
+
+        } catch (\PDOException $e) {
+            error_log("Erro ao carregar por id o serviço: " . $e->getMessage());
+        }finally{
+            $this->conn->desconectar();
+        }
+    }
+    
     
 }
