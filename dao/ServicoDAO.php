@@ -27,5 +27,24 @@ class ServicoDAO {
         }
     }
 
-    
+    public function editarServico(Servico $servico) {
+        $sqlAtualizarServico = "UPDATE servico SET nome=:nome, descricao=:descricao, tipo=:tipo WHERE id=:id";
+
+        try {
+            $stmt = $this->conn->getConexao()->prepare($sqlAtualizarServico);
+            $stmt->bindValue(":id", $servico->getId(), PDO::PARAM_INT);
+            $stmt->bindValue(":nome", $servico->getNome(), PDO::PARAM_STR);
+            $stmt->bindValue(":descricao", $servico->getDescricao(), PDO::PARAM_STR);
+            $stmt->bindValue(":tipo", $servico->getTipo(), PDO::PARAM_STR);
+
+            $stmt->execute();
+            
+        } catch (\PDOException $e) {
+            error_log("Erro ao atualizar o serviço: " . $e->getMessage());
+        }finally{
+            $this->conn->desconectar();
+        }
+    }
+
+   
 }
