@@ -131,5 +131,42 @@ class PacienteDAO
         }
     }
 
-   
+    public function listarPacientes()
+    {
+        $sqlListarPacientes = "SELECT * FROM paciente";
+
+        try {
+            $stmt = $this->conn->getConexao()->prepare($sqlListarPacientes);
+            $stmt->execute();
+
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            $pacientes = [];
+
+            foreach ($result as $row) {
+                $paciente = new Paciente();
+                $paciente->setId($row['id']);
+                $paciente->setNome($row['nome']);
+                $paciente->setIdade($row['idade']);
+                $paciente->setCpf($row['cpf']);
+                $paciente->setLogin($row['login']);
+                $paciente->setSenha($row['senha']);
+                $paciente->setGenero($row['genero']);
+                $paciente->setProfissao($row['profissao']);
+                $paciente->setTelefone($row['telefone']);
+                $paciente->setCelular($row['celular']);
+                $paciente->setQueixaPrincipal($row['queixaPrincipal']);
+
+                // Adicione aqui o código para carregar os objetos relacionados (HistoricoAtual, HistoricoMedico, HistoricoFisioterapeutico)
+
+                $pacientes[] = $paciente;
+            }
+
+            return $pacientes;
+        } catch (\PDOException $e) {
+            error_log("Erro ao listar pacientes: " . $e->getMessage());
+        } finally {
+            $this->conn->desconectar();
+        }
+    }
 }
