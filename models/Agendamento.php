@@ -3,8 +3,8 @@
 class Agendamento{
     private int $id;
     private string $tipo;
-    private string $data;
-    private string $hora;
+    private string $dataAgendamento;
+    private string $horaAgendamento;
     private string $dataRegistroAgendamento;
     private string $dataAlteracao;
     private string $quemRegistrou;
@@ -41,26 +41,26 @@ class Agendamento{
         return $this;
     }
 
-    public function getData(): string
+    public function getDataAgendamento(): string
     {
-        return $this->data;
+        return $this->dataAgendamento;
     }
 
-    public function setData(string $data): self
+    public function setDataAgendamento(string $dataAgendamento): self
     {
-        $this->data = $data;
+        $this->dataAgendamento = $dataAgendamento;
 
         return $this;
     }
 
-    public function getHora(): string
+    public function getHoraAgendamento(): string
     {
-        return $this->hora;
+        return $this->horaAgendamento;
     }
 
-    public function setHora(string $hora): self
+    public function setHoraAgendamento(string $horaAgendamento): self
     {
-        $this->hora = $hora;
+        $this->horaAgendamento = $horaAgendamento;
 
         return $this;
     }
