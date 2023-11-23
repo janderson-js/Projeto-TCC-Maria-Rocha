@@ -9,7 +9,7 @@ class Funcionario{
     private string $genero;
     private string $telefone;
     private string $celular;
-
+    private string $urlImgPerfil;
     private Perfil $perfil;
     private Especialidade $especialidade;
 
@@ -141,6 +141,18 @@ class Funcionario{
     public function setEspecialidade(Especialidade $especialidade): self
     {
         $this->especialidade = $especialidade;
+
+        return $this;
+    }
+
+    public function getUrlImgPerfil(): string
+    {
+        return $this->urlImgPerfil;
+    }
+
+    public function setUrlImgPerfil(string $urlImgPerfil): self
+    {
+        $this->urlImgPerfil = $urlImgPerfil;
 
         return $this;
     }
