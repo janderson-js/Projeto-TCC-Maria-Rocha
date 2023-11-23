@@ -13,6 +13,7 @@ class Paciente{
     private string $telefone;
     private string $celular;
     private string $queixaPrincipal;
+    private string $urlImgPerfil;
 
     public function getId(): int
     {
@@ -142,6 +143,18 @@ class Paciente{
     public function setQueixaPrincipal(string $queixaPrincipal): self
     {
         $this->queixaPrincipal = $queixaPrincipal;
+
+        return $this;
+    }
+
+    public function getUrlImgPerfil(): string
+    {
+        return $this->urlImgPerfil;
+    }
+
+    public function setUrlImgPerfil(string $urlImgPerfil): self
+    {
+        $this->urlImgPerfil = $urlImgPerfil;
 
         return $this;
     }
