@@ -3,7 +3,7 @@
 class Avaliacao{
     private int $id;
     private string $dataAvaliacao;
-    private string $horaAgendamento;
+    private string $horaAvaliacao;
     private string $observacoes;
     private string $diagnosticoInicial;
     private string $resultadoTesteExames;
@@ -36,14 +36,14 @@ class Avaliacao{
         return $this;
     }
 
-    public function getHoraAgendamento(): string
+    public function getHoraAvaliacao(): string
     {
-        return $this->horaAgendamento;
+        return $this->horaAvaliacao;
     }
 
-    public function setHoraAgendamento(string $horaAgendamento): self
+    public function setHoraAvaliacao(string $horaAvaliacao): self
     {
-        $this->horaAgendamento = $horaAgendamento;
+        $this->horaAvaliacao = $horaAvaliacao;
 
         return $this;
     }
