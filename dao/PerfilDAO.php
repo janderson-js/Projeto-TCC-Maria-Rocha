@@ -1,124 +1,176 @@
 <?php
 
 include "../dataBase/DataBase.php";
-include "../models/Perfil.php";
+include "../models/Paciente.php";
 
-class PerfilDAO{
+class PacienteDAO
+{
     private $conn;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->conn = DataBase::getInstance();
     }
 
-    public function inserirPerfil(Perfil $perfil){
-
-        $sqlInserirPerfil = "INSERT INTO perfil (titulo, descricao) VALUES
-        (:titulo, :descricao, :url)";
+    public function inserirPaciente(Paciente $paciente)
+    {
+        $sqlInserirPaciente = "INSERT INTO paciente (
+            nome, idade, cpf, login, senha, genero, profissao, telefone, celular,
+            queixa_principal, url_img_perfil
+        ) VALUES (
+            :nome, :idade, :cpf, :login, :senha, :genero, :profissao, :telefone, :celular,
+            :queixaPrincipal, :urlImgPerfil
+        )";
 
         try {
-            $stmt = $this->conn->getConexao()->prepare($sqlInserirPerfil);
-            $stmt->bindValue(":titulo", $perfil->getTitulo(), PDO::PARAM_STR);
-            $stmt->bindValue(":descricao", $perfil->getDescricao(), PDO::PARAM_STR);
+            $stmt = $this->conn->getConexao()->prepare($sqlInserirPaciente);
+            $stmt->bindValue(":nome", $paciente->getNome(), PDO::PARAM_STR);
+            $stmt->bindValue(":idade", $paciente->getIdade(), PDO::PARAM_INT);
+            $stmt->bindValue(":cpf", $paciente->getCpf(), PDO::PARAM_STR);
+            $stmt->bindValue(":login", $paciente->getLogin(), PDO::PARAM_STR);
+            $stmt->bindValue(":senha", $paciente->getSenha(), PDO::PARAM_STR);
+            $stmt->bindValue(":genero", $paciente->getGenero(), PDO::PARAM_STR);
+            $stmt->bindValue(":profissao", $paciente->getProfissao(), PDO::PARAM_STR);
+            $stmt->bindValue(":telefone", $paciente->getTelefone(), PDO::PARAM_STR);
+            $stmt->bindValue(":celular", $paciente->getCelular(), PDO::PARAM_STR);
+            $stmt->bindValue(":queixaPrincipal", $paciente->getQueixaPrincipal(), PDO::PARAM_STR);
+            $stmt->bindValue(":urlImgPerfil", $paciente->getUrlImgPerfil(), PDO::PARAM_STR);
 
             $stmt->execute();
-            
-
         } catch (\PDOException $e) {
-            error_log("Erro ao inserir perfil:" . $e->getMessage());
-        }finally{
+            error_log("Erro ao inserir paciente: " . $e->getMessage());
+        } finally {
             $this->conn->desconectar();
         }
     }
 
-    public function editarPerfil(Perfil $perfil){
-
-        $sqlEditarPerfil = "UPDATE perfil SET 
-        titulo=':titulo', 
-        descricao=':descricao',
-        WHERE id=':id'";
+    public function editarPaciente(Paciente $paciente)
+    {
+        $sqlEditarPaciente = "UPDATE paciente SET 
+            nome=:nome, 
+            idade=:idade, 
+            cpf=:cpf, 
+            login=:login, 
+            senha=:senha, 
+            genero=:genero, 
+            profissao=:profissao, 
+            telefone=:telefone, 
+            celular=:celular,
+            queixa_principal=:queixaPrincipal, 
+            url_img_perfil=:urlImgPerfil
+            WHERE id=:id";
 
         try {
-            $stmt = $this->conn->getConexao()->prepare($sqlEditarPerfil);
-            $stmt->bindValue(":titulo", $perfil->getTitulo(), PDO::PARAM_STR);
-            $stmt->bindValue(":descricao", $perfil->getDescricao(), PDO::PARAM_STR);
-            $stmt->bindValue(":id", $perfil->getId(), PDO::PARAM_INT);
+            $stmt = $this->conn->getConexao()->prepare($sqlEditarPaciente);
+            $stmt->bindValue(":nome", $paciente->getNome(), PDO::PARAM_STR);
+            $stmt->bindValue(":idade", $paciente->getIdade(), PDO::PARAM_INT);
+            $stmt->bindValue(":cpf", $paciente->getCpf(), PDO::PARAM_STR);
+            $stmt->bindValue(":login", $paciente->getLogin(), PDO::PARAM_STR);
+            $stmt->bindValue(":senha", $paciente->getSenha(), PDO::PARAM_STR);
+            $stmt->bindValue(":genero", $paciente->getGenero(), PDO::PARAM_STR);
+            $stmt->bindValue(":profissao", $paciente->getProfissao(), PDO::PARAM_STR);
+            $stmt->bindValue(":telefone", $paciente->getTelefone(), PDO::PARAM_STR);
+            $stmt->bindValue(":celular", $paciente->getCelular(), PDO::PARAM_STR);
+            $stmt->bindValue(":queixaPrincipal", $paciente->getQueixaPrincipal(), PDO::PARAM_STR);
+            $stmt->bindValue(":urlImgPerfil", $paciente->getUrlImgPerfil(), PDO::PARAM_STR);
+            $stmt->bindValue(":id", $paciente->getId(), PDO::PARAM_INT);
 
             $stmt->execute();
-            
-
         } catch (\PDOException $e) {
-            error_log("Erro ao editar Perfil:" . $e->getMessage());
-        }finally{
+            error_log("Erro ao editar paciente: " . $e->getMessage());
+        } finally {
             $this->conn->desconectar();
         }
     }
 
-    public function excluirPerfil(int $id) {
-        $sqlExcluirPerfil = "DELETE FROM perfil WHERE id=':id'";
+    public function excluirPaciente(int $id)
+    {
+        $sqlExcluirPaciente = "DELETE FROM paciente WHERE id=:id";
 
         try {
-            $stmt = $this->conn->getConexao()->prepare($sqlExcluirPerfil);
-            $stmt->bindvalue(':id', $id, PDO::PARAM_INT);
+            $stmt = $this->conn->getConexao()->prepare($sqlExcluirPaciente);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
             $stmt->execute();
-            
         } catch (\PDOException $e) {
-            error_log("Erro ao exlcuir o Perfil: " . $e->getMessage());
-        }finally{
+            error_log("Erro ao excluir o paciente: " . $e->getMessage());
+        } finally {
             $this->conn->desconectar();
         }
     }
 
-    public function carregaPorIdPerfil(int $id){
-
-        $sqlCarregaPorIdPerfil = "SELECT * FROM perfil WHERE id=':id'";
+    public function carregarPorIdPaciente(int $id)
+    {
+        $sqlCarregarPorIdPaciente = "SELECT * FROM paciente WHERE id=:id";
 
         try {
-            $stmt = $this->conn->getConexao()->prepare($sqlCarregaPorIdPerfil);
+            $stmt = $this->conn->getConexao()->prepare($sqlCarregarPorIdPaciente);
             $stmt->bindValue(":id", $id, PDO::PARAM_INT);
 
             $stmt->execute();
 
-            $resul = $stmt->fetchALL(PDO::FETCH_ASSOC);
-            
-            foreach($resul as $row){
-                $perfil[] = [
-                    'id' => $row['id'],
-                    'titulo' => $row['titulo'],
-                    'descricao' => $row['descricao']
-                ];
-            }
-        return $perfil;
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
+            if (!$result) {
+                return null; // Paciente não encontrado
+            }
+
+            $paciente = new Paciente();
+            $paciente->setId($result['id']);
+            $paciente->setNome($result['nome']);
+            $paciente->setIdade($result['idade']);
+            $paciente->setCpf($result['cpf']);
+            $paciente->setLogin($result['login']);
+            $paciente->setSenha($result['senha']);
+            $paciente->setGenero($result['genero']);
+            $paciente->setProfissao($result['profissao']);
+            $paciente->setTelefone($result['telefone']);
+            $paciente->setCelular($result['celular']);
+            $paciente->setQueixaPrincipal($result['queixa_principal']);
+            $paciente->setUrlImgPerfil($result['url_img_perfil']);
+
+            return $paciente;
         } catch (\PDOException $e) {
-            error_log("Erro ao carregar por id o Perfil: " . $e->getMessage());
-        }finally{
+            error_log("Erro ao carregar por id o paciente: " . $e->getMessage());
+        } finally {
             $this->conn->desconectar();
         }
     }
-    
-    public function listarPerfil(){
 
-        $sqlListarPerfil = "SELECT * FROM perfil";
+    public function listarPacientes()
+    {
+        $sqlListarPacientes = "SELECT * FROM paciente";
 
         try {
-            $stmt = $this->conn->getConexao()->prepare($sqlListarPerfil);
+            $stmt = $this->conn->getConexao()->prepare($sqlListarPacientes);
             $stmt->execute();
 
-            $resul = $stmt->fetchALL(PDO::FETCH_ASSOC);
-            
-            foreach($resul as $row){
-                $perfis[] = [
-                    'id' => $row['id'],
-                    'titulo' => $row['titulo'],
-                    'descricao' => $row['descricao'],
-                ];
-            }
-        return $perfis;
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+            $pacientes = [];
+
+            foreach ($result as $row) {
+                $paciente = new Paciente();
+                $paciente->setId($row['id']);
+                $paciente->setNome($row['nome']);
+                $paciente->setIdade($row['idade']);
+                $paciente->setCpf($row['cpf']);
+                $paciente->setLogin($row['login']);
+                $paciente->setSenha($row['senha']);
+                $paciente->setGenero($row['genero']);
+                $paciente->setProfissao($row['profissao']);
+                $paciente->setTelefone($row['telefone']);
+                $paciente->setCelular($row['celular']);
+                $paciente->setQueixaPrincipal($row['queixa_principal']);
+                $paciente->setUrlImgPerfil($row['url_img_perfil']);
+
+                $pacientes[] = $paciente;
+            }
+
+            return $pacientes;
         } catch (\PDOException $e) {
-            error_log("Erro ao carregar por id o Perfil: " . $e->getMessage());
-        }finally{
+            error_log("Erro ao listar pacientes: " . $e->getMessage());
+        } finally {
             $this->conn->desconectar();
         }
     }
