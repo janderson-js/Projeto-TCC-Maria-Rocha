@@ -60,12 +60,12 @@ class AnamneseDAO
             tratamento_anterior=:tratamentoAnterior, 
             motivo_tratamento_anterior=:motivoTratamentoAnterior, 
             resultadoTratamentoAnterior=:resultadoTratamentoAnterior,
-            problemaFisicoRecorrente=:problemaFisicoRecorrente, 
-            doencasPrevias=:doencasPrevias, 
+            problema_fisico_recorrente=:problemaFisicoRecorrente, 
+            doencas_previas=:doencasPrevias, 
             cirurgias=:cirurgias, 
             alergias=:alergias, 
-            medicamentoEmUso=:medicamentoEmUso,
-            historicoFamiliarRelevante=:historicoFamiliarRelevante
+            medicamento_em_uso=:medicamentoEmUso,
+            historico_familiar_relevante=:historicoFamiliarRelevante
             WHERE id=:id";
 
         try {
@@ -127,19 +127,19 @@ class AnamneseDAO
 
             $anamnese = new Anamnese();
             $anamnese->setId($result['id']);
-            $anamnese->setDataInicioSintomas($result['dataInicioSintomas']);
-            $anamnese->setFatoresDesencadeiamSintomas($result['fatoresDesencadeiamSintomas']);
-            $anamnese->setNivelDor($result['nivelDor']);
-            $anamnese->setLocalizacaoDor($result['localizacaoDor']);
-            $anamnese->setTratamentoAnterior($result['tratamentoAnterior']);
-            $anamnese->setMotivoTratamentoAnterior($result['motivoTratamentoAnterior']);
-            $anamnese->setResultadoTratamentoAnterior($result['resultadoTratamentoAnterior']);
-            $anamnese->setProblemaFisicoRecorrente($result['problemaFisicoRecorrente']);
-            $anamnese->setDoencasPrevias($result['doencasPrevias']);
+            $anamnese->setDataInicioSintomas($result['data_inicio_sintomas']);
+            $anamnese->setFatoresDesencadeiamSintomas($result['fatores_desencadeiam_sintomas']);
+            $anamnese->setNivelDor($result['nivel_dor']);
+            $anamnese->setLocalizacaoDor($result['localizacao_dor']);
+            $anamnese->setTratamentoAnterior($result['tratamento_anterior']);
+            $anamnese->setMotivoTratamentoAnterior($result['motivo_tratamento_anterior']);
+            $anamnese->setResultadoTratamentoAnterior($result['resultado_tratamento_anterior']);
+            $anamnese->setProblemaFisicoRecorrente($result['problema_fisico_recorrente']);
+            $anamnese->setDoencasPrevias($result['doencas_previas']);
             $anamnese->setCirurgias($result['cirurgias']);
             $anamnese->setAlergias($result['alergias']);
-            $anamnese->setMedicamentoEmUso($result['medicamentoEmUso']);
-            $anamnese->setHistoricoFamiliarRelevante($result['historicoFamiliarRelevante']);
+            $anamnese->setMedicamentoEmUso($result['medicamento_em_uso']);
+            $anamnese->setHistoricoFamiliarRelevante($result['historico_familiar_relevante']);
 
             return $anamnese;
         } catch (\PDOException $e) {
@@ -163,19 +163,19 @@ class AnamneseDAO
             foreach ($result as $row) {
                 $anamnese = new Anamnese();
                 $anamnese->setId($row['id']);
-                $anamnese->setDataInicioSintomas($row['dataInicioSintomas']);
-                $anamnese->setFatoresDesencadeiamSintomas($row['fatoresDesencadeiamSintomas']);
+                $anamnese->setDataInicioSintomas($row['data_inicio_sintomas']);
+                $anamnese->setFatoresDesencadeiamSintomas($row['fatores_desencadeiam_sintomas']);
                 $anamnese->setNivelDor($row['nivelDor']);
-                $anamnese->setLocalizacaoDor($row['localizacaoDor']);
-                $anamnese->setTratamentoAnterior($row['tratamentoAnterior']);
-                $anamnese->setMotivoTratamentoAnterior($row['motivoTratamentoAnterior']);
-                $anamnese->setResultadoTratamentoAnterior($row['resultadoTratamentoAnterior']);
-                $anamnese->setProblemaFisicoRecorrente($row['problemaFisicoRecorrente']);
-                $anamnese->setDoencasPrevias($row['doencasPrevias']);
+                $anamnese->setLocalizacaoDor($row['localizacao_dor']);
+                $anamnese->setTratamentoAnterior($row['tratamento_anterior']);
+                $anamnese->setMotivoTratamentoAnterior($row['motivo_tratamento_anterior']);
+                $anamnese->setResultadoTratamentoAnterior($row['resultado_tratamento_anterior']);
+                $anamnese->setProblemaFisicoRecorrente($row['problema_fisico_recorrente']);
+                $anamnese->setDoencasPrevias($row['doencas_previas']);
                 $anamnese->setCirurgias($row['cirurgias']);
                 $anamnese->setAlergias($row['alergias']);
-                $anamnese->setMedicamentoEmUso($row['medicamentoEmUso']);
-                $anamnese->setHistoricoFamiliarRelevante($row['historicoFamiliarRelevante']);
+                $anamnese->setMedicamentoEmUso($row['medicamento_em_uso']);
+                $anamnese->setHistoricoFamiliarRelevante($row['historico_familiar_relevante']);
 
                 $anamneses[] = $anamnese;
             }
