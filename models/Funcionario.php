@@ -12,7 +12,6 @@ class Funcionario{
     private string $urlImgPerfil;
     private Perfil $perfil;
     private Especialidade $especialidade;
-    private string $urlPerfilImg;
 
     public function getId(): int
     {
@@ -154,18 +153,6 @@ class Funcionario{
     public function setUrlImgPerfil(string $urlImgPerfil): self
     {
         $this->urlImgPerfil = $urlImgPerfil;
-
-        return $this;
-    }
-
-    public function getUrlPerfilImg(): string
-    {
-        return $this->urlPerfilImg;
-    }
-
-    public function setUrlPerfilImg(string $urlPerfilImg): self
-    {
-        $this->urlPerfilImg = $urlPerfilImg;
 
         return $this;
     }

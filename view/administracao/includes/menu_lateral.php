@@ -22,20 +22,20 @@
             </li>
 
             <li class="sidebar-item">
-                <a class="sidebar-link" href="pages-sign-in.html">
-                    <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Sign In</span>
+                <a class="sidebar-link" href="/projeto-tcc-maria-rocha/view/administracao/view/pages/menu/form_cadastrar_menu.php">
+                    <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Menu</span>
                 </a>
             </li>
 
             <li class="sidebar-item">
-                <a class="sidebar-link" href="pages-sign-up.html">
-                    <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Sign Up</span>
+                <a class="sidebar-link" href="/projeto-tcc-maria-rocha/view/administracao/view/pages/perfil/form_cadastrar_perfil.php">
+                    <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Perfil</span>
                 </a>
             </li>
 
             <li class="sidebar-item">
-                <a class="sidebar-link" href="pages-blank.html">
-                    <i class="align-middle" data-feather="book"></i> <span class="align-middle">Blank</span>
+                <a class="sidebar-link" href="/projeto-tcc-maria-rocha/view/administracao/view/pages/servico/form_cadastrar_servico.php">
+                    <i class="align-middle" data-feather="book"></i> <span class="align-middle">Servico</span>
                 </a>
             </li>
 
@@ -44,20 +44,20 @@
             </li>
 
             <li class="sidebar-item">
-                <a class="sidebar-link" href="ui-buttons.html">
-                    <i class="align-middle" data-feather="square"></i> <span class="align-middle">Buttons</span>
+                <a class="sidebar-link" href="/projeto-tcc-maria-rocha/view/administracao/view/pages/especialidade/form_cadastrar_especialidade.php">
+                    <i class="align-middle" data-feather="square"></i> <span class="align-middle">Especialidade</span>
                 </a>
             </li>
 
             <li class="sidebar-item">
-                <a class="sidebar-link" href="ui-forms.html">
-                    <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Forms</span>
+                <a class="sidebar-link" href="/projeto-tcc-maria-rocha/view/administracao/view/pages/anamnese/form_cadastrar_anamnese.php">
+                    <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Anamnse</span>
                 </a>
             </li>
 
             <li class="sidebar-item">
-                <a class="sidebar-link" href="ui-cards.html">
-                    <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Cards</span>
+                <a class="sidebar-link" href="/projeto-tcc-maria-rocha/view/administracao/view/pages/funcionario/form_cadastrar_funcionario.php">
+                    <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Funcionario</span>
                 </a>
             </li>
 

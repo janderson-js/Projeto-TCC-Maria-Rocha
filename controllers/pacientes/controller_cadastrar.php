@@ -2,7 +2,6 @@
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtém os dados do formulário
-    $id = $_POST["id"];
     $nome = $_POST["nome"];
     $idade = $_POST["idade"];
     $cpf = $_POST["cpf"];
@@ -12,13 +11,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $profissao = $_POST["profissao"];
     $telefone = $_POST["telefone"];
     $celular = $_POST["celular"];
-    // Processa a imagem de perfil
-    // Corrija o nome do arquivo removendo espaços extras
 
+    // Processa a imagem de perfil
     $imagemPerfil = $_FILES["imagemPerfil"];
+    // Corrija o nome do arquivo removendo espaços extras
     $nomeArquivo = str_replace(' ', '', $imagemPerfil['name']);
     $caminhoTemporario = $imagemPerfil["tmp_name"];
-    $caminhoDestino = $_SERVER['DOCUMENT_ROOT'] .'/Projeto-TCC-Maria-Rocha/view/administracao/imgPerfil/' . $nomeArquivo; // Pasta onde a imagem será armazenada
+    $caminhoDestino = '/projeto-tcc-maria-rocha/view/administracao/imgPerfil/' . $nomeArquivo; // Pasta onde a imagem será armazenada
 
     move_uploaded_file($caminhoTemporario, $caminhoDestino);
 
@@ -37,5 +36,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "Telefone: $telefone <br>";
     echo "Celular: $celular <br>";
     echo "Imagem de Perfil: $caminhoDestino <br>";
+
+
+    header('location:/projeto-tcc-maria-rocha/view/administracao/view/pages/pacientes/teste.php?img='. $caminhoDestino);
 }
 ?>

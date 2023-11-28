@@ -19,16 +19,17 @@
             <main class="content">
                 <div class="container-fluid p-0">
 
-                    <h1 class="h3 mb-3">Cadastrar Paciente</h1>
+                    <h1 class="h3 mb-3">Gerenciar Funcionario</h1>
 
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5 class="card-title mb-0">Cadastrar Paciente</h5>
+                                    <h5 class="card-title mb-0">Cadastrar Funcionario</h5>
                                 </div>
                                 <div class="card-body">
-                                    <form action="/projeto-tcc-maria-rocha/controllers/pacientes/controller_cadastrar.php" method="post" enctype="multipart/form-data">
+                                    <form action="/projeto-tcc-maria-rocha/controllers/funcionario/controller_cadastrar.php" method="post" enctype="multipart/form-data">
+
                                         <!-- Imagem de Perfil -->
                                         <div class="input-file">
                                             <img id="file_upload" src="http://placehold.it/70" alt="your image" class="upload-img" />
@@ -44,22 +45,16 @@
                                             <input type="text" class="form-control" id="nome" name="nome" required>
                                         </div>
 
-                                        <!-- Idade -->
+                                        <!-- COFFITO -->
                                         <div class="mb-3">
-                                            <label for="idade" class="form-label">Idade</label>
-                                            <input type="number" class="form-control" id="idade" name="idade" required>
+                                            <label for="coffito" class="form-label">COFFITO</label>
+                                            <input type="text" class="form-control" id="coffito" name="coffito" required>
                                         </div>
 
-                                        <!-- CPF -->
+                                        <!-- Matrícula -->
                                         <div class="mb-3">
-                                            <label for="cpf" class="form-label">CPF</label>
-                                            <input type="text" class="form-control" id="cpf" name="cpf" required>
-                                        </div>
-
-                                        <!-- Login -->
-                                        <div class="mb-3">
-                                            <label for="login" class="form-label">Login</label>
-                                            <input type="text" class="form-control" id="login" name="login" required>
+                                            <label for="matricula" class="form-label">Matrícula</label>
+                                            <input type="text" class="form-control" id="matricula" name="matricula" required>
                                         </div>
 
                                         <!-- Senha -->
@@ -68,34 +63,50 @@
                                             <input type="password" class="form-control" id="senha" name="senha" required>
                                         </div>
 
+                                        <!-- Idade -->
+                                        <div class="mb-3">
+                                            <label for="idade" class="form-label">Idade</label>
+                                            <input type="text" class="form-control" id="idade" name="idade" required>
+                                        </div>
+
                                         <!-- Gênero -->
                                         <div class="mb-3">
                                             <label for="genero" class="form-label">Gênero</label>
-                                            <select class="form-select" id="genero" name="genero" required>
-                                                <option value="masculino">Masculino</option>
-                                                <option value="feminino">Feminino</option>
-                                                <option value="outro">Outro</option>
-                                            </select>
-                                        </div>
-
-                                        <!-- Profissão -->
-                                        <div class="mb-3">
-                                            <label for="profissao" class="form-label">Profissão</label>
-                                            <input type="text" class="form-control" id="profissao" name="profissao" required>
+                                            <input type="text" class="form-control" id="genero" name="genero" required>
                                         </div>
 
                                         <!-- Telefone -->
                                         <div class="mb-3">
                                             <label for="telefone" class="form-label">Telefone</label>
-                                            <input type="tel" class="form-control" id="telefone" name="telefone" required>
+                                            <input type="text" class="form-control" id="telefone" name="telefone" required>
                                         </div>
 
                                         <!-- Celular -->
                                         <div class="mb-3">
                                             <label for="celular" class="form-label">Celular</label>
-                                            <input type="tel" class="form-control" id="celular" name="celular" required>
+                                            <input type="text" class="form-control" id="celular" name="celular" required>
+                                        </div>
+                                        <!-- Perfil -->
+                                        <div class="mb-3">
+                                            <label for="perfil" class="form-label">Perfil</label>
+                                            <select class="form-select" id="perfil" name="perfil" required>
+                                                <option value="clinico_geral">Clínico Geral</option>
+                                                <option value="cirurgiao">Cirurgião</option>
+                                                <option value="pediatra">Pediatra</option>
+                                                <!-- Adicione mais opções conforme necessário -->
+                                            </select>
                                         </div>
 
+                                        <!-- Especialidade -->
+                                        <div class="mb-3">
+                                            <label for="especialidade" class="form-label">Especialidade</label>
+                                            <select class="form-select" id="especialidade" name="especialidade" required>
+                                                <option value="ortopedia">Ortopedia</option>
+                                                <option value="cardiologia">Cardiologia</option>
+                                                <option value="dermatologia">Dermatologia</option>
+                                                <!-- Adicione mais opções conforme necessário -->
+                                            </select>
+                                        </div>
                                         <button type="submit" class="btn btn-primary">Cadastrar</button>
                                     </form>
                                 </div>
