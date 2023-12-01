@@ -1,5 +1,6 @@
 <?php
-    $img = $_GET['img'];
+    $img = urlencode( $_GET['img']);
+    var_dump($img);
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +33,7 @@
                                     <h5 class="card-title mb-0">img Paciente</h5>
                                 </div>
                                 <div class="card-body">
-                                  <img src="/projeto-tcc-maria-rocha/view/administracao/imgPerfil/rezero.jfif" alt="">
+                                  <img src="../../../../administracao/imgPerfil/<?php echo $img ?>" alt="">
                                 </div>
                             </div>
                         </div>
