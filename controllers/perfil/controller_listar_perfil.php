@@ -2,7 +2,6 @@
 include("../../dao/PerfilDAO.php");
 
 $pDAO = new PerfilDAO();
-$perfis = $pDAO->listarPerfisJson();
-
-echo $perfis;
+ $perfis = $pDAO->listarPerfisJson();
+        echo $perfis;
 ?>

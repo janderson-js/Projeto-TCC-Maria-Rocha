@@ -92,6 +92,37 @@ class PerfilDAO
         }
     }
 
+    public function carregarPorIdPerfilJson(int $id)
+    {
+        $sqlCarregarPorIdPerfil = "SELECT * FROM perfil WHERE id=:id";
+
+        try {
+            $stmt = $this->conn->getConexao()->prepare($sqlCarregarPorIdPerfil);
+            $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+
+            $stmt->execute();
+
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if (!$result) {
+                return null; // Perfil não encontrado
+            }
+
+            $perfil = new Perfil();
+            $perfil->setId($result['id']);
+            $perfil->setTitulo($result['titulo']);
+            $perfil->setDescricao($result['descricao']);
+            
+            // Retornar a resposta JSON corretamente
+            header('Content-Type: application/json');
+            echo json_encode($perfil->toJsonNoButton(), JSON_UNESCAPED_UNICODE);
+        } catch (\PDOException $e) {
+            error_log("Erro ao carregar por id o perfil: " . $e->getMessage());
+        } finally {
+            $this->conn->desconectar();
+        }
+    }
+
     public function listarPerfis()
     {
         $sqlListarPerfis = "SELECT * FROM perfil";

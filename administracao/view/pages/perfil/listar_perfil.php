@@ -57,6 +57,39 @@ include_once(dirname(__FILE__) . "/../../../../dao/PerfilDAO.php");
                 </div>
             </main>
 
+            <div id="editarDados" class="modal" data-bs-backdrop="static" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Editar dados</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+
+                            <form id="formEditar" action="/projeto-tcc-maria-rocha/controllers/perfil/controller_alterar.php" method="post">
+                                <div class="mb-3">
+                                    <label for="id" class="form-label">ID:</label>
+                                    <input type="text" class="form-control" id="id" name="id" readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="titulo" class="form-label">Titulo:</label>
+                                    <input type="text" class="form-control" id="titulo" name="titulo">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="descricao" class="form-label">Descrição</label>
+                                    <input type="text" class="form-control" id="descricao" name="descricao">
+                                </div>
+                            </form>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                            <button type="button" onclick="enviarFormEditar()" class="btn btn-primary">Salvar mudanças</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Inicio do include do Footer -->
             <?php include_once(dirname(__FILE__) . "/../../../includes/footer.php"); ?>
             <!-- Fim do include do Footer -->
@@ -97,16 +130,47 @@ include_once(dirname(__FILE__) . "/../../../../dao/PerfilDAO.php");
 
         });
 
-        function addNovocadastro(){
+        function addNovocadastro() {
             alert("redirecionado");
         }
-      
+
         function editarDadoDataTable(id) {
-            console.log("peguei: " + id);
+            $("#editarDados").modal("show");
+
+            $.ajax({
+                type: 'GET',
+                url: '/Projeto-TCC-Maria-Rocha/controllers/perfil/controller_carregar_perfil.php',
+                data: {
+                    id: id
+                },
+                success: function(resposta) {
+                    // Lógica a ser executada quando a requisição for bem-sucedida
+                    $("#editarDados #formEditar #id").val(resposta.id);
+                    $("#editarDados #formEditar #titulo").val(resposta.titulo);
+                    $("#editarDados #formEditar #descricao").val(resposta.descricao);
+
+                },
+                error: function(xhr, status, error) {
+                    // Lógica a ser executada em caso de erro na requisição
+                    console.error('Erro na requisição:', xhr.responseText);
+                    console.error('Status:', status);
+                    console.error('Erro:', error);
+                }
+            });
         }
 
         function excluirDadoDataTable(id) {
             console.log("peguei: " + id);
+        }
+
+        function enviarFormEditar(){
+            var form = document.getElementById("formEditar");
+            form.submit();
+        }
+
+
+        function addNovocadastro(){
+            window.location.href = "/projeto-tcc-maria-rocha/administracao/view/pages/perfil/form_cadastrar_perfil.php";
         }
     </script>
 </body>
