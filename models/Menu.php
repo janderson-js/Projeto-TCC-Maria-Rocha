@@ -4,7 +4,7 @@ class Menu{
     private int $id;
     private string $titulo;
     private string $descricao;
-    private string $url;  
+    private $url;  
 
     public function getId(): int
     {
@@ -42,7 +42,7 @@ class Menu{
         return $this;
     }
 
-    public function getUrl(): string
+    public function getUrl()
     {
         return $this->url;
     }

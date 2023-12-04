@@ -12,14 +12,14 @@ class MenuDAO{
 
     public function inserirMenu(Menu $menu){
 
-        $sqlInserirMenu = "INSERT INTO menu (titulo, descricao, url) VALUES
-        (:titulo, :descricao, :url)";
+        $sqlInserirMenu = "INSERT INTO menu (titulo, descricao, url_menu) VALUES
+        (:titulo, :descricao, :url_menu)";
 
         try {
             $stmt = $this->conn->getConexao()->prepare($sqlInserirMenu);
             $stmt->bindValue(":titulo", $menu->getTitulo(), PDO::PARAM_STR);
             $stmt->bindValue(":descricao", $menu->getDescricao(), PDO::PARAM_STR);
-            $stmt->bindValue(":url", $menu->getUrl(), PDO::PARAM_STR);
+            $stmt->bindValue(":url_menu", $menu->getUrl(), PDO::PARAM_STR);
 
             $stmt->execute();
             
@@ -36,14 +36,14 @@ class MenuDAO{
         $sqlEditarMenu = "UPDATE menu SET 
         titulo=':titulo', 
         descricao=':descricao',
-        url=':url'
+        url_menu=':url_menu'
         WHERE id=':id'";
 
         try {
             $stmt = $this->conn->getConexao()->prepare($sqlEditarMenu);
             $stmt->bindValue(":titulo", $menu->getTitulo(), PDO::PARAM_STR);
             $stmt->bindValue(":descricao", $menu->getDescricao(), PDO::PARAM_STR);
-            $stmt->bindValue(":url", $menu->getUrl(), PDO::PARAM_STR);
+            $stmt->bindValue(":url_menu", $menu->getUrl(), PDO::PARAM_STR);
             $stmt->bindValue(":id", $menu->getId(), PDO::PARAM_INT);
 
             $stmt->execute();
@@ -91,7 +91,7 @@ class MenuDAO{
                     'id' => $row['id'],
                     'titulo' => $row['titulo'],
                     'descricao' => $row['descricao'],
-                    'url' => $row['url']
+                    'url_menu' => $row['url_menu']
                 ];
             }
         return $menu;
@@ -118,7 +118,7 @@ class MenuDAO{
                     'id' => $row['id'],
                     'titulo' => $row['titulo'],
                     'descricao' => $row['descricao'],
-                    'url' => $row['url']
+                    'url_menu' => $row['url_menu']
                 ];
             }
         return $menus;

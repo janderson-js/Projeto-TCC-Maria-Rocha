@@ -134,16 +134,12 @@ include_once(dirname(__FILE__) . "/../../../../dao/MenuDAO.php");
 
         });
 
-        function addNovocadastro() {
-            alert("redirecionado");
-        }
-
         function editarDadoDataTable(id) {
             $("#editarDados").modal("show");
 
             $.ajax({
                 type: 'GET',
-                url: '/Projeto-TCC-Maria-Rocha/controllers/perfil/controller_carregar_perfil.php',
+                url: '/Projeto-TCC-Maria-Rocha/controllers/menu/controller_carregar_menu.php',
                 data: {
                     id: id
                 },
@@ -174,7 +170,7 @@ include_once(dirname(__FILE__) . "/../../../../dao/MenuDAO.php");
 
 
         function addNovocadastro(){
-            window.location.href = "/projeto-tcc-maria-rocha/administracao/view/pages/perfil/form_cadastrar_perfil.php";
+            window.location.href = "/projeto-tcc-maria-rocha/administracao/view/pages/menu/form_cadastrar_menu.php";
         }
     </script>
 </body>

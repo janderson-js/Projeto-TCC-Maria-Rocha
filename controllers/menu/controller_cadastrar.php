@@ -1,19 +1,21 @@
 <?php
 
+include("../../dao/MenuDAO.php");
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtém os dados do formulário
     $titulo = $_POST["titulo"];
     $descricao = $_POST["descricao"];
-    $urlMenu = $_POST["urlMenu"];
+    $url = $_POST['urlMenu'];
 
-    // Agora você pode fazer o que quiser com os dados e o caminho da imagem de perfil
-    // Por exemplo, salvar no banco de dados, exibir na página, etc.
+    $mDAO = new MenuDAO();
+    $m = new Menu();
 
-    // Exemplo de exibição dos dados
-    echo "titulo: $titulo <br>";
-    echo "descricao: $descricao <br>";
-    echo "urlMenu: $urlMenu <br>";
-
-    //header('location:/projeto-tcc-maria-rocha/view/administracao/view/pages/pacientes/teste.php');
+    $m->setTitulo($titulo);
+    $m->setdescricao($descricao);
+    $m->setUrl($url);
+    $mDAO->inserirMenu($m);
+   
+    
+    header("location: /projeto-tcc-maria-rocha/administracao/view/pages/menu/listar_menu.php");
 }
-?>
