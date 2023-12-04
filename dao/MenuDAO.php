@@ -1,7 +1,7 @@
 <?php
 
-include "../dataBase/DataBase.php";
-include "../models/Menu.php";
+include_once(dirname(__FILE__) . "/../dataBase/DataBase.php");
+include_once(dirname(__FILE__) . "/../models/Menu.php");
 
 class MenuDAO{
     private $conn;
@@ -128,5 +128,39 @@ class MenuDAO{
         }finally{
             $this->conn->desconectar();
         }
+
+        
+    }
+
+    public function listarMenuJson(){
+
+        $sqlListarMenu = "SELECT * FROM menu";
+
+        try {
+            $stmt = $this->conn->getConexao()->prepare($sqlListarMenu);
+            $stmt->execute();
+
+            $resul = $stmt->fetchALL(PDO::FETCH_ASSOC);
+            
+            $menus = [];
+            foreach($resul as $row){
+                $m = new Menu();
+                $m->setId($row['id']);
+                $m->setTitulo($row['titulo']);
+                $m->setDescricao($row['descricao']);
+                $m->setUrl($row['url_menu']);
+
+                $menus[] = $m->toJson();
+            }
+         // Retornar a resposta JSON corretamente
+         header('Content-Type: application/json');
+         echo json_encode($menus, JSON_UNESCAPED_UNICODE);
+        } catch (\PDOException $e) {
+            error_log("Erro ao carregar por id o Menu: " . $e->getMessage());
+        }finally{
+            $this->conn->desconectar();
+        }
+
+        
     }
 }

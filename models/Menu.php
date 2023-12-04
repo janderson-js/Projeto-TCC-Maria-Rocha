@@ -53,4 +53,23 @@ class Menu{
 
         return $this;
     }
+
+    public function toJson() {
+        return [
+            'id' => $this->getId(),
+            'titulo' => $this->getTitulo(),
+            'descricao' => $this->getDescricao(),
+            'url' => $this->getUrl(),
+            'ação' => '<button class="btn btn-warning btn-editar" onclick="editarDadoDataTable('.$this->getId().')" data-id="2">Editar</button> <button class="btn btn-danger btn-excluir" onclick="excluirDadoDataTable('.$this->getId().')" data-id="2">Excluir</button>',
+        ];
+    }
+
+    public function toJsonNoButton() {
+        return [
+            'id' => $this->getId(),
+            'titulo' => $this->getTitulo(),
+            'descricao' => $this->getDescricao(),
+            'url' => $this->getUrl(),
+        ];
+    }
 }
