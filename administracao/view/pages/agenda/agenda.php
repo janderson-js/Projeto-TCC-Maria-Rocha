@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="/public/css/calendar.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <!-- Fim do include head -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-eO7ztEQaJg9SlsEAv7/s2Fqj2is++FbqOSbmgDyCe9UPOt8gs5Ehj4njhYQyj1gDsxFIeNSuqxbT7jST82ekHw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" integrity="sha512-NJwYz+t0Bcy+oR0PzqBzLTu1TfZEbD1aFz5l+cgI3lv8wh46+Kx2Bd1D96NTgnNNHwyQrUgJNY7djiH5A/0Wmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 </head>
 
 <body>
@@ -57,7 +61,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="agendamentoForm">
+                    <form id="agendamentoForm" action="/projeto-tcc-maria-rocha/controllers/agendamento/controller_inserirAgendamento.php" method="post">
                         <div id="step1" class="step">
                             <div class="mb-3">
                                 <label for="tipoAgendamento">Agendamento:</label>
@@ -71,8 +75,20 @@
                         </div>
                         <div id="step2" class="step" style="display: none;">
                             <div class="mb-3">
-                                <label for="data">Data:</label>
-                                <input type="date" id="data" name="data">
+                                <label for="tipoAgendamento">Paciente:</label>
+                                <select id="paciente" name="paciente">
+                                    <option value="" selected>Escolha o Paciente...</option>
+                                    <option value="alguem">Alguem 2</option>
+                                    <option value="teste">Test e</option>
+                                </select>
+                            </div>
+                            <button type="button" onclick="prevStep()">Anterior</button>
+                            <button type="button" onclick="nextStep()">Próximo</button>
+                        </div>
+                        <div id="step3" class="step" style="display: none;">
+                            <div class="mb-3">
+                                <label for="data">Data Clicada:</label>
+                                <input type="date" id="data" name="data" readonly>
                             </div>
                             <div class="mb-3">
                                 <label for="tipoAgendamento">Funcionario:</label>
@@ -85,7 +101,7 @@
                             <button type="button" onclick="prevStep()">Anterior</button>
                             <button type="button" onclick="nextStep()">Próximo</button>
                         </div>
-                        <div id="step3" class="step" style="display: none;">
+                        <div id="step4" class="step" style="display: none;">
                             <div class="mb-3">
                                 <label for="tipoAgendamento">Servico:</label>
                                 <select id="servico" name="servico">
@@ -96,7 +112,7 @@
                             </div>
                             <div id="horarios" class="mb-3">
                                 <label for="selecionarHorario">horário:</label>
-                                <select class="form-select" id="selecionarHorario">
+                                <select class="form-select" id="selecionarHorario" name="selecionarHorario">
                                     <option selected>Selecione um dos hotrarios disponiveis...</option>
                                     <!-- Gerando as opções com intervalo de 30 minutos -->
                                     <?php
@@ -112,7 +128,35 @@
                                 </select>
                             </div>
                             <button type="button" onclick="prevStep()">Anterior</button>
-                            <button id="agendar" >Agendar</button>
+                            <button type="button" onclick="nextStep()">Próximo</button>
+                        </div>
+                        <div id="step5" class="step" style="display: none;">
+                            <div class="mb-3">
+                                <label for="tipo">Tipo de agendamento:</label>
+                                <input id="r-tipo" type="text" readonly>
+                            </div>  
+                            <div class="mb-3">
+                                <label for="r-paciente">Paciente:</label>
+                                <input id="r-paciente" type="text" readonly>
+                            </div> 
+                            <div class="mb-3">
+                                <label for="data">Data:</label>
+                                <input id="r-data" type="date" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="funcionario">Funcionario:</label>
+                                <input id="r-funcionario" type="text" readonly>
+                            </div>  
+                            <div class="mb-3">
+                                <label for="servico">servico:</label>
+                                <input id="r-servico" type="text" readonly>
+                            </div>  
+                            <div class="mb-3">
+                                <label for="horario">Horario:</label>
+                                <input id="r-horario" type="time" readonly>
+                            </div>        
+                            <button type="button" onclick="prevStep()">Anterior</button>
+                            <button id="agendar">Agendar</button>
                         </div>
                     </form>
                 </div>
@@ -270,8 +314,18 @@
                         alert("Selecione o tipo de agendamento!");
                         return false;
                     }
+                    $("#agendamentoForm #r-tipo").val(tipoAgendamento);
                     break;
                 case 2:
+                    // Validar campos da etapa 2
+                    var paciente = $('#paciente').val();
+                    if (!paciente) {
+                        alert("Selecione o paciente!");
+                        return false;
+                    }
+                    $("#agendamentoForm #r-paciente").val(paciente);
+                    break;
+                case 3:
                     // Validar campos da etapa 2
                     var dataFuncionario = $("#data").val();
                     var funcionario = $('#funcionario').val();
@@ -284,8 +338,11 @@
                         alert("Selecione o funcionario!");
                         return false;
                     }
+
+                    $("#agendamentoForm #r-data").val(dataFuncionario);
+                    $("#agendamentoForm #r-funcionario").val(funcionario);
                     break;
-                case 3:
+                case 4:
                     // Validar campos da etapa 3
                     var servicoHorario = $("#servico").val();
                     var horario = $('#selecionarHorario').val();
@@ -298,7 +355,10 @@
                         alert("Selecione o horário!");
                         return false;
                     }
+                    $("#agendamentoForm #r-servico").val(servicoHorario);
+                    $("#agendamentoForm #r-horario").val(horario);
                     break;
+                    
             }
 
             return true; // Todos os campos estão preenchidos

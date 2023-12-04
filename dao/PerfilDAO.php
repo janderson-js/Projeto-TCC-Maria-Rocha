@@ -1,7 +1,7 @@
 <?php
 
-include "../dataBase/DataBase.php";
-include "../models/Perfil.php";
+include_once(dirname(__FILE__) . "/../dataBase/DataBase.php");
+include_once(dirname(__FILE__) . "/../models/Perfil.php");
 
 class PerfilDAO
 {
@@ -116,6 +116,39 @@ class PerfilDAO
             return $perfis;
         } catch (\PDOException $e) {
             error_log("Erro ao listar perfis: " . $e->getMessage());
+        } finally {
+            $this->conn->desconectar();
+        }
+    }
+
+    public function listarPerfisJson()
+    {
+        $sqlListarPerfis = "SELECT * FROM perfil";
+
+        try {
+            $stmt = $this->conn->getConexao()->prepare($sqlListarPerfis);
+            $stmt->execute();
+
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            $perfis = [];
+
+
+
+            foreach ($result as $row) {
+                $perfil = new Perfil();
+                $perfil->setId($row['id']);
+                $perfil->setTitulo($row['titulo']);
+                $perfil->setDescricao($row['descricao']);
+            
+                $perfis[] = $perfil->toJson();
+            }
+
+            // Retornar a resposta JSON corretamente
+            header('Content-Type: application/json');
+            echo json_encode($perfis, JSON_UNESCAPED_UNICODE);
+        } catch (\PDOException $e) {
+            error_log("Erro ao listar perfis Json: " . $e->getMessage());
         } finally {
             $this->conn->desconectar();
         }

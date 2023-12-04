@@ -99,6 +99,11 @@ document.addEventListener("DOMContentLoaded", function () {
       }
       $(".step").hide();
       $("#step1").show();
+
+      var dataFormatada = dataClicada.toISOString().split('T')[0];
+
+      $("#modalAgendamento #agendamentoForm #data").val(dataFormatada);
+      console.log(dataFormatada);
       // Adicionando um ouvinte de evento para o evento de mudança
 
     },

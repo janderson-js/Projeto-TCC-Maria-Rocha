@@ -1,17 +1,20 @@
 <?php
 
+include("../../dao/PerfilDAO.php");
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtém os dados do formulário
     $titulo = $_POST["titulo"];
     $descricao = $_POST["descricao"];
 
-    // Agora você pode fazer o que quiser com os dados e o caminho da imagem de perfil
-    // Por exemplo, salvar no banco de dados, exibir na página, etc.
+    $pDAO = new PerfilDAO();
+    $p = new Perfil();
 
-    // Exemplo de exibição dos dados
-    echo "titulo: $titulo <br>";
-    echo "descricao: $descricao <br>";
+    $p->setTitulo($titulo);
+    $p->setdescricao($descricao);
 
-    //header('location:/projeto-tcc-maria-rocha/view/administracao/view/pages/pacientes/teste.php');
+    $pDAO->inserirPerfil($p);
+   
+    
+    header("location: /Projeto-TCC-Maria-Rocha/administracao/view/pages/perfil/listar_perfil.php");
 }
-?>

@@ -1,6 +1,7 @@
 <?php
 
 class Perfil{
+    
     private int $id;
     private string $titulo;
     private string $descricao;
@@ -10,11 +11,9 @@ class Perfil{
         return $this->id;
     }
 
-    public function setId(int $id): self
+    public function setId(int $id)
     {
         $this->id = $id;
-
-        return $this;
     }
 
     public function getTitulo(): string
@@ -22,11 +21,9 @@ class Perfil{
         return $this->titulo;
     }
 
-    public function setTitulo(string $titulo): self
+    public function setTitulo(string $titulo)
     {
         $this->titulo = $titulo;
-
-        return $this;
     }
 
     public function getDescricao(): string
@@ -34,10 +31,18 @@ class Perfil{
         return $this->descricao;
     }
 
-    public function setDescricao(string $descricao): self
+    public function setDescricao(string $descricao)
     {
         $this->descricao = $descricao;
-
-        return $this;
     }
+    
+    public function toJson() {
+        return [
+            'id' => $this->getId(),
+            'titulo' => $this->getTitulo(),
+            'descricao' => $this->getDescricao(),
+            'ação' => '<button class="btn btn-warning btn-editar" onclick="editarDadoDataTable('.$this->getId().')" data-id="2">Editar</button> <button class="btn btn-danger btn-excluir" onclick="excluirDadoDataTable('.$this->getId().')" data-id="2">Excluir</button>',
+        ];
+    }
+    
 }

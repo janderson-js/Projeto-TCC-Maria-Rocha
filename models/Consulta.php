@@ -4,7 +4,6 @@ class Consulta{
     private int $id;
     private string $data;
     private string $hora;
-    private string $tipo;
     private string $observacoesEspecificas;
     private string $procedimentosOuTratamentosRealizados;
 
@@ -45,18 +44,6 @@ class Consulta{
     public function setHora(string $hora): self
     {
         $this->hora = $hora;
-
-        return $this;
-    }
-
-    public function getTipo(): string
-    {
-        return $this->tipo;
-    }
-
-    public function setTipo(string $tipo): self
-    {
-        $this->tipo = $tipo;
 
         return $this;
     }
