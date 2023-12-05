@@ -130,6 +130,8 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   calendar.render();
+  calendar.handleWindowResize();
+  calendar.updateSize();
 });
 
 function carregaAgendamentosAJAX(info, successCallback, failureCallback) {

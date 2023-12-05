@@ -42,14 +42,5 @@ class Perfil{
             'titulo' => $this->getTitulo(),
             'descricao' => $this->getDescricao(),
         ];
-    }
-
-    public function toJsonNoButton() {
-        return [
-            'id' => $this->getId(),
-            'titulo' => $this->getTitulo(),
-            'descricao' => $this->getDescricao(),
-        ];
-    }
-    
+    }    
 }

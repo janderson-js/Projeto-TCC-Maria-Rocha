@@ -1,7 +1,7 @@
 <?php
 
-include "../dataBase/DataBase.php";
-include "../models/Paciente.php";
+include_once(dirname(__FILE__) . "/../dataBase/DataBase.php");
+include_once(dirname(__FILE__) . "/../models/Paciente.php");
 
 class PacienteDAO
 {
@@ -14,13 +14,16 @@ class PacienteDAO
 
     public function inserirPaciente(Paciente $paciente)
     {
-        $sqlInserirPaciente = "INSERT INTO paciente (
-            nome, idade, cpf, login, senha, genero, profissao, telefone, celular, queixa_principal
+        $sqlInserirPaciente = "INSERT INTO pacientes (
+            nome, idade, cpf, login, senha, genero, profissao, telefone, celular, data_nascimento
         ) VALUES (
-            :nome, :idade, :cpf, :login, :senha, :genero, :profissao, :telefone, :celular, :queixaPrincipal
+            :nome, :idade, :cpf, :login, :senha, :genero, :profissao, :telefone, :celular, :data_nascimento
         )";
 
         try {
+            if($this->conn->getConexao() === null){
+                $this->conn->reconectar();
+            }
             $stmt = $this->conn->getConexao()->prepare($sqlInserirPaciente);
             $stmt->bindValue(":nome", $paciente->getNome(), PDO::PARAM_STR);
             $stmt->bindValue(":idade", $paciente->getIdade(), PDO::PARAM_INT);
@@ -31,11 +34,17 @@ class PacienteDAO
             $stmt->bindValue(":profissao", $paciente->getProfissao(), PDO::PARAM_STR);
             $stmt->bindValue(":telefone", $paciente->getTelefone(), PDO::PARAM_STR);
             $stmt->bindValue(":celular", $paciente->getCelular(), PDO::PARAM_STR);
-            $stmt->bindValue(":queixa_principal", $paciente->getQueixaPrincipal(), PDO::PARAM_STR);
+            $stmt->bindValue(":data_nascimento", $paciente->getDataNascimento(), PDO::PARAM_STR);
 
             // Adicione aqui o código para salvar os objetos relacionados (HistoricoAtual, HistoricoMedico, HistoricoFisioterapeutico)
 
-            $stmt->execute();
+            try {
+                $result = $stmt->execute();
+                var_dump($result);
+            } catch (\PDOException $e) {
+                echo "Erro do PDO: " . $e->getMessage();
+            }
+
         } catch (\PDOException $e) {
             error_log("Erro ao inserir paciente: " . $e->getMessage());
         } finally {
@@ -47,10 +56,13 @@ class PacienteDAO
     {
         $sqlEditarPaciente = "UPDATE paciente SET 
             nome=:nome, idade=:idade, cpf=:cpf, login=:login, senha=:senha, genero=:genero, 
-            profissao=:profissao, telefone=:telefone, celular=:celular, queixaPrincipal=:queixaPrincipal
+            profissao=:profissao, telefone=:telefone, celular=:celular, data_nascimento=:data_nascimento
             WHERE id=:id";
 
         try {
+            if($this->conn->getConexao() === null){
+                $this->conn->reconectar();
+            }
             $stmt = $this->conn->getConexao()->prepare($sqlEditarPaciente);
             $stmt->bindValue(":nome", $paciente->getNome(), PDO::PARAM_STR);
             $stmt->bindValue(":idade", $paciente->getIdade(), PDO::PARAM_INT);
@@ -61,7 +73,7 @@ class PacienteDAO
             $stmt->bindValue(":profissao", $paciente->getProfissao(), PDO::PARAM_STR);
             $stmt->bindValue(":telefone", $paciente->getTelefone(), PDO::PARAM_STR);
             $stmt->bindValue(":celular", $paciente->getCelular(), PDO::PARAM_STR);
-            $stmt->bindValue(":queixaPrincipal", $paciente->getQueixaPrincipal(), PDO::PARAM_STR);
+            $stmt->bindValue(":data_nascimento", $paciente->getDataNascimento(), PDO::PARAM_STR);
             $stmt->bindValue(":id", $paciente->getId(), PDO::PARAM_INT);
 
             // Adicione aqui o código para atualizar os objetos relacionados (HistoricoAtual, HistoricoMedico, HistoricoFisioterapeutico)
@@ -79,6 +91,9 @@ class PacienteDAO
         $sqlExcluirPaciente = "DELETE FROM paciente WHERE id=:id";
 
         try {
+            if($this->conn->getConexao() === null){
+                $this->conn->reconectar();
+            }
             $stmt = $this->conn->getConexao()->prepare($sqlExcluirPaciente);
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
@@ -97,6 +112,9 @@ class PacienteDAO
         $sqlCarregarPorIdPaciente = "SELECT * FROM paciente WHERE id=:id";
 
         try {
+            if($this->conn->getConexao() === null){
+                $this->conn->reconectar();
+            }
             $stmt = $this->conn->getConexao()->prepare($sqlCarregarPorIdPaciente);
             $stmt->bindValue(":id", $id, PDO::PARAM_INT);
 
@@ -119,7 +137,7 @@ class PacienteDAO
             $paciente->setProfissao($result['profissao']);
             $paciente->setTelefone($result['telefone']);
             $paciente->setCelular($result['celular']);
-            $paciente->setQueixaPrincipal($result['queixaPrincipal']);
+            $paciente->setDataNascimento($result['data_nascimento']);
 
             // Adicione aqui o código para carregar os objetos relacionados (HistoricoAtual, HistoricoMedico, HistoricoFisioterapeutico)
 
@@ -136,6 +154,9 @@ class PacienteDAO
         $sqlListarPacientes = "SELECT * FROM paciente";
 
         try {
+            if($this->conn->getConexao() === null){
+                $this->conn->reconectar();
+            }
             $stmt = $this->conn->getConexao()->prepare($sqlListarPacientes);
             $stmt->execute();
 
@@ -155,7 +176,7 @@ class PacienteDAO
                 $paciente->setProfissao($row['profissao']);
                 $paciente->setTelefone($row['telefone']);
                 $paciente->setCelular($row['celular']);
-                $paciente->setQueixaPrincipal($row['queixaPrincipal']);
+                $paciente->setDataNascimento($row['data_nascimento']);
 
                 // Adicione aqui o código para carregar os objetos relacionados (HistoricoAtual, HistoricoMedico, HistoricoFisioterapeutico)
 
@@ -163,6 +184,52 @@ class PacienteDAO
             }
 
             return $pacientes;
+        } catch (\PDOException $e) {
+            error_log("Erro ao listar pacientes: " . $e->getMessage());
+        } finally {
+            $this->conn->desconectar();
+        }
+    }
+
+    public function listarPacientesJson()
+    {
+        $sqlListarPacientes = "SELECT * FROM pacientes";
+
+        try {
+            if($this->conn->getConexao() === null){
+                $this->conn->reconectar();
+            }
+            $stmt = $this->conn->getConexao()->prepare($sqlListarPacientes);
+            
+            try {
+                $result = $stmt->execute();
+            } catch (\PDOException $e) {
+                echo "Erro do PDO: " . $e->getMessage();
+            }
+
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            $pacientes = [];
+
+            foreach ($result as $row) {
+                $paciente = new Paciente();
+                $paciente->setId($row['id']);
+                $paciente->setNome($row['nome']);
+                $paciente->setIdade($row['idade']);
+                $paciente->setCpf($row['cpf']);
+                $paciente->setLogin($row['login']);
+                $paciente->setSenha($row['senha']);
+                $paciente->setGenero($row['genero']);
+                $paciente->setProfissao($row['profissao']);
+                $paciente->setTelefone($row['telefone']);
+                $paciente->setCelular($row['celular']);
+                $paciente->setDataNascimento($row['data_nascimento']);
+
+                $pacientes[] = $paciente->toJson();
+            }
+
+            header('Content-Type: application/json');
+            echo json_encode($pacientes, JSON_UNESCAPED_UNICODE);
         } catch (\PDOException $e) {
             error_log("Erro ao listar pacientes: " . $e->getMessage());
         } finally {

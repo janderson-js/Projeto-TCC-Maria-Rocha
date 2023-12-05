@@ -9,9 +9,7 @@ class Funcionario{
     private string $genero;
     private string $telefone;
     private string $celular;
-    private string $urlImgPerfil;
     private Perfil $perfil;
-    private Especialidade $especialidade;
 
     public function getId(): int
     {
@@ -133,27 +131,18 @@ class Funcionario{
         return $this;
     }
 
-    public function getEspecialidade(): Especialidade
-    {
-        return $this->especialidade;
-    }
-
-    public function setEspecialidade(Especialidade $especialidade): self
-    {
-        $this->especialidade = $especialidade;
-
-        return $this;
-    }
-
-    public function getUrlImgPerfil(): string
-    {
-        return $this->urlImgPerfil;
-    }
-
-    public function setUrlImgPerfil(string $urlImgPerfil): self
-    {
-        $this->urlImgPerfil = $urlImgPerfil;
-
-        return $this;
+    public function toJson() {
+        return [
+            'id' => $this->getId(),
+            'nome' => $this->getNome(),
+            'coffito' => $this->getCoffito(),
+            'matricula' => $this->getMatricula(),
+            'senha' => $this->getSenha(),
+            'idade' => $this->getIdade(),
+            'genero' => $this->getGenero(),
+            'telefone' => $this->getTelefone(),
+            'celular' => $this->getCelular(),
+            'perfil' => $this->getPerfil()->toJson()
+        ];
     }
 }

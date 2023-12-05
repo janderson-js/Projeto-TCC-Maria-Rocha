@@ -111,6 +111,11 @@ include_once(dirname(__FILE__) . "/../../../../dao/PerfilDAO.php");
         $(document).ready(function() {
             // Inicialização do DataTables
             var tabela = $('#listar-perfil').DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/pt-BR.json',
+                },
+                scrollX: true,
+                autoWidth: false,
                 ajax: {
                     url: "/Projeto-TCC-Maria-Rocha/controllers/perfil/controller_listar_perfil.php",
                     dataSrc: ''
@@ -160,6 +165,7 @@ include_once(dirname(__FILE__) . "/../../../../dao/PerfilDAO.php");
                 },
                 success: function(resposta) {
                     // Lógica a ser executada quando a requisição for bem-sucedida
+                    console.log(resposta);
                     $("#editarDados #formEditar #id").val(resposta.id);
                     $("#editarDados #formEditar #titulo").val(resposta.titulo);
                     $("#editarDados #formEditar #descricao").val(resposta.descricao);

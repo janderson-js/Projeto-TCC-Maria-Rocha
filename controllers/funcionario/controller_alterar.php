@@ -1,8 +1,10 @@
 <?php
+
 include("../../dao/FuncionarioDAO.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtém os dados do formulário
+    $id = $_POST["id"];
     $nome = $_POST["nome"];
     $coffito = $_POST["coffito"];
     $matricula = $_POST["matricula"];
@@ -13,12 +15,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $celular = $_POST["celular"];
     $perfil = $_POST["perfil"];
 
-
     $fDAO = new FuncionarioDAO();
-    $pDAO = new PerfilDAO();
     $f = new Funcionario();
+
+    $pDAO = new PerfilDAO();
     $p = new Perfil();
 
+    $f->setId($id);
     $f->setNome($nome);
     $f->setCoffito(isset($coffito) ? $coffito : "");
     $f->setMatricula($matricula);
@@ -30,8 +33,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $f->setPerfil($pDAO->carregarPorIdPerfil($perfil));
 
-    $fDAO->inserirFuncionario($f);
-
-    header("location: /projeto-tcc-maria-rocha/administracao/view/pages/funcionario/listar_funcionario.php");
-
+    $fDAO->editarFuncionario($f);
+   
+    
+    header("location: /Projeto-TCC-Maria-Rocha/administracao/view/pages/funcionario/listar_funcionario.php");
 }

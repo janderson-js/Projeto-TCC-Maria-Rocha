@@ -17,6 +17,10 @@ class PerfilDAO
         $sqlInserirPerfil = "INSERT INTO perfil (titulo, descricao) VALUES (:titulo, :descricao)";
 
         try {
+            if($this->conn->getConexao() === null){
+                $this->conn->reconectar();
+            }
+
             $stmt = $this->conn->getConexao()->prepare($sqlInserirPerfil);
             $stmt->bindValue(":titulo", $perfil->getTitulo(), PDO::PARAM_STR);
             $stmt->bindValue(":descricao", $perfil->getDescricao(), PDO::PARAM_STR);
@@ -34,6 +38,11 @@ class PerfilDAO
         $sqlEditarPerfil = "UPDATE perfil SET titulo=:titulo, descricao=:descricao WHERE id=:id";
 
         try {
+
+            if($this->conn->getConexao() === null){
+                $this->conn->reconectar();
+            }
+
             $stmt = $this->conn->getConexao()->prepare($sqlEditarPerfil);
             $stmt->bindValue(":titulo", $perfil->getTitulo(), PDO::PARAM_STR);
             $stmt->bindValue(":descricao", $perfil->getDescricao(), PDO::PARAM_STR);
@@ -52,6 +61,11 @@ class PerfilDAO
         $sqlExcluirPerfil = "DELETE FROM perfil WHERE id=:id";
 
         try {
+
+            if($this->conn->getConexao() === null){
+                $this->conn->reconectar();
+            }
+
             $stmt = $this->conn->getConexao()->prepare($sqlExcluirPerfil);
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
@@ -68,6 +82,10 @@ class PerfilDAO
         $sqlCarregarPorIdPerfil = "SELECT * FROM perfil WHERE id=:id";
 
         try {
+            if($this->conn->getConexao() === null){
+                $this->conn->reconectar();
+            }
+
             $stmt = $this->conn->getConexao()->prepare($sqlCarregarPorIdPerfil);
             $stmt->bindValue(":id", $id, PDO::PARAM_INT);
 
@@ -97,6 +115,11 @@ class PerfilDAO
         $sqlCarregarPorIdPerfil = "SELECT * FROM perfil WHERE id=:id";
 
         try {
+
+            if($this->conn->getConexao() === null){
+                $this->conn->reconectar();
+            }
+
             $stmt = $this->conn->getConexao()->prepare($sqlCarregarPorIdPerfil);
             $stmt->bindValue(":id", $id, PDO::PARAM_INT);
 
@@ -115,7 +138,7 @@ class PerfilDAO
             
             // Retornar a resposta JSON corretamente
             header('Content-Type: application/json');
-            echo json_encode($perfil->toJsonNoButton(), JSON_UNESCAPED_UNICODE);
+            echo json_encode($perfil->toJson(), JSON_UNESCAPED_UNICODE);
         } catch (\PDOException $e) {
             error_log("Erro ao carregar por id o perfil: " . $e->getMessage());
         } finally {
@@ -128,6 +151,11 @@ class PerfilDAO
         $sqlListarPerfis = "SELECT * FROM perfil";
 
         try {
+
+            if($this->conn->getConexao() === null){
+                $this->conn->reconectar();
+            }
+
             $stmt = $this->conn->getConexao()->prepare($sqlListarPerfis);
             $stmt->execute();
 
@@ -157,6 +185,11 @@ class PerfilDAO
         $sqlListarPerfis = "SELECT * FROM perfil";
 
         try {
+            
+            if($this->conn->getConexao() === null){
+                $this->conn->reconectar();
+            }
+
             $stmt = $this->conn->getConexao()->prepare($sqlListarPerfis);
             $stmt->execute();
 

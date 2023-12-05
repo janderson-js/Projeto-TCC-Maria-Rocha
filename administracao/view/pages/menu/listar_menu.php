@@ -57,7 +57,14 @@ include_once(dirname(__FILE__) . "/../../../../dao/MenuDAO.php");
                     </div>
                 </div>
             </main>
-
+            <style>
+                .overflow-hidden {
+                    overflow: hidden;
+                    white-space: nowrap;
+                    /* Evita que o conteúdo quebre para a próxima linha */
+                    text-overflow: ellipsis;
+                }
+            </style>
             <div id="editarDados" class="modal" data-bs-backdrop="static" tabindex="-1">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -79,6 +86,10 @@ include_once(dirname(__FILE__) . "/../../../../dao/MenuDAO.php");
                                 <div class="mb-3">
                                     <label for="descricao" class="form-label">Descrição</label>
                                     <input type="text" class="form-control" id="descricao" name="descricao">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="url" class="form-label">Url: </label>
+                                    <input type="text" class="form-control" id="url" name="url">
                                 </div>
                             </form>
 
@@ -109,32 +120,54 @@ include_once(dirname(__FILE__) . "/../../../../dao/MenuDAO.php");
 
 
     <script>
-        $('#listar-menu').DataTable({
-            ajax: {
-                url: "/Projeto-TCC-Maria-Rocha/controllers/menu/controller_listar_menu.php",
-                dataSrc: ''
-            },
-            columns: [{
-                    data: 'id'
+        $(document).ready(function() {
+            // Inicialização do DataTables
+            var tabela = $('#listar-menu').DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/pt-BR.json',
                 },
-                {
-                    data: 'titulo'
+                scrollX: true,
+                autoWidth: false,
+                ajax: {
+                    url: "/Projeto-TCC-Maria-Rocha/controllers/menu/controller_listar_menu.php",
+                    dataSrc: ''
                 },
-                {
-                    data: 'descricao'
-                },
-                {
-                    data: 'url'
-                },
-                {
-                    data: null,
-                    title: 'Ação',
-                    render: function(data, type, row) {
-                        return '<button id="btn-editar" class="btn btn-warning btn-editar" onclick="editarDadoDataTable()" data-id="2"><i class="fa-solid fa-pen-to-square"></i></button> <button id="btn-excluir" class="btn btn-danger btn-excluir" onclick="excluirDadoDataTable()" data-id="2"><i class="fa-solid fa-trash-can"></i></button>';
+                columns: [{
+                        data: 'id'
+                    },
+                    {
+                        data: 'titulo'
+                    },
+                    {
+                        data: 'descricao'
+                    },
+                    {
+                        data: 'url',
+                        className: 'overflow-hidden'
+                    },
+                    {
+                        data: null,
+                        title: 'Ação',
+                        render: function(data, type, row) {
+                            return '<button class="btn btn-warning btn-editar" data-id="' + row.id + '"><i class="fa-solid fa-pen-to-square"></i></button> <button class="btn btn-danger btn-excluir" data-id="' + row.id + '"><i class="fa-solid fa-trash-can"></i></button>';
+                        }
                     }
-                }
-            ]
+                ]
+            });
 
+            // Evento de clique no botão editar
+            $('#listar-menu tbody').on('click', 'button.btn-editar', function() {
+                var data = tabela.row($(this).parents('tr')).data();
+                editarDadoDataTable(data.id)
+                // Implemente a lógica de edição aqui
+            });
+
+            // Evento de clique no botão excluir
+            $('#listar-menu tbody').on('click', 'button.btn-excluir', function() {
+                var data = tabela.row($(this).parents('tr')).data();
+                excluirDadoDataTable(data.id, data.titulo, tabela)
+                // Implemente a lógica de exclusão aqui
+            });
 
         });
 
@@ -149,9 +182,10 @@ include_once(dirname(__FILE__) . "/../../../../dao/MenuDAO.php");
                 },
                 success: function(resposta) {
                     // Lógica a ser executada quando a requisição for bem-sucedida
-                    $("#editarDados #formEditar #id").val(resposta.id);
-                    $("#editarDados #formEditar #titulo").val(resposta.titulo);
-                    $("#editarDados #formEditar #descricao").val(resposta.descricao);
+                    $("#editarDados #formEditar #id").val(resposta[0].id);
+                    $("#editarDados #formEditar #titulo").val(resposta[0].titulo);
+                    $("#editarDados #formEditar #descricao").val(resposta[0].descricao);
+                    $("#editarDados #formEditar #url").val(resposta[0].url);
 
                 },
                 error: function(xhr, status, error) {
@@ -163,8 +197,28 @@ include_once(dirname(__FILE__) . "/../../../../dao/MenuDAO.php");
             });
         }
 
-        function excluirDadoDataTable(id) {
-            console.log("peguei: " + id);
+        function excluirDadoDataTable(id, titulo, tabela) {
+
+            if (confirm('Deseja Excluir o Menu: ' + id + '  ' + titulo)) {
+                $.ajax({
+                    type: 'GET',
+                    url: '/Projeto-TCC-Maria-Rocha/controllers/menu/controller_excluir.php',
+                    data: {
+                        id: id
+                    },
+                    success: function(resposta) {
+                        // Lógica a ser executada quando a requisição for bem-sucedida
+                        tabela.ajax.reload();
+
+                    },
+                    error: function(xhr, status, error) {
+                        // Lógica a ser executada em caso de erro na requisição
+                        console.error('Erro na requisição:', xhr.responseText);
+                        console.error('Status:', status);
+                        console.error('Erro:', error);
+                    }
+                });
+            }
         }
 
         function enviarFormEditar() {

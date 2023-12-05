@@ -12,8 +12,7 @@ class Paciente{
     private string $profissao;
     private string $telefone;
     private string $celular;
-    private string $queixaPrincipal;
-    private string $urlImgPerfil;
+    private string $dataNascimento;
 
     public function getId(): int
     {
@@ -135,27 +134,33 @@ class Paciente{
         return $this;
     }
 
-    public function getQueixaPrincipal(): string
+    public function setDataNascimento(string $dataNascimento): self
     {
-        return $this->queixaPrincipal;
-    }
-
-    public function setQueixaPrincipal(string $queixaPrincipal): self
-    {
-        $this->queixaPrincipal = $queixaPrincipal;
+        $this->dataNascimento = $dataNascimento;
 
         return $this;
     }
 
-    public function getUrlImgPerfil(): string
+    public function getDataNascimento(): string
     {
-        return $this->urlImgPerfil;
+        return $this->dataNascimento;
     }
 
-    public function setUrlImgPerfil(string $urlImgPerfil): self
-    {
-        $this->urlImgPerfil = $urlImgPerfil;
 
-        return $this;
+    public function toJson() {
+        $dataFormatada = date("d/m/Y", strtotime($this->getDataNascimento()));
+        return [
+            'id' => $this->getId(),
+            'nome' => $this->getNome(),
+            'idade' => $this->getIdade(),
+            'cpf' => $this->getCpf(),
+            'login' => $this->getLogin(),
+            'senha' => $this->getSenha(),
+            'genero' => $this->getGenero(),
+            'profissao' => $this->getProfissao(),
+            'telefone' => $this->getTelefone(),
+            'celular' => $this->getCelular(),
+            'dataNascimento' => $dataFormatada,
+        ];
     }
 }

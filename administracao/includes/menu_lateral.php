@@ -53,6 +53,12 @@
                 </a>
             </li>
 
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="/projeto-tcc-maria-rocha/administracao/view/pages/anamnese/form_cadastrar_anamnese.php">
+                    <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Vincular Anamnse</span>
+                </a>
+            </li>
+
             <li class="sidebar-header">
                 Gerenciar Funcionários
             </li>

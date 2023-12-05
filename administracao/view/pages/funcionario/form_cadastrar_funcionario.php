@@ -1,3 +1,11 @@
+<?php
+
+include (__DIR__) . "/../../../../dao/PerfilDAO.php";
+$pDAO = new PerfilDAO();
+$p[] = $pDAO->listarPerfis();
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -29,16 +37,18 @@
                                 </div>
                                 <div class="card-body">
                                     <form action="/projeto-tcc-maria-rocha/controllers/funcionario/controller_cadastrar.php" method="post" enctype="multipart/form-data">
-
-                                        <!-- Imagem de Perfil -->
-                                        <div class="input-file">
-                                            <img id="file_upload" src="http://placehold.it/70" alt="your image" class="upload-img" />
-                                            <div class="input-file-upload">
-                                                <span class="upload-label">Upload Image</span>
-                                                <input type="file" name="imagemPerfil" onchange="readURL(this);" />
-                                            </div>
+                                        <!-- Perfil -->
+                                        <div class="mb-3">
+                                            <label for="perfil" class="form-label">Perfil</label>
+                                            <select class="form-select" onchange="coffitoChange();" id="perfil" name="perfil" required>
+                                                <option value="" selected>Selecione o perfil </option>
+                                                <?php foreach ($p[0] as $perfil) : ?>
+                                                    <option value="<?php echo $perfil->getId(); ?>">
+                                                        <?php echo $perfil->getTitulo(); ?>
+                                                    </option>
+                                                <?php endforeach; ?>
+                                            </select>
                                         </div>
-
                                         <!-- Nome -->
                                         <div class="mb-3">
                                             <label for="nome" class="form-label">Nome</label>
@@ -46,9 +56,9 @@
                                         </div>
 
                                         <!-- COFFITO -->
-                                        <div class="mb-3">
+                                        <div class="mb-3" hidden id="coffitoDiv">
                                             <label for="coffito" class="form-label">COFFITO</label>
-                                            <input type="text" class="form-control" id="coffito" name="coffito" required>
+                                            <input type="text" class="form-control" id="coffito" name="coffito">
                                         </div>
 
                                         <!-- Matrícula -->
@@ -72,7 +82,10 @@
                                         <!-- Gênero -->
                                         <div class="mb-3">
                                             <label for="genero" class="form-label">Gênero</label>
-                                            <input type="text" class="form-control" id="genero" name="genero" required>
+                                            <select class="form-select" name="genero" id="genero">
+                                                <option value="masculino">Masculino</option>
+                                                <option value="feminino">Feminino</option>
+                                            </select>
                                         </div>
 
                                         <!-- Telefone -->
@@ -86,27 +99,7 @@
                                             <label for="celular" class="form-label">Celular</label>
                                             <input type="text" class="form-control" id="celular" name="celular" required>
                                         </div>
-                                        <!-- Perfil -->
-                                        <div class="mb-3">
-                                            <label for="perfil" class="form-label">Perfil</label>
-                                            <select class="form-select" id="perfil" name="perfil" required>
-                                                <option value="clinico_geral">Clínico Geral</option>
-                                                <option value="cirurgiao">Cirurgião</option>
-                                                <option value="pediatra">Pediatra</option>
-                                                <!-- Adicione mais opções conforme necessário -->
-                                            </select>
-                                        </div>
 
-                                        <!-- Especialidade -->
-                                        <div class="mb-3">
-                                            <label for="especialidade" class="form-label">Especialidade</label>
-                                            <select class="form-select" id="especialidade" name="especialidade" required>
-                                                <option value="ortopedia">Ortopedia</option>
-                                                <option value="cardiologia">Cardiologia</option>
-                                                <option value="dermatologia">Dermatologia</option>
-                                                <!-- Adicione mais opções conforme necessário -->
-                                            </select>
-                                        </div>
                                         <button type="submit" class="btn btn-primary">Cadastrar</button>
                                     </form>
                                 </div>
@@ -127,6 +120,29 @@
     <!-- Inicio do include dos arquivos js -->
     <?php include(__DIR__ . "../../../../includes/js.php"); ?>
     <!-- Fim do include dos arquivos js -->
+
+    <script>
+        function coffitoChange() {
+            var selectElement = document.getElementById("perfil");
+
+            // Obter o índice do option selecionado
+            var selectedIndex = selectElement.selectedIndex;
+
+            // Obter o texto do option selecionado usando o índice
+            var nomeDoOption = selectElement.options[selectedIndex].text;
+
+            var coffitoDiv = document.getElementById("coffitoDiv");
+            var coffitoCampo = document.getElementById("coffito");
+            if (nomeDoOption === "Fisioterapeuta") {
+                coffitoDiv.hidden = false;
+                
+                coffitoCampo.required = true;
+            } else {
+                coffitoDiv.hidden = true;
+                coffitoCampo.required = false;
+            }
+        }
+    </script>
 </body>
 
 </html>

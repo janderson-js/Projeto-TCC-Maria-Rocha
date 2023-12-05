@@ -29,14 +29,6 @@
                                 </div>
                                 <div class="card-body">
                                     <form action="/projeto-tcc-maria-rocha/controllers/pacientes/controller_cadastrar.php" method="post" enctype="multipart/form-data">
-                                        <!-- Imagem de Perfil -->
-                                        <div class="input-file">
-                                            <img id="file_upload" src="http://placehold.it/70" alt="your image" class="upload-img" />
-                                            <div class="input-file-upload">
-                                                <span class="upload-label">Upload Image</span>
-                                                <input type="file" name="imagemPerfil" onchange="readURL(this);" />
-                                            </div>
-                                        </div>
 
                                         <!-- Nome -->
                                         <div class="mb-3">
@@ -48,6 +40,11 @@
                                         <div class="mb-3">
                                             <label for="idade" class="form-label">Idade</label>
                                             <input type="number" class="form-control" id="idade" name="idade" required>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="floatingTextarea2">Data de Nascimento: </label>
+                                            <input type="date" name="dataNascimento" class="form-control" required>
                                         </div>
 
                                         <!-- CPF -->
@@ -74,7 +71,6 @@
                                             <select class="form-select" id="genero" name="genero" required>
                                                 <option value="masculino">Masculino</option>
                                                 <option value="feminino">Feminino</option>
-                                                <option value="outro">Outro</option>
                                             </select>
                                         </div>
 
