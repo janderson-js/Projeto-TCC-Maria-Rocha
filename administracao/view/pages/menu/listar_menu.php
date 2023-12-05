@@ -127,7 +127,11 @@ include_once(dirname(__FILE__) . "/../../../../dao/MenuDAO.php");
                     data: 'url'
                 },
                 {
-                    data: 'ação'
+                    data: null,
+                    title: 'Ação',
+                    render: function(data, type, row) {
+                        return '<button id="btn-editar" class="btn btn-warning btn-editar" onclick="editarDadoDataTable()" data-id="2"><i class="fa-solid fa-pen-to-square"></i></button> <button id="btn-excluir" class="btn btn-danger btn-excluir" onclick="excluirDadoDataTable()" data-id="2"><i class="fa-solid fa-trash-can"></i></button>';
+                    }
                 }
             ]
 
@@ -163,13 +167,13 @@ include_once(dirname(__FILE__) . "/../../../../dao/MenuDAO.php");
             console.log("peguei: " + id);
         }
 
-        function enviarFormEditar(){
+        function enviarFormEditar() {
             var form = document.getElementById("formEditar");
             form.submit();
         }
 
 
-        function addNovocadastro(){
+        function addNovocadastro() {
             window.location.href = "/projeto-tcc-maria-rocha/administracao/view/pages/menu/form_cadastrar_menu.php";
         }
     </script>

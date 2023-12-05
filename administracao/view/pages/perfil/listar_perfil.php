@@ -35,7 +35,7 @@ include_once(dirname(__FILE__) . "/../../../../dao/PerfilDAO.php");
                                     <button type="button" onclick="addNovocadastro()" class="btn btn-success">Novo Cadastro</button>
                                 </div>
                                 <div class="card-body">
-
+                                    <div id="msg" hidden> excluido </div>
                                     <table id="listar-perfil" class="table table-striped table-hover" style="width:100%">
                                         <thead>
                                             <tr>
@@ -108,31 +108,46 @@ include_once(dirname(__FILE__) . "/../../../../dao/PerfilDAO.php");
 
 
     <script>
-        $('#listar-perfil').DataTable({
-            ajax: {
-                url: "/Projeto-TCC-Maria-Rocha/controllers/perfil/controller_listar_perfil.php",
-                dataSrc: ''
-            },
-            columns: [{
-                    data: 'id'
+        $(document).ready(function() {
+            // Inicialização do DataTables
+            var tabela = $('#listar-perfil').DataTable({
+                ajax: {
+                    url: "/Projeto-TCC-Maria-Rocha/controllers/perfil/controller_listar_perfil.php",
+                    dataSrc: ''
                 },
-                {
-                    data: 'titulo'
-                },
-                {
-                    data: 'descricao'
-                },
-                {
-                    data: 'ação'
-                }
-            ]
+                columns: [{
+                        data: 'id'
+                    },
+                    {
+                        data: 'titulo'
+                    },
+                    {
+                        data: 'descricao'
+                    },
+                    {
+                        data: null,
+                        title: 'Ação',
+                        render: function(data, type, row) {
+                            return '<button class="btn btn-warning btn-editar" data-id="' + row.id + '"><i class="fa-solid fa-pen-to-square"></i></button> <button class="btn btn-danger btn-excluir" data-id="' + row.id + '"><i class="fa-solid fa-trash-can"></i></button>';
+                        }
+                    }
+                ],
+            });
 
+            // Evento de clique no botão editar
+            $('#listar-perfil tbody').on('click', 'button.btn-editar', function() {
+                var data = tabela.row($(this).parents('tr')).data();
+                editarDadoDataTable(data.id)
+                // Implemente a lógica de edição aqui
+            });
 
+            // Evento de clique no botão excluir
+            $('#listar-perfil tbody').on('click', 'button.btn-excluir', function() {
+                var data = tabela.row($(this).parents('tr')).data();
+                excluirDadoDataTable(data.id, data.titulo, tabela)
+                // Implemente a lógica de exclusão aqui
+            });
         });
-
-        function addNovocadastro() {
-            alert("redirecionado");
-        }
 
         function editarDadoDataTable(id) {
             $("#editarDados").modal("show");
@@ -159,17 +174,37 @@ include_once(dirname(__FILE__) . "/../../../../dao/PerfilDAO.php");
             });
         }
 
-        function excluirDadoDataTable(id) {
-            console.log("peguei: " + id);
+        function excluirDadoDataTable(id, titulo, tabela) {
+
+            if (confirm('Deseja Excluir o Perfil: ' + id + '  ' + titulo)) {
+                $.ajax({
+                    type: 'GET',
+                    url: '/Projeto-TCC-Maria-Rocha/controllers/perfil/controller_excluir.php',
+                    data: {
+                        id: id
+                    },
+                    success: function(resposta) {
+                        // Lógica a ser executada quando a requisição for bem-sucedida
+                        tabela.ajax.reload();
+
+                    },
+                    error: function(xhr, status, error) {
+                        // Lógica a ser executada em caso de erro na requisição
+                        console.error('Erro na requisição:', xhr.responseText);
+                        console.error('Status:', status);
+                        console.error('Erro:', error);
+                    }
+                });
+            }
         }
 
-        function enviarFormEditar(){
+        function enviarFormEditar() {
             var form = document.getElementById("formEditar");
             form.submit();
         }
 
 
-        function addNovocadastro(){
+        function addNovocadastro() {
             window.location.href = "/projeto-tcc-maria-rocha/administracao/view/pages/perfil/form_cadastrar_perfil.php";
         }
     </script>
