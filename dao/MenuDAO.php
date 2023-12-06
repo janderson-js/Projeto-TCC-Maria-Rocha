@@ -19,6 +19,10 @@ class MenuDAO
         (:titulo, :descricao, :url_menu)";
 
         try {
+
+            if($this->conn->getConexao() === null){
+                $this->conn->reconectar();
+            }
             $stmt = $this->conn->getConexao()->prepare($sqlInserirMenu);
             $stmt->bindValue(":titulo", $menu->getTitulo(), PDO::PARAM_STR);
             $stmt->bindValue(":descricao", $menu->getDescricao(), PDO::PARAM_STR);
@@ -36,12 +40,16 @@ class MenuDAO
     {
 
         $sqlEditarMenu = "UPDATE menu SET 
-        titulo=':titulo', 
-        descricao=':descricao',
-        url_menu=':url_menu'
-        WHERE id=':id'";
+        titulo=:titulo, 
+        descricao=:descricao,
+        url_menu=:url_menu
+        WHERE id=:id";
 
         try {
+            if($this->conn->getConexao() === null){
+                $this->conn->reconectar();
+            }
+
             $stmt = $this->conn->getConexao()->prepare($sqlEditarMenu);
             $stmt->bindValue(":titulo", $menu->getTitulo(), PDO::PARAM_STR);
             $stmt->bindValue(":descricao", $menu->getDescricao(), PDO::PARAM_STR);
@@ -50,7 +58,7 @@ class MenuDAO
 
             $stmt->execute();
         } catch (\PDOException $e) {
-            error_log("Erro ao editar Menu:" . $e->getMessage());
+            echo("Erro ao editar Menu:" . $e->getMessage());
         } finally {
             $this->conn->desconectar();
         }
@@ -62,6 +70,9 @@ class MenuDAO
         $sqlExcluirMenu = "DELETE FROM menu WHERE id=:id";
 
         try {
+            if($this->conn->getConexao() === null){
+                $this->conn->reconectar();
+            }
             $stmt = $this->conn->getConexao()->prepare($sqlExcluirMenu);
             $stmt->bindValue(":id", $id, PDO::PARAM_INT);
 
@@ -79,6 +90,9 @@ class MenuDAO
         $sqlCarregaPorIdMenu = "SELECT * FROM menu WHERE id=:id";
 
         try {
+            if($this->conn->getConexao() === null){
+                $this->conn->reconectar();
+            }
             $stmt = $this->conn->getConexao()->prepare($sqlCarregaPorIdMenu);
             $stmt->bindValue(":id", $id, PDO::PARAM_INT);
 
@@ -108,6 +122,9 @@ class MenuDAO
         $sqlCarregaPorIdMenu = "SELECT * FROM menu WHERE id=:id";
         
         try {
+            if($this->conn->getConexao() === null){
+                $this->conn->reconectar();
+            }
             $stmt = $this->conn->getConexao()->prepare($sqlCarregaPorIdMenu);
             $stmt->bindValue(":id", $id, PDO::PARAM_INT);
             $stmt->execute();
@@ -142,6 +159,9 @@ class MenuDAO
         $sqlListarMenu = "SELECT * FROM menu";
 
         try {
+            if($this->conn->getConexao() === null){
+                $this->conn->reconectar();
+            }
             $stmt = $this->conn->getConexao()->prepare($sqlListarMenu);
             $stmt->execute();
 
@@ -169,6 +189,9 @@ class MenuDAO
         $sqlListarMenu = "SELECT * FROM menu";
 
         try {
+            if($this->conn->getConexao() === null){
+                $this->conn->reconectar();
+            }
             $stmt = $this->conn->getConexao()->prepare($sqlListarMenu);
             $stmt->execute();
 

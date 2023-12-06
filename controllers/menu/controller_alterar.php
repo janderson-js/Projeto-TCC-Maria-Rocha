@@ -9,15 +9,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $descricao = $_POST["descricao"];
     $url = $_POST['url'];
 
-    $pDAO = new PerfilDAO();
-    $p = new Perfil();
+    $mDAO = new MenuDAO();
+    $m = new menu();
 
-    $p->setId($id);
-    $p->setTitulo($titulo);
-    $p->setdescricao($descricao);
+    $m->setId($id);
+    $m->setTitulo($titulo);
+    $m->setdescricao($descricao);
+    $m->setUrl($url);
 
-    $pDAO->editarPerfil($p);
+    $mDAO->editarMenu($m);
    
     
-    header("location: /Projeto-TCC-Maria-Rocha/administracao/view/pages/perfil/listar_perfil.php");
+    header("location: /projeto-tcc-maria-rocha/administracao/view/pages/menu/listar_menu.php");
 }
