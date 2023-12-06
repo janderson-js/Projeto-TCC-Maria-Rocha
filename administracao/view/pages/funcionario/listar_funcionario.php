@@ -253,7 +253,6 @@ $p[] = $pDAO->listarPerfis();
                 },
                 success: function(resposta) {
                     // Lógica a ser executada quando a requisição for bem-sucedida
-                    console.log(resposta);
                     $("#editarDados #formEditar #id").val(resposta.id);
                     $("#editarDados #formEditar #nome").val(resposta.nome);
                     $("#editarDados #formEditar #idade").val(resposta.idade);
@@ -277,7 +276,7 @@ $p[] = $pDAO->listarPerfis();
 
         function excluirDadoDataTable(id, nome, tabela) {
 
-            if (confirm('Deseja Excluir o Perfil: ' + id + '  ' + nome)) {
+            if (confirm('Deseja Excluir o Funcionario: ' + id + '  ' + nome)) {
                 $.ajax({
                     type: 'GET',
                     url: '/Projeto-TCC-Maria-Rocha/controllers/funcionario/controller_excluir.php',

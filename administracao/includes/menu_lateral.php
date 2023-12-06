@@ -32,7 +32,7 @@
             </li>
 
             <li class="sidebar-header">
-                Gerenciar Pacientes
+                Gerenciar Pacientes & Anamneses
             </li>
 
             <li class="sidebar-item">
@@ -48,13 +48,19 @@
             </li>
 
             <li class="sidebar-item">
+                <a class="sidebar-link" href="/projeto-tcc-maria-rocha/administracao/view/pages/anamnese/listar_anamnese.php">
+                    <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Listar Anamneses</span>
+                </a>
+            </li>
+
+            <li class="sidebar-item">
                 <a class="sidebar-link" href="/projeto-tcc-maria-rocha/administracao/view/pages/anamnese/form_cadastrar_anamnese.php">
                     <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Cadastrar Anamnse</span>
                 </a>
             </li>
 
             <li class="sidebar-item">
-                <a class="sidebar-link" href="/projeto-tcc-maria-rocha/administracao/view/pages/anamnese/form_cadastrar_anamnese.php">
+                <a class="sidebar-link" href="/projeto-tcc-maria-rocha/administracao/view/pages/anamnese/form_vincular.php">
                     <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Vincular Anamnse</span>
                 </a>
             </li>

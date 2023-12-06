@@ -21,7 +21,7 @@ class PacienteDAO
         )";
 
         try {
-            if($this->conn->getConexao() === null){
+            if ($this->conn->getConexao() === null) {
                 $this->conn->reconectar();
             }
             $stmt = $this->conn->getConexao()->prepare($sqlInserirPaciente);
@@ -44,7 +44,6 @@ class PacienteDAO
             } catch (\PDOException $e) {
                 echo "Erro do PDO: " . $e->getMessage();
             }
-
         } catch (\PDOException $e) {
             error_log("Erro ao inserir paciente: " . $e->getMessage());
         } finally {
@@ -54,13 +53,13 @@ class PacienteDAO
 
     public function editarPaciente(Paciente $paciente)
     {
-        $sqlEditarPaciente = "UPDATE paciente SET 
+        $sqlEditarPaciente = "UPDATE pacientes SET 
             nome=:nome, idade=:idade, cpf=:cpf, login=:login, senha=:senha, genero=:genero, 
             profissao=:profissao, telefone=:telefone, celular=:celular, data_nascimento=:data_nascimento
             WHERE id=:id";
 
         try {
-            if($this->conn->getConexao() === null){
+            if ($this->conn->getConexao() === null) {
                 $this->conn->reconectar();
             }
             $stmt = $this->conn->getConexao()->prepare($sqlEditarPaciente);
@@ -76,9 +75,8 @@ class PacienteDAO
             $stmt->bindValue(":data_nascimento", $paciente->getDataNascimento(), PDO::PARAM_STR);
             $stmt->bindValue(":id", $paciente->getId(), PDO::PARAM_INT);
 
-            // Adicione aqui o código para atualizar os objetos relacionados (HistoricoAtual, HistoricoMedico, HistoricoFisioterapeutico)
-
             $stmt->execute();
+
         } catch (\PDOException $e) {
             error_log("Erro ao editar paciente: " . $e->getMessage());
         } finally {
@@ -88,10 +86,10 @@ class PacienteDAO
 
     public function excluirPaciente(int $id)
     {
-        $sqlExcluirPaciente = "DELETE FROM paciente WHERE id=:id";
+        $sqlExcluirPaciente = "DELETE FROM pacientes WHERE id=:id";
 
         try {
-            if($this->conn->getConexao() === null){
+            if ($this->conn->getConexao() === null) {
                 $this->conn->reconectar();
             }
             $stmt = $this->conn->getConexao()->prepare($sqlExcluirPaciente);
@@ -106,13 +104,54 @@ class PacienteDAO
             $this->conn->desconectar();
         }
     }
+    public function carregarPorIdPacienteJson($id)
+    {
+        $sqlCarregarPorIdPaciente = "SELECT * FROM pacientes WHERE id=:id";
+
+        try {
+            if ($this->conn->getConexao() === null) {
+                $this->conn->reconectar();
+            }
+            $stmt = $this->conn->getConexao()->prepare($sqlCarregarPorIdPaciente);
+            $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+
+            $stmt->execute();
+        
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            if (!$result) {
+                return null; // Paciente não encontrado
+            }
+
+            $paciente = new Paciente();
+            $paciente->setId($result['id']);
+            $paciente->setNome($result['nome']);
+            $paciente->setIdade($result['idade']);
+            $paciente->setCpf($result['cpf']);
+            $paciente->setLogin($result['login']);
+            $paciente->setSenha($result['senha']);
+            $paciente->setGenero($result['genero']);
+            $paciente->setProfissao($result['profissao']);
+            $paciente->setTelefone($result['telefone']);
+            $paciente->setCelular($result['celular']);
+            $paciente->setDataNascimento($result['data_nascimento']);
+
+            
+
+            header('Content-Type: application/json');
+            echo json_encode($paciente->toJson(), JSON_UNESCAPED_UNICODE);
+        } catch (\PDOException $e) {
+            error_log("Erro ao carregar por id o paciente: " . $e->getMessage());
+        } finally {
+            $this->conn->desconectar();
+        }
+    }
 
     public function carregarPorIdPaciente(int $id)
     {
         $sqlCarregarPorIdPaciente = "SELECT * FROM paciente WHERE id=:id";
 
         try {
-            if($this->conn->getConexao() === null){
+            if ($this->conn->getConexao() === null) {
                 $this->conn->reconectar();
             }
             $stmt = $this->conn->getConexao()->prepare($sqlCarregarPorIdPaciente);
@@ -154,7 +193,7 @@ class PacienteDAO
         $sqlListarPacientes = "SELECT * FROM paciente";
 
         try {
-            if($this->conn->getConexao() === null){
+            if ($this->conn->getConexao() === null) {
                 $this->conn->reconectar();
             }
             $stmt = $this->conn->getConexao()->prepare($sqlListarPacientes);
@@ -196,11 +235,11 @@ class PacienteDAO
         $sqlListarPacientes = "SELECT * FROM pacientes";
 
         try {
-            if($this->conn->getConexao() === null){
+            if ($this->conn->getConexao() === null) {
                 $this->conn->reconectar();
             }
             $stmt = $this->conn->getConexao()->prepare($sqlListarPacientes);
-            
+
             try {
                 $result = $stmt->execute();
             } catch (\PDOException $e) {

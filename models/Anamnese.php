@@ -15,6 +15,7 @@ class Anamnese{
     private string $alergias;
     private string $medicamentoEmUso;
     private string $historicoFamiliarRelevante;
+    private  $cpf;
 
     public function getId(): int
     {
@@ -183,4 +184,39 @@ class Anamnese{
 
         return $this;
     }
+
+    public function getCpf() 
+    {
+        return $this->cpf;
+    }
+
+    public function setCpf(string $cpf)
+    {
+        $this->cpf = $cpf;
+
+        return $this;
+    }
+
+    public function toJson() {
+        $dataFormatada = date("d/m/Y", strtotime($this->getDataInicioSintomas()));
+        return [
+            'id' => $this->getId(),
+            'dataInicioSintomas' => $dataFormatada,
+            'fatoresDesencadeiamSintomas' => $this->getFatoresDesencadeiamSintomas(),
+            'nivelDor' => $this->getNivelDor(),
+            'localizacaoDor' => $this->getLocalizacaoDor(),
+            'tratamentoAnterior' => $this->getTratamentoAnterior(),
+            'motivoTratamentoAnterior' => $this->getMotivoTratamentoAnterior(),
+            'resultadoTratamentoAnterior' => $this->getResultadoTratamentoAnterior(),
+            'problemaFisicoRecorrente' => $this->getProblemaFisicoRecorrente(),
+            'doencasPrevias' => $this->getDoencasPrevias(),
+            'cirurgias' => $this->getCirurgias(),
+            'alergias' => $this->getAlergias(),
+            'medicamentoEmUso' => $this->getMedicamentoEmUso(),
+            'historicoFamiliarRelevante' => $this->getHistoricoFamiliarRelevante(),
+            'cpf' => $this->getCpf()
+        ];
+    }
+
+
 }

@@ -46,7 +46,7 @@ $p[] = $pDAO->listarPerfis();
                                             <tr>
                                                 <th>id</th>
                                                 <th>nome</th>
-                                                <th>Idade</th> 
+                                                <th>Idade</th>
                                                 <th>cpf</th>
                                                 <th>login</th>
                                                 <th>senha</th>
@@ -82,37 +82,23 @@ $p[] = $pDAO->listarPerfis();
                             <form id="formEditar" action="/projeto-tcc-maria-rocha/controllers/pacientes/controller_alterar.php" method="post">
 
                                 <div class="mb-3">
-                                    <label for="nome" class="form-label">Nome</label>
+                                    <label for="nome" class="form-label">ID: </label>
                                     <input type="text" class="form-control" id="id" name="id" readonly>
-                                </div>
-                                <!-- Perfil -->
-                                <div class="mb-3">
-                                    <label for="perfil" class="form-label">Perfil</label>
-                                    <select class="form-select" onchange="coffitoChange();" id="perfil" name="perfil" required>
-                                        <option value="" selected>Selecione o perfil </option>
-                                        <?php foreach ($p[0] as $perfil) : ?>
-                                            <option value="<?php echo $perfil->getId(); ?>">
-                                                <?php echo $perfil->getTitulo(); ?>
-                                            </option>
-                                        <?php endforeach; ?>
-                                    </select>
                                 </div>
                                 <!-- Nome -->
                                 <div class="mb-3">
-                                    <label for="nome" class="form-label">Nome</label>
+                                    <label for="nome" class="form-label">Nome: </label>
                                     <input type="text" class="form-control" id="nome" name="nome" required>
                                 </div>
-
-                                <!-- COFFITO -->
-                                <div class="mb-3" hidden id="coffitoDiv">
-                                    <label for="coffito" class="form-label">COFFITO</label>
-                                    <input type="text" class="form-control" id="coffito" name="coffito">
+                                <!-- Nome -->
+                                <div class="mb-3">
+                                    <label for="nome" class="form-label">CPF: </label>
+                                    <input type="text" class="form-control" id="cpf" name="cpf" required>
                                 </div>
-
                                 <!-- Matrícula -->
                                 <div class="mb-3">
-                                    <label for="matricula" class="form-label">Matrícula</label>
-                                    <input type="text" class="form-control" id="matricula" name="matricula" required>
+                                    <label for="matricula" class="form-label">Login: </label>
+                                    <input type="text" class="form-control" id="login" name="login" required>
                                 </div>
 
                                 <!-- Senha -->
@@ -137,6 +123,11 @@ $p[] = $pDAO->listarPerfis();
                                     </select>
                                 </div>
 
+                                <div class="mb-3">
+                                    <label for="profissao" class="form-label">Profissão: </label>
+                                    <input type="text" class="form-control" id="profissao" name="profissao" required>
+                                </div>
+
                                 <!-- Telefone -->
                                 <div class="mb-3">
                                     <label for="telefone" class="form-label">Telefone</label>
@@ -147,6 +138,11 @@ $p[] = $pDAO->listarPerfis();
                                 <div class="mb-3">
                                     <label for="celular" class="form-label">Celular</label>
                                     <input type="text" class="form-control" id="celular" name="celular" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="dataNascimento" class="form-label">Data de nascimento: </label>
+                                    <input type="date" class="form-control" id="dataNascimento" name="dataNascimento" required>
                                 </div>
                             </form>
 
@@ -174,6 +170,7 @@ $p[] = $pDAO->listarPerfis();
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
     <script src="https://cdn.datatables.net/rowreorder/1.2.9/js/dataTables.rowReorder.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
     <script src="https://cdn.datatables.net/responsive/2.2.7/responsive.min.js"></script>
 
@@ -231,7 +228,6 @@ $p[] = $pDAO->listarPerfis();
                         data: null,
                         title: 'Ação',
                         render: function(data, type, row) {
-                            console.log(data);
                             return '<button class="btn btn-warning btn-editar" data-id="' + row.id + '"><i class="fa-solid fa-pen-to-square"></i></button> <button class="btn btn-danger btn-excluir" data-id="' + row.id + '"><i class="fa-solid fa-trash-can"></i></button>';
                         }
                     }
@@ -266,7 +262,6 @@ $p[] = $pDAO->listarPerfis();
                 },
                 success: function(resposta) {
                     // Lógica a ser executada quando a requisição for bem-sucedida
-                    console.log(resposta);
                     $("#editarDados #formEditar #id").val(resposta.id);
                     $("#editarDados #formEditar #nome").val(resposta.nome);
                     $("#editarDados #formEditar #idade").val(resposta.idade);
@@ -277,8 +272,11 @@ $p[] = $pDAO->listarPerfis();
                     $("#editarDados #formEditar #profissao").val(resposta.profissao);
                     $("#editarDados #formEditar #telefone").val(resposta.telefone);
                     $("#editarDados #formEditar #celular").val(resposta.celular);
-                    $("#editarDados #formEditar #dataNascimento").val(resposta.dataNascimento);
-                    
+
+                    var dataFormatada = moment(resposta.dataNascimento, "DD/MM/YYYY").format("YYYY-MM-DD");
+                    console.log(dataFormatada);
+                    $("#editarDados #formEditar #dataNascimento").val(dataFormatada);
+
 
                 },
                 error: function(xhr, status, error) {
@@ -292,7 +290,7 @@ $p[] = $pDAO->listarPerfis();
 
         function excluirDadoDataTable(id, nome, tabela) {
 
-            if (confirm('Deseja Excluir o Perfil: ' + id + '  ' + nome)) {
+            if (confirm('Deseja Excluir o Paciente: ' + id + '  ' + nome)) {
                 $.ajax({
                     type: 'GET',
                     url: '/Projeto-TCC-Maria-Rocha/controllers/pacientes/controller_excluir.php',
@@ -314,6 +312,7 @@ $p[] = $pDAO->listarPerfis();
             }
         }
 
+
         function enviarFormEditar() {
             var form = document.getElementById("formEditar");
             form.submit();
@@ -323,7 +322,6 @@ $p[] = $pDAO->listarPerfis();
         function addNovocadastro() {
             window.location.href = "/projeto-tcc-maria-rocha/administracao/view/pages/pacientes/form_cadastrar.php";
         }
-
     </script>
 </body>
 

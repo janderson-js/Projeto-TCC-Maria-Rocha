@@ -1,13 +1,13 @@
 <?php
-include("../../dao/FuncionarioDAO.php");
+include("../../dao/PacienteDAO.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $id = isset($_GET['id']) ? $_GET['id'] : null;
 
-    $fDAO = new FuncionarioDAO();
+    $pDAO = new PacienteDAO();
 
-    $fDAO->excluirFuncionario($id);
+    $pDAO->excluirPaciente($id);
    
     
-    header("location: /Projeto-TCC-Maria-Rocha/administracao/view/pages/funcionario/listar_funcionario.php");
+    header("location: /projeto-tcc-maria-rocha/administracao/view/pages/pacientes/listar_pacientes.php");
 }

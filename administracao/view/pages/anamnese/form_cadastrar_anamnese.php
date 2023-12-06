@@ -29,6 +29,10 @@
                                 </div>
                                 <div class="card-body">
                                     <form action="/projeto-tcc-maria-rocha/controllers/anamnse/controller_cadastrar.php" method="post">
+                                        <div class="mb-3">
+                                            <label for="cpf" class="form-label">CPF</label>
+                                            <input type="text" class="form-control" id="cpf" name="cpf" required>
+                                        </div>
                                         <!-- Data de Início dos Sintomas -->
                                         <div class="mb-3">
                                             <label for="dataInicioSintomas" class="form-label">Data de Início dos Sintomas</label>

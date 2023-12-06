@@ -1,40 +1,40 @@
 <?php
 
-include("../../dao/FuncionarioDAO.php");
+include("../../dao/PacienteDAO.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtém os dados do formulário
     $id = $_POST["id"];
     $nome = $_POST["nome"];
-    $coffito = $_POST["coffito"];
-    $matricula = $_POST["matricula"];
-    $senha = $_POST["senha"];
     $idade = $_POST["idade"];
+    $cpf = $_POST["cpf"];
+    $login = $_POST["login"];
+    $senha = $_POST["senha"];
     $genero = $_POST["genero"];
+    $profissao = $_POST["profissao"];
     $telefone = $_POST["telefone"];
     $celular = $_POST["celular"];
-    $perfil = $_POST["perfil"];
+    $dataNascimento = $_POST['dataNascimento'];
 
-    $fDAO = new FuncionarioDAO();
-    $f = new Funcionario();
+    $pDAO = new PacienteDAO();
+    $p = new Paciente();
 
-    $pDAO = new PerfilDAO();
-    $p = new Perfil();
+    $p->setId($id);
+    $p->setNome($nome);
+    $p->setIdade($idade);
+    $p->setCpf($cpf);
+    $p->setLogin($login);
+    $p->setSenha($senha);
+    $p->setTelefone($telefone);
+    $p->setProfissao($profissao);
+    $p->setCelular($celular);
+    $p->setGenero($genero);
+    $p->setDataNascimento($dataNascimento);
 
-    $f->setId($id);
-    $f->setNome($nome);
-    $f->setCoffito(isset($coffito) ? $coffito : "");
-    $f->setMatricula($matricula);
-    $f->setSenha($senha);
-    $f->setIdade($idade);
-    $f->setGenero($genero);
-    $f->setTelefone($telefone);
-    $f->setCelular($celular);
 
-    $f->setPerfil($pDAO->carregarPorIdPerfil($perfil));
+    $pDAO->editarPaciente($p);
 
-    $fDAO->editarFuncionario($f);
-   
-    
-    header("location: /Projeto-TCC-Maria-Rocha/administracao/view/pages/funcionario/listar_funcionario.php");
+
+
+    header('location:/projeto-tcc-maria-rocha/administracao/view/pages/pacientes/listar_pacientes.php');
 }

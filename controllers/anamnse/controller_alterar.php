@@ -1,9 +1,10 @@
-<?php 
+<?php
 
 include("../../dao/AnamneseDAO.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Obtém os dados do formulário
+
+    $id = $_POST["id"];
     $dataInicioSintomas = $_POST["dataInicioSintomas"];
     $fatoresDesencadeiamSintomas = $_POST["fatoresDesencadeiamSintomas"];
     $nivelDor = $_POST["nivelDor"];
@@ -22,6 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $aDAO = new  AnamneseDAO();
     $a = new Anamnese();
 
+    $a->setId($id);
     $a->setDataInicioSintomas($dataInicioSintomas);
     $a->setFatoresDesencadeiamSintomas($fatoresDesencadeiamSintomas);
     $a->setNivelDor($nivelDor);
@@ -38,9 +40,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $a->setCpf($cpf);
 
 
-    $aDAO->inserirAnamnese($a);
-
+    $aDAO->editarAnamnese($a);
+   
+    
     header("location: /projeto-tcc-maria-rocha/administracao/view/pages/anamnese/listar_anamnese.php");
 }
-
-?>
