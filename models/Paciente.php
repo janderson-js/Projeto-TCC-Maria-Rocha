@@ -163,4 +163,12 @@ class Paciente{
             'dataNascimento' => $dataFormatada,
         ];
     }
+
+    public function toJsonPaciente() {
+        return [
+            'id' => $this->getId(),
+            'nome' => $this->getNome(), 
+            'cpf' => $this->getCpf(),
+        ];
+    }
 }

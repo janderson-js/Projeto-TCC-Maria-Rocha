@@ -98,7 +98,7 @@ class AnamneseDAO
 
             $stmt->execute();
         } catch (\PDOException $e) {
-          echo("Erro ao editar anamnese: " . $e->getMessage());
+            echo ("Erro ao editar anamnese: " . $e->getMessage());
         } finally {
             $this->conn->desconectar();
         }
@@ -117,12 +117,31 @@ class AnamneseDAO
 
             $stmt->execute();
         } catch (\PDOException $e) {
-            echo("Erro ao excluir a anamnese: " . $e->getMessage());
+            echo ("Erro ao excluir a anamnese: " . $e->getMessage());
         } finally {
             $this->conn->desconectar();
         }
     }
 
+    public function vincularAnamnese($idAnamnese, $idPaciente){
+        $sqlExcluirAnamnese = "INSERT INTO anamnese_pacientes (pacientes_id, anamnese_id) VALUES (:idPaciente, :idAnamnese)";
+
+        try {
+            if ($this->conn->getConexao() === null) {
+                $this->conn->reconectar();
+            }
+            $stmt = $this->conn->getConexao()->prepare($sqlExcluirAnamnese);
+            $stmt->bindValue(':idAnamnese', $idAnamnese, PDO::PARAM_INT);
+            $stmt->bindValue(':idPaciente', $idPaciente, PDO::PARAM_INT);
+
+            $stmt->execute();
+        } catch (\PDOException $e) {
+            echo ("Erro ao vincular a anamnese: " . $e->getMessage());
+        } finally {
+            $this->conn->desconectar();
+        }
+    }
+        
     public function carregarPorIdAnamnese(int $id)
     {
         $sqlCarregarPorIdAnamnese = "SELECT * FROM anamnese WHERE id=:id";
@@ -205,7 +224,6 @@ class AnamneseDAO
 
             header('Content-Type: application/json');
             echo json_encode($anamnese->toJson(), JSON_UNESCAPED_UNICODE);
-
         } catch (\PDOException $e) {
             error_log("Erro ao carregar por id a anamnese: " . $e->getMessage());
         } finally {
@@ -292,9 +310,95 @@ class AnamneseDAO
 
             header('Content-Type: application/json');
             echo json_encode($anamneses, JSON_UNESCAPED_UNICODE);
-
         } catch (\PDOException $e) {
-            echo("Erro ao listar anamneses: " . $e->getMessage());
+            echo ("Erro ao listar anamneses: " . $e->getMessage());
+        } finally {
+            $this->conn->desconectar();
+        }
+    }
+
+    public function listarAnamnesesNaoVinculadas()
+    {
+        $sqlListarAnamneses = "SELECT anamnese.* FROM anamnese LEFT JOIN anamnese_pacientes ON anamnese.id = anamnese_pacientes.anamnese_id WHERE anamnese_pacientes.anamnese_id IS NULL";
+
+        try {
+            if ($this->conn->getConexao() === null) {
+                $this->conn->reconectar();
+            }
+            $stmt = $this->conn->getConexao()->prepare($sqlListarAnamneses);
+            $stmt->execute();
+
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $anamneses = [];
+
+            foreach ($result as $row) {
+                $anamnese = new Anamnese();
+                $anamnese->setId($row['id']);
+                $anamnese->setDataInicioSintomas($row['data_inicio_sintomas']);
+                $anamnese->setFatoresDesencadeiamSintomas($row['fatores_desencadeiam_sintomas']);
+                $anamnese->setNivelDor($row['nivel_dor']);
+                $anamnese->setLocalizacaoDor($row['localizacao_dor']);
+                $anamnese->setTratamentoAnterior($row['tratamento_anterior']);
+                $anamnese->setMotivoTratamentoAnterior($row['motivo_tratamento_anterior']);
+                $anamnese->setResultadoTratamentoAnterior($row['resultado_tratamento_anterio']);
+                $anamnese->setProblemaFisicoRecorrente($row['problema_fisico_recorrente']);
+                $anamnese->setDoencasPrevias($row['doencas_previas']);
+                $anamnese->setCirurgias($row['cirurgias']);
+                $anamnese->setAlergias($row['alergias']);
+                $anamnese->setMedicamentoEmUso($row['medicamentos_em_uso']);
+                $anamnese->setHistoricoFamiliarRelevante($row['historico_familiar_relevante']);
+                $anamnese->setCpf($row['cpf']);
+                $anamneses[] = $anamnese->toJson();
+            }
+
+            header('Content-Type: application/json');
+            echo json_encode($anamneses, JSON_UNESCAPED_UNICODE);
+        } catch (\PDOException $e) {
+            echo ("Erro ao listar anamneses: " . $e->getMessage());
+        } finally {
+            $this->conn->desconectar();
+        }
+    }
+
+    public function carregarPorIdAnamneseVinculadaJson($id)
+    {
+        $sqlCarregarPorIdPaciente = "SELECT anamnese.* FROM anamnese_pacientes INNER JOIN anamnese ON anamnese_pacientes.anamnese_id = anamnese.id WHERE anamnese_pacientes.pacientes_id = :id";
+
+        try {
+            if ($this->conn->getConexao() === null) {
+                $this->conn->reconectar();
+            }
+            $stmt = $this->conn->getConexao()->prepare($sqlCarregarPorIdPaciente);
+            $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+
+            $stmt->execute();
+
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            if (!$result) {
+                return null; // Paciente não encontrado
+            }
+
+            $anamnese = new Anamnese();
+            $anamnese->setId($result['id']);
+            $anamnese->setDataInicioSintomas($result['data_inicio_sintomas']);
+            $anamnese->setFatoresDesencadeiamSintomas($result['fatores_desencadeiam_sintomas']);
+            $anamnese->setNivelDor($result['nivel_dor']);
+            $anamnese->setLocalizacaoDor($result['localizacao_dor']);
+            $anamnese->setTratamentoAnterior($result['tratamento_anterior']);
+            $anamnese->setMotivoTratamentoAnterior($result['motivo_tratamento_anterior']);
+            $anamnese->setResultadoTratamentoAnterior($result['resultado_tratamento_anterio']);
+            $anamnese->setProblemaFisicoRecorrente($result['problema_fisico_recorrente']);
+            $anamnese->setDoencasPrevias($result['doencas_previas']);
+            $anamnese->setCirurgias($result['cirurgias']);
+            $anamnese->setAlergias($result['alergias']);
+            $anamnese->setMedicamentoEmUso($result['medicamentos_em_uso']);
+            $anamnese->setHistoricoFamiliarRelevante($result['historico_familiar_relevante']);
+            $anamnese->setCpf($result['cpf']);
+
+            header('Content-Type: application/json');
+            echo json_encode($anamnese->toJson(), JSON_UNESCAPED_UNICODE);
+        } catch (\PDOException $e) {
+            echo ("Erro ao carregar por id o paciente: " . $e->getMessage());
         } finally {
             $this->conn->desconectar();
         }

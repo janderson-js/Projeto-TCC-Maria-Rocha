@@ -275,4 +275,41 @@ class PacienteDAO
             $this->conn->desconectar();
         }
     }
+
+    public function listarPacienteNãoVinculadoAnamnese(){
+        $sqlListarPacientes = "SELECT pacientes.id, pacientes.cpf, pacientes.nome FROM pacientes LEFT JOIN anamnese_pacientes ON pacientes.id = anamnese_pacientes.pacientes_id WHERE anamnese_pacientes.pacientes_id IS NULL";
+
+        try {
+            if ($this->conn->getConexao() === null) {
+                $this->conn->reconectar();
+            }
+            $stmt = $this->conn->getConexao()->prepare($sqlListarPacientes);
+
+            try {
+                $result = $stmt->execute();
+            } catch (\PDOException $e) {
+                echo "Erro do PDO: " . $e->getMessage();
+            }
+
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            $pacientes = [];
+
+            foreach ($result as $row) {
+                $paciente = new Paciente();
+                $paciente->setId($row['id']);
+                $paciente->setNome($row['nome']);
+                $paciente->setCpf($row['cpf']);
+
+                $pacientes[] = $paciente->toJsonPaciente();
+            }
+
+            header('Content-Type: application/json');
+            echo json_encode($pacientes, JSON_UNESCAPED_UNICODE);
+        } catch (\PDOException $e) {
+            error_log("Erro ao listar pacientes: " . $e->getMessage());
+        } finally {
+            $this->conn->desconectar();
+        }
+    }
 }

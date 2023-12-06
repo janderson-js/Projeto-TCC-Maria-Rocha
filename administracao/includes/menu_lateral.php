@@ -60,7 +60,7 @@
             </li>
 
             <li class="sidebar-item">
-                <a class="sidebar-link" href="/projeto-tcc-maria-rocha/administracao/view/pages/anamnese/form_vincular.php">
+                <a class="sidebar-link" href="/Projeto-TCC-Maria-Rocha/administracao/view/pages/anamnese/vincular_anamnese.php">
                     <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Vincular Anamnse</span>
                 </a>
             </li>

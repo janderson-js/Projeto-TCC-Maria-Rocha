@@ -355,28 +355,6 @@
         function addNovocadastro() {
             window.location.href = "/projeto-tcc-maria-rocha/administracao/view/pages/anamnese/form_cadastrar_anamnese.php";
         }
-
-
-        function coffitoChange() {
-            var selectElement = document.getElementById("perfil");
-
-            // Obter o índice do option selecionado
-            var selectedIndex = selectElement.selectedIndex;
-
-            // Obter o texto do option selecionado usando o índice
-            var nomeDoOption = selectElement.options[selectedIndex].text;
-
-            var coffitoDiv = document.getElementById("coffitoDiv");
-            var coffitoCampo = document.getElementById("coffito");
-            if (nomeDoOption === "Fisioterapeuta") {
-                coffitoDiv.hidden = false;
-
-                coffitoCampo.required = true;
-            } else {
-                coffitoDiv.hidden = true;
-                coffitoCampo.required = false;
-            }
-        }
     </script>
 </body>
 
