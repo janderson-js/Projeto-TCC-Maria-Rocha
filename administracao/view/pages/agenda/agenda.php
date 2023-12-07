@@ -6,7 +6,7 @@
     <script src="/marcia_rocha/public/js/index.global.js"></script>
     <!-- Inicio do include head -->
     <?php include "../../../includes/head.php"; ?>
-    <link rel="stylesheet" href="public/css/calendar.css">
+    <link rel="stylesheet" href="/marcia_rocha/public/css/calendar.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <!-- Fim do include head -->
 
