@@ -4,7 +4,6 @@ class Servico{
     private int $id;
     private string $nome;
     private string $descricao;
-    private string $tipo;
 
     public function getId(): int
     {
@@ -42,15 +41,11 @@ class Servico{
         return $this;
     }
 
-    public function getTipo(): string
-    {
-        return $this->tipo;
-    }
-
-    public function setTipo(string $tipo): self
-    {
-        $this->tipo = $tipo;
-
-        return $this;
+    public function toJson() {
+        return [
+            'id' => $this->getId(),
+            'nome' => $this->getNome(),
+            'descricao' => $this->getDescricao(),
+        ];
     }
 }

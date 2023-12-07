@@ -32,8 +32,8 @@
 
                                         <!-- titulo do menu -->
                                         <div class="mb-3">
-                                            <label for="nome" class="form-label">Titulo</label>
-                                            <input type="text" class="form-control" id="titulo" name="titulo" required>
+                                            <label for="nome" class="form-label">Nome: </label>
+                                            <input type="text" class="form-control" id="nome" name="nome" required>
                                         </div>
 
                                         <!-- descrição -->
@@ -42,11 +42,6 @@
                                             <input type="text" class="form-control" id="descricao" name="descricao" required>
                                         </div>
 
-                                         <!-- tipo -->
-                                         <div class="mb-3">
-                                            <label for="idade" class="form-label">Tipo</label>
-                                            <input type="text" class="form-control" id="tipo" name="tipo" required>
-                                        </div>
                                         <button type="submit" class="btn btn-primary">Cadastrar</button>
                                     </form>
                                 </div>
