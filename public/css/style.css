@@ -411,7 +411,7 @@ a[href*='tel'], a[href*='mailto'] {
 	text-align: center;
 	padding: 10px 15px;
 	border-radius: 10px;
-	background: rgba(96, 70, 182, 0.7);
+	background: #38db96;
 	transform: translate3d(-50%, -50%, 0);
 }
 
@@ -1221,7 +1221,7 @@ p + .list-marked {
 	right: 20px;
 	height: 6px;
 	width: 1000%;
-	background: #6046b6;
+	background: #38db96;
 }
 
 @media (min-width: 576px) {
@@ -1271,7 +1271,7 @@ p + .list-marked {
 }
 
 .list-history-item a:hover {
-	color: #6046b6;
+	color: #38db96;
 }
 
 .list-history-item > .active .list-history-circle {
@@ -1294,7 +1294,7 @@ p + .list-marked {
 	width: 28px;
 	height: 28px;
 	background: #ffffff;
-	border: 5px solid #6046b6;
+	border: 5px solid #38db96;
 	border-radius: 50%;
 	transform: translate3d(-50%, -50%, 0);
 	transition: all .3s ease-in-out;
@@ -1307,7 +1307,7 @@ p + .list-marked {
 	left: 50%;
 	width: 0;
 	height: 0;
-	background: #6046b6;
+	background: #38db96;
 	border-radius: 50%;
 	transform: translate3d(-50%, -50%, 0);
 	transition: inherit;
@@ -5440,7 +5440,7 @@ html [class*='section-'].section-top-0 {
 .context-dark h1,
 .bg-gray-dark h1,
 .bg-primary h1, .context-dark h2, .bg-gray-dark h2, .bg-primary h2, .context-dark h3, .bg-gray-dark h3, .bg-primary h3, .context-dark h4, .bg-gray-dark h4, .bg-primary h4, .context-dark h5, .bg-gray-dark h5, .bg-primary h5, .context-dark h6, .bg-gray-dark h6, .bg-primary h6, .context-dark [class^='heading-'], .bg-gray-dark [class^='heading-'], .bg-primary [class^='heading-'] {
-	color: #ffffff;
+	color: #38db96;
 }
 
 .context-dark:not(.section-single):not(.form-default) .form-validation, .bg-gray-dark:not(.section-single):not(.form-default) .form-validation, .bg-primary:not(.section-single):not(.form-default) .form-validation,
@@ -7282,7 +7282,7 @@ html.tablet .ui-to-top {
 	text-align: left;
 }
 #contacto_color{
-	color: black;
+	color: #38db96;
 	background-color: rgba(255, 255, 255, 0.479);
 	border-radius: 30px;
 }
