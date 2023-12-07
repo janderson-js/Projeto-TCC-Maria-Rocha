@@ -87,9 +87,14 @@ $p[] = $pDAO->listarPacientes();
                         <div id="step2" class="step" style="display: none;">
                             <!-- Perfil -->
                             <div class="mb-3">
-                                <label for="perfil" class="form-label">Perfil</label>
-                                <select id="estado" autofocus tabindex="1" class="select2">
-                                    <option value="">Selecione</option>
+                                <label for="perfil" class="form-label">Paciente:</label>
+                                <select id="paciente"   class="select2">
+                                <option value="" selected>Escolha o Funcionario...</option>
+                                    <?php foreach ($p[0] as $paciente) : ?>
+                                        <option value="<?php echo $paciente->getId(); ?>">
+                                            <?php echo $paciente->getNome(); ?>
+                                        </option>
+                                    <?php endforeach; ?>
                                 </select>
 
                             </div>
@@ -340,11 +345,13 @@ $p[] = $pDAO->listarPacientes();
                 case 2:
                     // Validar campos da etapa 2
                     var paciente = $('#paciente').val();
+                    var textoSelecionado = $('#paciente').find('option:selected').text();
                     if (!paciente) {
                         alert("Selecione o paciente!");
                         return false;
                     }
-                    $("#agendamentoForm #r-paciente").val(paciente);
+                    $("#agendamentoForm #r-paciente").val(textoSelecionado.trim());
+                    
                     break;
                 case 3:
                     // Validar campos da etapa 2

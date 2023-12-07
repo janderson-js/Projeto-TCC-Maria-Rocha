@@ -190,7 +190,7 @@ class PacienteDAO
 
     public function listarPacientes()
     {
-        $sqlListarPacientes = "SELECT * FROM paciente";
+        $sqlListarPacientes = "SELECT * FROM pacientes";
 
         try {
             if ($this->conn->getConexao() === null) {
