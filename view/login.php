@@ -14,6 +14,7 @@
         <input type="text" name="login" class="login-username" autofocus="true" required="true" placeholder="Seu login" />
         <input type="password" name="senha" class="login-password" required="true" placeholder="Senha" />
         <input type="submit" name="Login" value="Login" class="login-submit" />
+        <<a href="/marcia_rocha/index.html"><input type="button"  value="Voltar" class="login-submit" /></a>
     </form>
     <div class="underlay-photo"></div>
     <div class="underlay-black"></div>

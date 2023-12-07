@@ -95,17 +95,20 @@ document.addEventListener("DOMContentLoaded", function () {
         return false;
       }
       if (info.view.type === "dayGridMonth") {
-        $("#modalAgendamento").modal("show");
+        var dataHoje = new Date();
+
+        if (dataClicada.getTime() >= dataHoje.getTime()) {
+          $("#modalAgendamento").modal("show");
+          $(".step").hide();
+          $("#step1").show();
+
+          var dataFormatada = dataClicada.toISOString().split("T")[0];
+
+          $("#modalAgendamento #agendamentoForm #data").val(dataFormatada);
+          console.log(dataFormatada);
+        }
       }
-      $(".step").hide();
-      $("#step1").show();
-
-      var dataFormatada = dataClicada.toISOString().split('T')[0];
-
-      $("#modalAgendamento #agendamentoForm #data").val(dataFormatada);
-      console.log(dataFormatada);
       // Adicionando um ouvinte de evento para o evento de mudança
-
     },
 
     eventClick: function (info) {
