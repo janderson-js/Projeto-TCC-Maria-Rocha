@@ -138,246 +138,251 @@ $perfil = $_SESSION['usuario']['perfil'];
                 <li class="sidebar-header">
 
                 </li>
-            <?php    }
-            ?>
+            </ul>
+        <?php    }
+        ?>
 
 
-            <?php
-            if ($perfil == "Gerente") { ?>
-                <ul class="sidebar-nav">
-                    <li class="sidebar-header">
-                        Páginas
-                    </li>
+        <?php
+        if ($perfil == "Gerente") { ?>
+            <ul class="sidebar-nav">
+                <li class="sidebar-header">
+                    Páginas
+                </li>
 
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="/marcia_rocha/administracao/view/administracao.php">
-                            <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
-                        </a>
-                    </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/marcia_rocha/administracao/view/administracao.php">
+                        <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
+                    </a>
+                </li>
 
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="/marcia_rocha/view/index.php">
-                            <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Meu Site</span>
-                        </a>
-                    </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/marcia_rocha/view/index.php">
+                        <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Meu Site</span>
+                    </a>
+                </li>
 
-                    <li class="sidebar-header">
-                        Gerenciar Agendamentos
-                    </li>
+                <li class="sidebar-header">
+                    Gerenciar Agendamentos
+                </li>
 
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/agenda/agenda.php">
-                            <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Agenda</span>
-                        </a>
-                    </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/agenda/agenda.php">
+                        <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Agenda</span>
+                    </a>
+                </li>
 
-                    <li class="sidebar-header">
-                        Gerenciar Pacientes & Anamneses
-                    </li>
+                <li class="sidebar-header">
+                    Gerenciar Pacientes & Anamneses
+                </li>
 
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/pacientes/listar_pacientes.php">
-                            <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Listar Pacientes</span>
-                        </a>
-                    </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/pacientes/listar_pacientes.php">
+                        <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Listar Pacientes</span>
+                    </a>
+                </li>
 
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/pacientes/form_cadastrar.php">
-                            <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Cadastrar Paciente</span>
-                        </a>
-                    </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/pacientes/form_cadastrar.php">
+                        <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Cadastrar Paciente</span>
+                    </a>
+                </li>
 
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/anamnese/listar_anamnese.php">
-                            <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Listar Anamneses</span>
-                        </a>
-                    </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/anamnese/listar_anamnese.php">
+                        <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Listar Anamneses</span>
+                    </a>
+                </li>
 
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/anamnese/form_cadastrar_anamnese.php">
-                            <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Cadastrar Anamnse</span>
-                        </a>
-                    </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/anamnese/form_cadastrar_anamnese.php">
+                        <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Cadastrar Anamnse</span>
+                    </a>
+                </li>
 
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/anamnese/vincular_anamnese.php">
-                            <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Vincular Anamnse</span>
-                        </a>
-                    </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/anamnese/vincular_anamnese.php">
+                        <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Vincular Anamnse</span>
+                    </a>
+                </li>
 
-                    <li class="sidebar-header">
-                        Gerenciar Funcionários
-                    </li>
+                <li class="sidebar-header">
+                    Gerenciar Funcionários
+                </li>
 
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/funcionario/listar_funcionario.php">
-                            <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Listar Funcionários</span>
-                        </a>
-                    </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/funcionario/listar_funcionario.php">
+                        <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Listar Funcionários</span>
+                    </a>
+                </li>
 
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/funcionario/form_cadastrar_funcionario.php">
-                            <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Cadastrar Funcionário</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-header">
-                        Gerenciar Serviço
-                    </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/funcionario/form_cadastrar_funcionario.php">
+                        <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Cadastrar Funcionário</span>
+                    </a>
+                </li>
+                <li class="sidebar-header">
+                    Gerenciar Serviço
+                </li>
 
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/servico/listar_servico.php">
-                            <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Listar Serviço</span>
-                        </a>
-                    </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/servico/listar_servico.php">
+                        <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Listar Serviço</span>
+                    </a>
+                </li>
 
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/servico/form_cadastrar_servico.php">
-                            <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Cadastrar Serviço</span>
-                        </a>
-                    </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/servico/form_cadastrar_servico.php">
+                        <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Cadastrar Serviço</span>
+                    </a>
+                </li>
 
-                    <li class="sidebar-header">
+                <li class="sidebar-header">
 
-                    </li>
-                <?php    }
-                ?>
+                </li>
+            </ul>
+        <?php    }
+        ?>
 
-                <?php
-                if ($perfil == "Atendente") { ?>
-                    <ul class="sidebar-nav">
-                        <li class="sidebar-header">
-                            Páginas
-                        </li>
+        <?php
+        if ($perfil == "Atendente") { ?>
+            <ul class="sidebar-nav">
+                <li class="sidebar-header">
+                    Páginas
+                </li>
 
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="/marcia_rocha/administracao/view/administracao.php">
-                                <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
-                            </a>
-                        </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/marcia_rocha/administracao/view/administracao.php">
+                        <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
+                    </a>
+                </li>
 
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="/marcia_rocha/view/index.php">
-                                <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Meu Site</span>
-                            </a>
-                        </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/marcia_rocha/view/index.php">
+                        <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Meu Site</span>
+                    </a>
+                </li>
 
-                        <li class="sidebar-header">
-                            Gerenciar Agendamentos
-                        </li>
+                <li class="sidebar-header">
+                    Gerenciar Agendamentos
+                </li>
 
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/agenda/agenda.php">
-                                <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Agenda</span>
-                            </a>
-                        </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/agenda/agenda.php">
+                        <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Agenda</span>
+                    </a>
+                </li>
 
-                        <li class="sidebar-header">
-                            Gerenciar Pacientes & Anamneses
-                        </li>
+                <li class="sidebar-header">
+                    Gerenciar Pacientes & Anamneses
+                </li>
 
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/pacientes/listar_pacientes.php">
-                                <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Listar Pacientes</span>
-                            </a>
-                        </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/pacientes/listar_pacientes.php">
+                        <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Listar Pacientes</span>
+                    </a>
+                </li>
 
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/pacientes/form_cadastrar.php">
-                                <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Cadastrar Paciente</span>
-                            </a>
-                        </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/pacientes/form_cadastrar.php">
+                        <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Cadastrar Paciente</span>
+                    </a>
+                </li>
 
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/anamnese/listar_anamnese.php">
-                                <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Listar Anamneses</span>
-                            </a>
-                        </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/anamnese/listar_anamnese.php">
+                        <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Listar Anamneses</span>
+                    </a>
+                </li>
 
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/anamnese/form_cadastrar_anamnese.php">
-                                <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Cadastrar Anamnse</span>
-                            </a>
-                        </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/anamnese/form_cadastrar_anamnese.php">
+                        <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Cadastrar Anamnse</span>
+                    </a>
+                </li>
 
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/anamnese/vincular_anamnese.php">
-                                <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Vincular Anamnse</span>
-                            </a>
-                        </li>
-
-
-
-                        <li class="sidebar-header">
-
-                        </li>
-                    <?php    }
-                    ?>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/anamnese/vincular_anamnese.php">
+                        <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Vincular Anamnse</span>
+                    </a>
+                </li>
 
 
-                    <?php
-                    if ($perfil == "Fisioterapeuta") { ?>
-                        <ul class="sidebar-nav">
-                            <li class="sidebar-header">
-                                Páginas
-                            </li>
 
-                            <li class="sidebar-item">
-                                <a class="sidebar-link" href="/marcia_rocha/administracao/view/administracao.php">
-                                    <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
-                                </a>
-                            </li>
+                <li class="sidebar-header">
 
-                            <li class="sidebar-item">
-                                <a class="sidebar-link" href="/marcia_rocha/view/index.php">
-                                    <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Meu Site</span>
-                                </a>
-                            </li>
-
-                            <li class="sidebar-header">
-                                Gerenciar Agendamentos
-                            </li>
-
-                            <li class="sidebar-item">
-                                <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/agenda/agenda.php">
-                                    <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Agenda</span>
-                                </a>
-                            </li>
-
-                            <li class="sidebar-header">
-                                Gerenciar Pacientes & Anamneses
-                            </li>
-
-                            <li class="sidebar-item">
-                                <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/pacientes/listar_pacientes.php">
-                                    <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Listar Pacientes</span>
-                                </a>
-                            </li>
-
-                            <li class="sidebar-item">
-                                <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/anamnese/listar_anamnese.php">
-                                    <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Listar Anamneses</span>
-                                </a>
-                            </li>
-
-                            <li class="sidebar-item">
-                                <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/anamnese/form_cadastrar_anamnese.php">
-                                    <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Cadastrar Anamnse</span>
-                                </a>
-                            </li>
-
-                            <li class="sidebar-item">
-                                <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/anamnese/vincular_anamnese.php">
-                                    <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Vincular Anamnse</span>
-                                </a>
-                            </li>
+                </li>
+            </ul>
+        <?php    }
+        ?>
 
 
-                            <li class="sidebar-header">
+        <?php
+        if ($perfil == "Fisioterapeuta") { ?>
+            <ul class="sidebar-nav">
+                <li class="sidebar-header">
+                    Páginas
+                </li>
 
-                            </li>
-                        <?php    }
-                        ?>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/marcia_rocha/administracao/view/administracao.php">
+                        <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
+                    </a>
+                </li>
 
-                        </ul>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/marcia_rocha/view/index.php">
+                        <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Meu Site</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-header">
+                    Gerenciar Agendamentos
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/agenda/agenda.php">
+                        <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Agenda</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-header">
+                    Gerenciar Pacientes & Anamneses
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/pacientes/listar_pacientes.php">
+                        <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Listar Pacientes</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/anamnese/listar_anamnese.php">
+                        <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Listar Anamneses</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/anamnese/form_cadastrar_anamnese.php">
+                        <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Cadastrar Anamnse</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/anamnese/vincular_anamnese.php">
+                        <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Vincular Anamnse</span>
+                    </a>
+                </li>
+
+
+                <li class="sidebar-header">
+
+                </li>
+
+            </ul>
+        <?php    }
+        ?>
+
+
     </div>
 </nav>

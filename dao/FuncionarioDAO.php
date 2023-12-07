@@ -206,7 +206,7 @@ class FuncionarioDAO
 
     public function listarFuncionarios()
     {
-        $sqlListarFuncionarios = "SELECT * FROM funcionario";
+        $sqlListarFuncionarios = "SELECT * FROM funcionarios";
 
         try {
             if ($this->conn->getConexao() === null) {
@@ -217,7 +217,6 @@ class FuncionarioDAO
             $stmt->execute();
 
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
             $funcionarios = [];
 
             foreach ($result as $row) {
@@ -242,6 +241,7 @@ class FuncionarioDAO
             }
 
             return $funcionarios;
+            
         } catch (\PDOException $e) {
             error_log("Erro ao listar funcionários: " . $e->getMessage());
         } finally {

@@ -1,8 +1,18 @@
 <?php
 
 include (__DIR__) . "/../../../../dao/PacienteDAO.php";
+include (__DIR__) . "/../../../../dao/ServicoDAO.php";
+include (__DIR__) . "/../../../../dao/FuncionarioDAO.php";
 $pDAO = new PacienteDAO();
+$sDAO = new ServicoDAO();
+$fDAO = new FuncionarioDAO();
+
 $p[] = $pDAO->listarPacientes();
+
+$s[] = $sDAO->listarServicos();
+
+$f[] = $fDAO->listarFuncionarios();
+
 
 ?>
 
@@ -16,8 +26,6 @@ $p[] = $pDAO->listarPacientes();
     <link rel="stylesheet" href="/marcia_rocha/public/css/calendar.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <!-- Fim do include head -->
-
-
 
     <script src="/marcia_rocha/public/js/calendar.js"></script>
     <script src="/marcia_rocha/public/js/index.global.js"></script>
@@ -87,8 +95,8 @@ $p[] = $pDAO->listarPacientes();
                         <div id="step2" class="step" style="display: none;">
                             <!-- Perfil -->
                             <div class="mb-3">
-                                <label for="perfil" class="form-label">Paciente:</label>
-                                <select id="paciente"   class="select2">
+                                <label for="paciente" class="form-label">Paciente:</label>
+                                <select id="paciente" name="paciente"   class="select2">
                                 <option value="" selected>Escolha o Funcionario...</option>
                                     <?php foreach ($p[0] as $paciente) : ?>
                                         <option value="<?php echo $paciente->getId(); ?>">
@@ -107,11 +115,14 @@ $p[] = $pDAO->listarPacientes();
                                 <input type="date" id="data" name="data" readonly>
                             </div>
                             <div class="mb-3">
-                                <label for="tipoAgendamento">Funcionario:</label>
-                                <select id="funcionario" name="funcionario">
-                                    <option value="" selected>Escolha o Funcionario...</option>
-                                    <option value="alguem">Alguem</option>
-                                    <option value="teste">Teste</option>
+                                <label for="funcionario">Funcionario:</label>
+                                <select id="funcionario" name="funcionario"  class="select2">
+                                <option value="" selected>Escolha o Funcionario...</option>
+                                    <?php foreach ($f[0] as $funcionario) : ?>
+                                        <option value="<?php echo $funcionario->getId(); ?>">
+                                            <?php echo $funcionario->getNome(); ?>
+                                        </option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                             <button type="button" onclick="prevStep()">Anterior</button>
@@ -120,10 +131,13 @@ $p[] = $pDAO->listarPacientes();
                         <div id="step4" class="step" style="display: none;">
                             <div class="mb-3">
                                 <label for="tipoAgendamento">Servico:</label>
-                                <select id="servico" name="servico">
-                                    <option value="" selected>Escolha o servico...</option>
-                                    <option value="servico1">servico1</option>
-                                    <option value="servico2">servico2</option>
+                                <select id="servico" name="servico"  class="select2">
+                                <option value="" selected>Escolha o Funcionario...</option>
+                                    <?php foreach ($s[0] as $servico) : ?>
+                                        <option value="<?php echo $servico->getId(); ?>">
+                                            <?php echo $servico->getNome(); ?>
+                                        </option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                             <div id="horarios" class="mb-3">
@@ -293,16 +307,14 @@ $p[] = $pDAO->listarPacientes();
     <!-- Fim Modal para editar evento no calendar -->
 
     <!-- Inicio do include dos arquivos js -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <?php include "../../../includes/js.php"; ?>
-    <script src="/marcia_rocha/administracao/js/app.js"></script>
-    <script src="/marcia_rocha/administracao/js/preview_img.js"></script>
+
 
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <!-- Fim do include dos arquivos js -->
     <script>
         $('.select2').select2({
-            placeholder: 'Selecione o Paciente',
+            placeholder: 'Selecione uma opção...',
             dropdownParent: '#modalAgendamento'
         });
 
@@ -356,7 +368,9 @@ $p[] = $pDAO->listarPacientes();
                 case 3:
                     // Validar campos da etapa 2
                     var dataFuncionario = $("#data").val();
+
                     var funcionario = $('#funcionario').val();
+                    var textoSelecionado = $('#funcionario').find('option:selected').text();
                     if (!dataFuncionario) {
                         alert("Selecione a data!");
                         return false;
@@ -368,11 +382,12 @@ $p[] = $pDAO->listarPacientes();
                     }
 
                     $("#agendamentoForm #r-data").val(dataFuncionario);
-                    $("#agendamentoForm #r-funcionario").val(funcionario);
+                    $("#agendamentoForm #r-funcionario").val(textoSelecionado.trim());
                     break;
                 case 4:
                     // Validar campos da etapa 3
                     var servicoHorario = $("#servico").val();
+                    var textoSelecionado = $('#servico').find('option:selected').text();
                     var horario = $('#selecionarHorario').val();
                     if (!servicoHorario) {
                         alert("Selecione o serviço!");
@@ -383,7 +398,7 @@ $p[] = $pDAO->listarPacientes();
                         alert("Selecione o horário!");
                         return false;
                     }
-                    $("#agendamentoForm #r-servico").val(servicoHorario);
+                    $("#agendamentoForm #r-servico").val(textoSelecionado.trim());
                     $("#agendamentoForm #r-horario").val(horario);
                     break;
 

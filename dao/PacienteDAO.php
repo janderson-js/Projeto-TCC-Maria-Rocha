@@ -224,7 +224,7 @@ class PacienteDAO
 
             return $pacientes;
         } catch (\PDOException $e) {
-            error_log("Erro ao listar pacientes: " . $e->getMessage());
+            echo("Erro ao listar pacientes: " . $e->getMessage());
         } finally {
             $this->conn->desconectar();
         }

@@ -5,10 +5,10 @@ class DataBase{
     private static $instancia;
     private $conn;
 
-    private $host = "localhost:3306";
+    private $host = "localhost:3307";
     private $username = "root";
     private $password = "";
-    private $database = "maria_rocha";
+    private $database = "marcia_rocha";
 
     private function __construct()
     {

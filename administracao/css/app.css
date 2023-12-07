@@ -13415,7 +13415,7 @@ screen and (-ms-high-contrast:active) {
 
 .sidebar-link,
 a.sidebar-link {
-    background: black;
+    background: black !important;
     border-left: 3px solid transparent;
     color: #f5bf42;
     cursor: pointer;

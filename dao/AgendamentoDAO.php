@@ -25,6 +25,11 @@ class AgendamentoDAO
         )";
 
         try {
+
+            if ($this->conn->getConexao() === null) {
+                $this->conn->reconectar();
+            }
+
             $stmt = $this->conn->getConexao()->prepare($sqlInserirAgendamento);
             $stmt->bindValue(":tipo", $agendamento->getTipo(), PDO::PARAM_STR);
             $stmt->bindValue(":dataAgendamento", $agendamento->getDataAgendamento(), PDO::PARAM_STR);
