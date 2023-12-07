@@ -29,3 +29,7 @@ body {
       font-size: 12px;
   }
 }
+
+.select2-container .select2-search__field {
+  z-index: 1000; /* ou outro valor adequado */
+}

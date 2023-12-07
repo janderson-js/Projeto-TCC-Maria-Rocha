@@ -1,17 +1,28 @@
+<?php
+
+include (__DIR__) . "/../../../../dao/PacienteDAO.php";
+$pDAO = new PacienteDAO();
+$p[] = $pDAO->listarPacientes();
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
-    <script src="/marcia_rocha/public/js/calendar.js"></script>
-    <script src="/marcia_rocha/public/js/index.global.js"></script>
+
     <!-- Inicio do include head -->
     <?php include "../../../includes/head.php"; ?>
     <link rel="stylesheet" href="/marcia_rocha/public/css/calendar.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <!-- Fim do include head -->
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-eO7ztEQaJg9SlsEAv7/s2Fqj2is++FbqOSbmgDyCe9UPOt8gs5Ehj4njhYQyj1gDsxFIeNSuqxbT7jST82ekHw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" integrity="sha512-NJwYz+t0Bcy+oR0PzqBzLTu1TfZEbD1aFz5l+cgI3lv8wh46+Kx2Bd1D96NTgnNNHwyQrUgJNY7djiH5A/0Wmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+    <script src="/marcia_rocha/public/js/calendar.js"></script>
+    <script src="/marcia_rocha/public/js/index.global.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
 </head>
 
@@ -74,13 +85,13 @@
                             <button type="button" onclick="nextStep()"> Próximo</button>
                         </div>
                         <div id="step2" class="step" style="display: none;">
+                            <!-- Perfil -->
                             <div class="mb-3">
-                                <label for="tipoAgendamento">Paciente:</label>
-                                <select id="paciente" name="paciente">
-                                    <option value="" selected>Escolha o Paciente...</option>
-                                    <option value="alguem">Alguem 2</option>
-                                    <option value="teste">Test e</option>
+                                <label for="perfil" class="form-label">Perfil</label>
+                                <select id="estado" autofocus tabindex="1" class="select2">
+                                    <option value="">Selecione</option>
                                 </select>
+
                             </div>
                             <button type="button" onclick="prevStep()">Anterior</button>
                             <button type="button" onclick="nextStep()">Próximo</button>
@@ -134,11 +145,11 @@
                             <div class="mb-3">
                                 <label for="tipo">Tipo de agendamento:</label>
                                 <input id="r-tipo" type="text" readonly>
-                            </div>  
+                            </div>
                             <div class="mb-3">
                                 <label for="r-paciente">Paciente:</label>
                                 <input id="r-paciente" type="text" readonly>
-                            </div> 
+                            </div>
                             <div class="mb-3">
                                 <label for="data">Data:</label>
                                 <input id="r-data" type="date" readonly>
@@ -146,15 +157,15 @@
                             <div class="mb-3">
                                 <label for="funcionario">Funcionario:</label>
                                 <input id="r-funcionario" type="text" readonly>
-                            </div>  
+                            </div>
                             <div class="mb-3">
                                 <label for="servico">servico:</label>
                                 <input id="r-servico" type="text" readonly>
-                            </div>  
+                            </div>
                             <div class="mb-3">
                                 <label for="horario">Horario:</label>
                                 <input id="r-horario" type="time" readonly>
-                            </div>        
+                            </div>
                             <button type="button" onclick="prevStep()">Anterior</button>
                             <button id="agendar">Agendar</button>
                         </div>
@@ -277,9 +288,19 @@
     <!-- Fim Modal para editar evento no calendar -->
 
     <!-- Inicio do include dos arquivos js -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <?php include "../../../includes/js.php"; ?>
+    <script src="/marcia_rocha/administracao/js/app.js"></script>
+    <script src="/marcia_rocha/administracao/js/preview_img.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <!-- Fim do include dos arquivos js -->
     <script>
+        $('.select2').select2({
+            placeholder: 'Selecione o Paciente',
+            dropdownParent: '#modalAgendamento'
+        });
+
         function nextStep() {
             var currentStep = $(".step:visible");
 
@@ -358,7 +379,7 @@
                     $("#agendamentoForm #r-servico").val(servicoHorario);
                     $("#agendamentoForm #r-horario").val(horario);
                     break;
-                    
+
             }
 
             return true; // Todos os campos estão preenchidos

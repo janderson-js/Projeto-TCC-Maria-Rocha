@@ -97,8 +97,9 @@ document.addEventListener("DOMContentLoaded", function () {
       if (info.view.type === "dayGridMonth") {
         var dataHoje = new Date();
 
-        if (dataClicada.getTime() >= dataHoje.getTime()) {
+        if (dataClicada.getTime() >= dataHoje.getTime() || dataHoje.getDay() == dataClicada.getDay()) {
           $("#modalAgendamento").modal("show");
+          
           $(".step").hide();
           $("#step1").show();
 
