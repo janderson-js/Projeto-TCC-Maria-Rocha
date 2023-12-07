@@ -965,6 +965,9 @@ h4 + .group-md {
 *
 * Responsive units
 */
+#color_text{
+	color: #03bb85;
+}
 .unit {
 	display: flex;
 	flex: 0 1 100%;
@@ -2934,7 +2937,7 @@ h4 + .rd-form {
 }
 
 .quote-classic-3 .quote-classic-text::before {
-	color: rgba(21, 21, 21, 0.07);
+	color: #03bb84bd;
 }
 
 .quote-classic-text {
@@ -3730,9 +3733,11 @@ p + .quote-classic {
 }
 
 .footer-modern-list a, .footer-modern-list a:focus, .footer-modern-list a:active {
-	color: rgba(255, 255, 255, 0.8);
+	color: #03bb85;
 }
-
+#color_text1{
+	color:#03bb85;
+}
 .footer-modern-list a:hover {
 	color: #daa520;
 }
@@ -6057,9 +6062,11 @@ p.rights a:hover {
 .aside-contacts span.icon {
 	vertical-align: middle;
 	font-size: 20px;
-	color: #6046b6;
+	color: #03bb85;
 }
-
+#color_text3{
+	color: #03bb85;
+}
 .aside-contacts a {
 	display: inline-block;
 }
@@ -6090,7 +6097,7 @@ p.rights a:hover {
 }
 
 .contacts-social-list a:hover {
-	color: #6046b6;
+	color: #03bb85;
 }
 
 .aside-contacts-title + * {
