@@ -43,5 +43,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $aDAO->editarAnamnese($a);
    
     
-    header("location: /projeto-tcc-maria-rocha/administracao/view/pages/pacientes/listar_pacientes.php");
+    header("location: /marcia_rocha/administracao/view/pages/pacientes/listar_pacientes.php");
 }

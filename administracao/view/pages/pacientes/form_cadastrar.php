@@ -28,7 +28,7 @@
                                     <h5 class="card-title mb-0">Cadastrar Paciente</h5>
                                 </div>
                                 <div class="card-body">
-                                    <form action="/projeto-tcc-maria-rocha/controllers/pacientes/controller_cadastrar.php" method="post" enctype="multipart/form-data">
+                                    <form action="/marcia_rocha/controllers/pacientes/controller_cadastrar.php" method="post" enctype="multipart/form-data">
 
                                         <!-- Nome -->
                                         <div class="mb-3">

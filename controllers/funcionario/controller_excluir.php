@@ -9,5 +9,5 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $fDAO->excluirFuncionario($id);
    
     
-    header("location: /Projeto-TCC-Maria-Rocha/administracao/view/pages/funcionario/listar_funcionario.php");
+    header("location: /marcia_rocha/administracao/view/pages/funcionario/listar_funcionario.php");
 }

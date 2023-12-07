@@ -9,5 +9,5 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $mDAO->excluirMenu($id);
    
     
-    header("location: /Projeto-TCC-Maria-Rocha/administracao/view/pages/perfil/listar_perfil.php");
+    header("location: /marcia_rocha/administracao/view/pages/perfil/listar_perfil.php");
 }

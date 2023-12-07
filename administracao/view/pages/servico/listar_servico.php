@@ -66,7 +66,7 @@ include_once(dirname(__FILE__) . "/../../../../dao/ServicoDAO.php");
                         </div>
                         <div class="modal-body">
 
-                            <form id="formEditar" action="/Projeto-TCC-Maria-Rocha/controllers/servico/controller_alterar.php" method="post">
+                            <form id="formEditar" action="/marcia_rocha/controllers/servico/controller_alterar.php" method="post">
                                 <div class="mb-3">
                                     <label for="id" class="form-label">ID:</label>
                                     <input type="text" class="form-control" id="id" name="id" readonly>
@@ -117,7 +117,7 @@ include_once(dirname(__FILE__) . "/../../../../dao/ServicoDAO.php");
                 scrollX: true,
                 autoWidth: false,
                 ajax: {
-                    url: "/Projeto-TCC-Maria-Rocha/controllers/servico/controller_listar_servico.php",
+                    url: "/marcia_rocha/controllers/servico/controller_listar_servico.php",
                     dataSrc: ''
                 },
                 columns: [{
@@ -159,7 +159,7 @@ include_once(dirname(__FILE__) . "/../../../../dao/ServicoDAO.php");
 
             $.ajax({
                 type: 'GET',
-                url: '/Projeto-TCC-Maria-Rocha/controllers/servico/controller_carregar_servico.php',
+                url: '/marcia_rocha/controllers/servico/controller_carregar_servico.php',
                 data: {
                     id: id
                 },
@@ -184,7 +184,7 @@ include_once(dirname(__FILE__) . "/../../../../dao/ServicoDAO.php");
             if (confirm('Deseja Excluir o servico: ' + id + '  ' + nome)) {
                 $.ajax({
                     type: 'GET',
-                    url: '/Projeto-TCC-Maria-Rocha/controllers/servico/controller_excluir.php',
+                    url: '/marcia_rocha/controllers/servico/controller_excluir.php',
                     data: {
                         id: id
                     },
@@ -210,7 +210,7 @@ include_once(dirname(__FILE__) . "/../../../../dao/ServicoDAO.php");
 
 
         function addNovocadastro() {
-            window.location.href = "/projeto-tcc-maria-rocha/administracao/view/pages/servico/form_cadastrar_servico.php";
+            window.location.href = "/marcia_rocha/administracao/view/pages/servico/form_cadastrar_servico.php";
         }
     </script>
 </body>

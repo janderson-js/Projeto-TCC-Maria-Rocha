@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <form class="login-form" method="post" action="/Projeto-TCC-Maria-Rocha/controllers/login/controller_login.php">
+    <form class="login-form" method="post" action="/marcia_rocha/controllers/login/controller_login.php">
         <img src="../public/img/Marciarocha.png" alt="">
         <input type="text" name="login" class="login-username" autofocus="true" required="true" placeholder="Seu login" />
         <input type="password" name="senha" class="login-password" required="true" placeholder="Senha" />

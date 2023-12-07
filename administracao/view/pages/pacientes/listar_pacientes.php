@@ -79,7 +79,7 @@ $p[] = $pDAO->listarPerfis();
                         </div>
                         <div class="modal-body">
 
-                            <form id="formEditar" action="/projeto-tcc-maria-rocha/controllers/pacientes/controller_alterar.php" method="post">
+                            <form id="formEditar" action="/marcia_rocha/controllers/pacientes/controller_alterar.php" method="post">
 
                                 <div class="mb-3">
                                     <label for="nome" class="form-label">ID: </label>
@@ -166,7 +166,7 @@ $p[] = $pDAO->listarPerfis();
                         </div>
                         <div class="modal-body">
 
-                            <form id="formAnamnese" action="/Projeto-TCC-Maria-Rocha/controllers/anamnse/controller_alterar_paciente.php" method="post">
+                            <form id="formAnamnese" action="/marcia_rocha/controllers/anamnse/controller_alterar_paciente.php" method="post">
 
                                 <div class="mb-3">
                                     <label for="dataInicioSintomas" class="form-label">id: </label>
@@ -301,7 +301,7 @@ $p[] = $pDAO->listarPerfis();
                 scrollX: true,
                 autoWidth: false,
                 ajax: {
-                    url: "/Projeto-TCC-Maria-Rocha/controllers/pacientes/controller_listar_paciente.php",
+                    url: "/marcia_rocha/controllers/pacientes/controller_listar_paciente.php",
                     dataSrc: ''
                 },
                 columns: [{
@@ -375,7 +375,7 @@ $p[] = $pDAO->listarPerfis();
 
             $.ajax({
                 type: 'GET',
-                url: '/Projeto-TCC-Maria-Rocha/controllers/pacientes/controller_carregar_paciente.php',
+                url: '/marcia_rocha/controllers/pacientes/controller_carregar_paciente.php',
                 data: {
                     id: id
                 },
@@ -412,7 +412,7 @@ $p[] = $pDAO->listarPerfis();
 
             $.ajax({
                 type: 'GET',
-                url: '/Projeto-TCC-Maria-Rocha/controllers/anamnse/controller_anamnese_vinculada.php',
+                url: '/marcia_rocha/controllers/anamnse/controller_anamnese_vinculada.php',
                 data: {
                     id: id
                 },
@@ -450,7 +450,7 @@ $p[] = $pDAO->listarPerfis();
             if (confirm('Deseja Excluir o Paciente: ' + id + '  ' + nome)) {
                 $.ajax({
                     type: 'GET',
-                    url: '/Projeto-TCC-Maria-Rocha/controllers/pacientes/controller_excluir.php',
+                    url: '/marcia_rocha/controllers/pacientes/controller_excluir.php',
                     data: {
                         id: id
                     },
@@ -482,7 +482,7 @@ $p[] = $pDAO->listarPerfis();
 
 
         function addNovocadastro() {
-            window.location.href = "/projeto-tcc-maria-rocha/administracao/view/pages/pacientes/form_cadastrar.php";
+            window.location.href = "/marcia_rocha/administracao/view/pages/pacientes/form_cadastrar.php";
         }
     </script>
 </body>

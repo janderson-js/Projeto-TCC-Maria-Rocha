@@ -9,5 +9,5 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $pDAO->excluirPaciente($id);
    
     
-    header("location: /projeto-tcc-maria-rocha/administracao/view/pages/pacientes/listar_pacientes.php");
+    header("location: /marcia_rocha/administracao/view/pages/pacientes/listar_pacientes.php");
 }

@@ -76,7 +76,7 @@ $p[] = $pDAO->listarPerfis();
                         </div>
                         <div class="modal-body">
 
-                            <form id="formEditar" action="/projeto-tcc-maria-rocha/controllers/funcionario/controller_alterar.php" method="post">
+                            <form id="formEditar" action="/marcia_rocha/controllers/funcionario/controller_alterar.php" method="post">
 
                                 <div class="mb-3">
                                     <label for="nome" class="form-label">Nome</label>
@@ -188,7 +188,7 @@ $p[] = $pDAO->listarPerfis();
                 scrollX: true,
                 autoWidth: false,
                 ajax: {
-                    url: "/Projeto-TCC-Maria-Rocha/controllers/funcionario/controller_listar_funcionario.php",
+                    url: "/marcia_rocha/controllers/funcionario/controller_listar_funcionario.php",
                     dataSrc: ''
                 },
                 columns: [{
@@ -247,7 +247,7 @@ $p[] = $pDAO->listarPerfis();
 
             $.ajax({
                 type: 'GET',
-                url: '/Projeto-TCC-Maria-Rocha/controllers/funcionario/controller_carregar_funcionario.php',
+                url: '/marcia_rocha/controllers/funcionario/controller_carregar_funcionario.php',
                 data: {
                     id: id
                 },
@@ -279,7 +279,7 @@ $p[] = $pDAO->listarPerfis();
             if (confirm('Deseja Excluir o Funcionario: ' + id + '  ' + nome)) {
                 $.ajax({
                     type: 'GET',
-                    url: '/Projeto-TCC-Maria-Rocha/controllers/funcionario/controller_excluir.php',
+                    url: '/marcia_rocha/controllers/funcionario/controller_excluir.php',
                     data: {
                         id: id
                     },
@@ -305,7 +305,7 @@ $p[] = $pDAO->listarPerfis();
 
 
         function addNovocadastro() {
-            window.location.href = "/projeto-tcc-maria-rocha/administracao/view/pages/funcionario/form_cadastrar_funcionario.php";
+            window.location.href = "/marcia_rocha/administracao/view/pages/funcionario/form_cadastrar_funcionario.php";
         }
 
 

@@ -18,5 +18,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "horario: $horario <br>";
 
 
-    //header('location:/projeto-tcc-maria-rocha/administracao/view/pages/pacientes/teste.php?img=' . $nome_final);
+    //header('location:/marcia_rocha/administracao/view/pages/pacientes/teste.php?img=' . $nome_final);
 }

@@ -66,7 +66,7 @@ include_once(dirname(__FILE__) . "/../../../../dao/PerfilDAO.php");
                         </div>
                         <div class="modal-body">
 
-                            <form id="formEditar" action="/projeto-tcc-maria-rocha/controllers/perfil/controller_alterar.php" method="post">
+                            <form id="formEditar" action="/marcia_rocha/controllers/perfil/controller_alterar.php" method="post">
                                 <div class="mb-3">
                                     <label for="id" class="form-label">ID:</label>
                                     <input type="text" class="form-control" id="id" name="id" readonly>
@@ -117,7 +117,7 @@ include_once(dirname(__FILE__) . "/../../../../dao/PerfilDAO.php");
                 scrollX: true,
                 autoWidth: false,
                 ajax: {
-                    url: "/Projeto-TCC-Maria-Rocha/controllers/perfil/controller_listar_perfil.php",
+                    url: "/marcia_rocha/controllers/perfil/controller_listar_perfil.php",
                     dataSrc: ''
                 },
                 columns: [{
@@ -159,7 +159,7 @@ include_once(dirname(__FILE__) . "/../../../../dao/PerfilDAO.php");
 
             $.ajax({
                 type: 'GET',
-                url: '/Projeto-TCC-Maria-Rocha/controllers/perfil/controller_carregar_perfil.php',
+                url: '/marcia_rocha/controllers/perfil/controller_carregar_perfil.php',
                 data: {
                     id: id
                 },
@@ -185,7 +185,7 @@ include_once(dirname(__FILE__) . "/../../../../dao/PerfilDAO.php");
             if (confirm('Deseja Excluir o Perfil: ' + id + '  ' + titulo)) {
                 $.ajax({
                     type: 'GET',
-                    url: '/Projeto-TCC-Maria-Rocha/controllers/perfil/controller_excluir.php',
+                    url: '/marcia_rocha/controllers/perfil/controller_excluir.php',
                     data: {
                         id: id
                     },
@@ -211,7 +211,7 @@ include_once(dirname(__FILE__) . "/../../../../dao/PerfilDAO.php");
 
 
         function addNovocadastro() {
-            window.location.href = "/projeto-tcc-maria-rocha/administracao/view/pages/perfil/form_cadastrar_perfil.php";
+            window.location.href = "/marcia_rocha/administracao/view/pages/perfil/form_cadastrar_perfil.php";
         }
     </script>
 </body>

@@ -6,7 +6,7 @@ $perfil = $_SESSION['usuario']['perfil'];
 
 <nav id="sidebar" class="sidebar js-sidebar">
     <div class="sidebar-content js-simplebar">
-        <a class="sidebar-brand" href="/projeto-tcc-maria-rocha/view/administracao/view/administracao.php">
+        <a class="sidebar-brand" href="/marcia_rocha/view/administracao/view/administracao.php">
             <span class="align-middle">Márcia Rocha</span>
         </a>
 
@@ -18,13 +18,13 @@ $perfil = $_SESSION['usuario']['perfil'];
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/projeto-tcc-maria-rocha/administracao/view/administracao.php">
+                    <a class="sidebar-link" href="/marcia_rocha/administracao/view/administracao.php">
                         <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/projeto-tcc-maria-rocha/view/index.php">
+                    <a class="sidebar-link" href="/marcia_rocha/view/index.php">
                         <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Meu Site</span>
                     </a>
                 </li>
@@ -34,7 +34,7 @@ $perfil = $_SESSION['usuario']['perfil'];
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/projeto-tcc-maria-rocha/administracao/view/pages/agenda/agenda.php">
+                    <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/agenda/agenda.php">
                         <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Agenda</span>
                     </a>
                 </li>
@@ -44,31 +44,31 @@ $perfil = $_SESSION['usuario']['perfil'];
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/projeto-tcc-maria-rocha/administracao/view/pages/pacientes/listar_pacientes.php">
+                    <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/pacientes/listar_pacientes.php">
                         <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Listar Pacientes</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/projeto-tcc-maria-rocha/administracao/view/pages/pacientes/form_cadastrar.php">
+                    <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/pacientes/form_cadastrar.php">
                         <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Cadastrar Paciente</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/projeto-tcc-maria-rocha/administracao/view/pages/anamnese/listar_anamnese.php">
+                    <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/anamnese/listar_anamnese.php">
                         <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Listar Anamneses</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/projeto-tcc-maria-rocha/administracao/view/pages/anamnese/form_cadastrar_anamnese.php">
+                    <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/anamnese/form_cadastrar_anamnese.php">
                         <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Cadastrar Anamnse</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/Projeto-TCC-Maria-Rocha/administracao/view/pages/anamnese/vincular_anamnese.php">
+                    <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/anamnese/vincular_anamnese.php">
                         <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Vincular Anamnse</span>
                     </a>
                 </li>
@@ -78,13 +78,13 @@ $perfil = $_SESSION['usuario']['perfil'];
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/projeto-tcc-maria-rocha/administracao/view/pages/funcionario/listar_funcionario.php">
+                    <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/funcionario/listar_funcionario.php">
                         <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Listar Funcionários</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/projeto-tcc-maria-rocha/administracao/view/pages/funcionario/form_cadastrar_funcionario.php">
+                    <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/funcionario/form_cadastrar_funcionario.php">
                         <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Cadastrar Funcionário</span>
                     </a>
                 </li>
@@ -93,13 +93,13 @@ $perfil = $_SESSION['usuario']['perfil'];
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/Projeto-TCC-Maria-Rocha/administracao/view/pages/servico/listar_servico.php">
+                    <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/servico/listar_servico.php">
                         <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Listar Serviço</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/Projeto-TCC-Maria-Rocha/administracao/view/pages/servico/form_cadastrar_servico.php">
+                    <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/servico/form_cadastrar_servico.php">
                         <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Cadastrar Serviço</span>
                     </a>
                 </li>
@@ -109,12 +109,12 @@ $perfil = $_SESSION['usuario']['perfil'];
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/projeto-tcc-maria-rocha/administracao/view/pages/menu/listar_menu.php">
+                    <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/menu/listar_menu.php">
                         <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Listar Menus</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/projeto-tcc-maria-rocha/administracao/view/pages/menu/form_cadastrar_menu.php">
+                    <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/menu/form_cadastrar_menu.php">
                         <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Cadastrar Menu</span>
                     </a>
                 </li>
@@ -124,13 +124,13 @@ $perfil = $_SESSION['usuario']['perfil'];
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/projeto-tcc-maria-rocha/administracao/view/pages/perfil/listar_perfil.php">
+                    <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/perfil/listar_perfil.php">
                         <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Listar Perfis</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/projeto-tcc-maria-rocha/administracao/view/pages/perfil/form_cadastrar_perfil.php">
+                    <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/perfil/form_cadastrar_perfil.php">
                         <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Cadastrar Perfil</span>
                     </a>
                 </li>
@@ -150,13 +150,13 @@ $perfil = $_SESSION['usuario']['perfil'];
                     </li>
 
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="/projeto-tcc-maria-rocha/administracao/view/administracao.php">
+                        <a class="sidebar-link" href="/marcia_rocha/administracao/view/administracao.php">
                             <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
                         </a>
                     </li>
 
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="/projeto-tcc-maria-rocha/view/index.php">
+                        <a class="sidebar-link" href="/marcia_rocha/view/index.php">
                             <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Meu Site</span>
                         </a>
                     </li>
@@ -166,7 +166,7 @@ $perfil = $_SESSION['usuario']['perfil'];
                     </li>
 
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="/projeto-tcc-maria-rocha/administracao/view/pages/agenda/agenda.php">
+                        <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/agenda/agenda.php">
                             <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Agenda</span>
                         </a>
                     </li>
@@ -176,31 +176,31 @@ $perfil = $_SESSION['usuario']['perfil'];
                     </li>
 
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="/projeto-tcc-maria-rocha/administracao/view/pages/pacientes/listar_pacientes.php">
+                        <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/pacientes/listar_pacientes.php">
                             <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Listar Pacientes</span>
                         </a>
                     </li>
 
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="/projeto-tcc-maria-rocha/administracao/view/pages/pacientes/form_cadastrar.php">
+                        <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/pacientes/form_cadastrar.php">
                             <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Cadastrar Paciente</span>
                         </a>
                     </li>
 
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="/projeto-tcc-maria-rocha/administracao/view/pages/anamnese/listar_anamnese.php">
+                        <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/anamnese/listar_anamnese.php">
                             <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Listar Anamneses</span>
                         </a>
                     </li>
 
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="/projeto-tcc-maria-rocha/administracao/view/pages/anamnese/form_cadastrar_anamnese.php">
+                        <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/anamnese/form_cadastrar_anamnese.php">
                             <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Cadastrar Anamnse</span>
                         </a>
                     </li>
 
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="/Projeto-TCC-Maria-Rocha/administracao/view/pages/anamnese/vincular_anamnese.php">
+                        <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/anamnese/vincular_anamnese.php">
                             <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Vincular Anamnse</span>
                         </a>
                     </li>
@@ -210,13 +210,13 @@ $perfil = $_SESSION['usuario']['perfil'];
                     </li>
 
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="/projeto-tcc-maria-rocha/administracao/view/pages/funcionario/listar_funcionario.php">
+                        <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/funcionario/listar_funcionario.php">
                             <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Listar Funcionários</span>
                         </a>
                     </li>
 
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="/projeto-tcc-maria-rocha/administracao/view/pages/funcionario/form_cadastrar_funcionario.php">
+                        <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/funcionario/form_cadastrar_funcionario.php">
                             <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Cadastrar Funcionário</span>
                         </a>
                     </li>
@@ -225,13 +225,13 @@ $perfil = $_SESSION['usuario']['perfil'];
                     </li>
 
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="/Projeto-TCC-Maria-Rocha/administracao/view/pages/servico/listar_servico.php">
+                        <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/servico/listar_servico.php">
                             <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Listar Serviço</span>
                         </a>
                     </li>
 
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="/Projeto-TCC-Maria-Rocha/administracao/view/pages/servico/form_cadastrar_servico.php">
+                        <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/servico/form_cadastrar_servico.php">
                             <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Cadastrar Serviço</span>
                         </a>
                     </li>
@@ -250,13 +250,13 @@ $perfil = $_SESSION['usuario']['perfil'];
                         </li>
 
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="/projeto-tcc-maria-rocha/administracao/view/administracao.php">
+                            <a class="sidebar-link" href="/marcia_rocha/administracao/view/administracao.php">
                                 <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
                             </a>
                         </li>
 
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="/projeto-tcc-maria-rocha/view/index.php">
+                            <a class="sidebar-link" href="/marcia_rocha/view/index.php">
                                 <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Meu Site</span>
                             </a>
                         </li>
@@ -266,7 +266,7 @@ $perfil = $_SESSION['usuario']['perfil'];
                         </li>
 
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="/projeto-tcc-maria-rocha/administracao/view/pages/agenda/agenda.php">
+                            <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/agenda/agenda.php">
                                 <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Agenda</span>
                             </a>
                         </li>
@@ -276,31 +276,31 @@ $perfil = $_SESSION['usuario']['perfil'];
                         </li>
 
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="/projeto-tcc-maria-rocha/administracao/view/pages/pacientes/listar_pacientes.php">
+                            <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/pacientes/listar_pacientes.php">
                                 <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Listar Pacientes</span>
                             </a>
                         </li>
 
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="/projeto-tcc-maria-rocha/administracao/view/pages/pacientes/form_cadastrar.php">
+                            <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/pacientes/form_cadastrar.php">
                                 <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Cadastrar Paciente</span>
                             </a>
                         </li>
 
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="/projeto-tcc-maria-rocha/administracao/view/pages/anamnese/listar_anamnese.php">
+                            <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/anamnese/listar_anamnese.php">
                                 <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Listar Anamneses</span>
                             </a>
                         </li>
 
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="/projeto-tcc-maria-rocha/administracao/view/pages/anamnese/form_cadastrar_anamnese.php">
+                            <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/anamnese/form_cadastrar_anamnese.php">
                                 <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Cadastrar Anamnse</span>
                             </a>
                         </li>
 
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="/Projeto-TCC-Maria-Rocha/administracao/view/pages/anamnese/vincular_anamnese.php">
+                            <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/anamnese/vincular_anamnese.php">
                                 <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Vincular Anamnse</span>
                             </a>
                         </li>
@@ -322,13 +322,13 @@ $perfil = $_SESSION['usuario']['perfil'];
                             </li>
 
                             <li class="sidebar-item">
-                                <a class="sidebar-link" href="/projeto-tcc-maria-rocha/administracao/view/administracao.php">
+                                <a class="sidebar-link" href="/marcia_rocha/administracao/view/administracao.php">
                                     <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
                                 </a>
                             </li>
 
                             <li class="sidebar-item">
-                                <a class="sidebar-link" href="/projeto-tcc-maria-rocha/view/index.php">
+                                <a class="sidebar-link" href="/marcia_rocha/view/index.php">
                                     <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Meu Site</span>
                                 </a>
                             </li>
@@ -338,7 +338,7 @@ $perfil = $_SESSION['usuario']['perfil'];
                             </li>
 
                             <li class="sidebar-item">
-                                <a class="sidebar-link" href="/projeto-tcc-maria-rocha/administracao/view/pages/agenda/agenda.php">
+                                <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/agenda/agenda.php">
                                     <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Agenda</span>
                                 </a>
                             </li>
@@ -348,25 +348,25 @@ $perfil = $_SESSION['usuario']['perfil'];
                             </li>
 
                             <li class="sidebar-item">
-                                <a class="sidebar-link" href="/projeto-tcc-maria-rocha/administracao/view/pages/pacientes/listar_pacientes.php">
+                                <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/pacientes/listar_pacientes.php">
                                     <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Listar Pacientes</span>
                                 </a>
                             </li>
 
                             <li class="sidebar-item">
-                                <a class="sidebar-link" href="/projeto-tcc-maria-rocha/administracao/view/pages/anamnese/listar_anamnese.php">
+                                <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/anamnese/listar_anamnese.php">
                                     <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Listar Anamneses</span>
                                 </a>
                             </li>
 
                             <li class="sidebar-item">
-                                <a class="sidebar-link" href="/projeto-tcc-maria-rocha/administracao/view/pages/anamnese/form_cadastrar_anamnese.php">
+                                <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/anamnese/form_cadastrar_anamnese.php">
                                     <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Cadastrar Anamnse</span>
                                 </a>
                             </li>
 
                             <li class="sidebar-item">
-                                <a class="sidebar-link" href="/Projeto-TCC-Maria-Rocha/administracao/view/pages/anamnese/vincular_anamnese.php">
+                                <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/anamnese/vincular_anamnese.php">
                                     <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Vincular Anamnse</span>
                                 </a>
                             </li>

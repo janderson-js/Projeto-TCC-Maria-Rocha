@@ -9,5 +9,5 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $sDAO->excluirServico($id);
    
     
-    header("location: /Projeto-TCC-Maria-Rocha/administracao/view/pages/servico/listar_servico.php");
+    header("location: /marcia_rocha/administracao/view/pages/servico/listar_servico.php");
 }

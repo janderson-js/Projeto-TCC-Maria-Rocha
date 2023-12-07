@@ -28,7 +28,7 @@
                                     <h5 class="card-title mb-0">Cadastrar Perfil</h5>
                                 </div>
                                 <div class="card-body">
-                                    <form action="/projeto-tcc-maria-rocha/controllers/perfil/controller_cadastrar.php" method="post">
+                                    <form action="/marcia_rocha/controllers/perfil/controller_cadastrar.php" method="post">
 
                                         <!-- titulo do menu -->
                                         <div class="mb-3">

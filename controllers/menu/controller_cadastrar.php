@@ -17,5 +17,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mDAO->inserirMenu($m);
    
     
-    header("location: /projeto-tcc-maria-rocha/administracao/view/pages/menu/listar_menu.php");
+    header("location: /marcia_rocha/administracao/view/pages/menu/listar_menu.php");
 }

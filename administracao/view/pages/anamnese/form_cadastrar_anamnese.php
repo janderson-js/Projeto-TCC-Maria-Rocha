@@ -28,7 +28,7 @@
                                     <h5 class="card-title mb-0">Cadastrar Anamnse</h5>
                                 </div>
                                 <div class="card-body">
-                                    <form action="/projeto-tcc-maria-rocha/controllers/anamnse/controller_cadastrar.php" method="post">
+                                    <form action="/marcia_rocha/controllers/anamnse/controller_cadastrar.php" method="post">
                                         <div class="mb-3">
                                             <label for="cpf" class="form-label">CPF</label>
                                             <input type="text" class="form-control" id="cpf" name="cpf" required>

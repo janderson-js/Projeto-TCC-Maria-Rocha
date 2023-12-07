@@ -15,7 +15,7 @@
                     <span class="text-black"><i class="fa-solid fa-user"></i>  <?php echo $_SESSION['usuario']['nome'] ?></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
-                    <a class="dropdown-item" href="/Projeto-TCC-Maria-Rocha/view/sair.php"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a>
+                    <a class="dropdown-item" href="/marcia_rocha/view/sair.php"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a>
                 </div>
             </li>
         </ul>

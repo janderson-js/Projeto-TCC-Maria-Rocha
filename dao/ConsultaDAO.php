@@ -15,10 +15,10 @@ class ConsultaDAO
     public function inserirConsulta(Consulta $consulta)
     {
         $sqlInserirConsulta = "INSERT INTO consulta (
-            data, hora, tipo, observacoes_especificas, procedimentos_ou_tratamentos_realizados,
+            data, hora, observacoes_especificas, procedimentos_ou_tratamentos_realizados,
             paciente_id, funcionario_id
         ) VALUES (
-            :data, :hora, :tipo, :observacoesEspecificas, :procedimentosOuTratamentosRealizados,
+            :data, :hora, :observacoesEspecificas, :procedimentosOuTratamentosRealizados,
             :pacienteId, :funcionarioId
         )";
 
@@ -26,7 +26,6 @@ class ConsultaDAO
             $stmt = $this->conn->getConexao()->prepare($sqlInserirConsulta);
             $stmt->bindValue(":data", $consulta->getData(), PDO::PARAM_STR);
             $stmt->bindValue(":hora", $consulta->getHora(), PDO::PARAM_STR);
-            $stmt->bindValue(":tipo", $consulta->getTipo(), PDO::PARAM_STR);
             $stmt->bindValue(":observacoesEspecificas", $consulta->getObservacoesEspecificas(), PDO::PARAM_STR);
             $stmt->bindValue(":procedimentosOuTratamentosRealizados", $consulta->getProcedimentosOuTratamentosRealizados(), PDO::PARAM_STR);
             $stmt->bindValue(":pacienteId", $consulta->getPaciente()->getId(), PDO::PARAM_INT);
@@ -45,7 +44,6 @@ class ConsultaDAO
         $sqlEditarConsulta = "UPDATE consulta SET 
             data=:data, 
             hora=:hora, 
-            tipo=:tipo, 
             observacoes_especificas=:observacoesEspecificas, 
             procedimentos_ou_tratamentos_realizados=:procedimentosOuTratamentosRealizados,
             paciente_id=:pacienteId, 
@@ -56,7 +54,6 @@ class ConsultaDAO
             $stmt = $this->conn->getConexao()->prepare($sqlEditarConsulta);
             $stmt->bindValue(":data", $consulta->getData(), PDO::PARAM_STR);
             $stmt->bindValue(":hora", $consulta->getHora(), PDO::PARAM_STR);
-            $stmt->bindValue(":tipo", $consulta->getTipo(), PDO::PARAM_STR);
             $stmt->bindValue(":observacoesEspecificas", $consulta->getObservacoesEspecificas(), PDO::PARAM_STR);
             $stmt->bindValue(":procedimentosOuTratamentosRealizados", $consulta->getProcedimentosOuTratamentosRealizados(), PDO::PARAM_STR);
             $stmt->bindValue(":pacienteId", $consulta->getPaciente()->getId(), PDO::PARAM_INT);
@@ -107,7 +104,6 @@ class ConsultaDAO
             $consulta->setId($result['id']);
             $consulta->setData($result['data']);
             $consulta->setHora($result['hora']);
-            $consulta->setTipo($result['tipo']);
             $consulta->setObservacoesEspecificas($result['observacoes_especificas']);
             $consulta->setProcedimentosOuTratamentosRealizados($result['procedimentos_ou_tratamentos_realizados']);
 
@@ -143,7 +139,6 @@ class ConsultaDAO
                 $consulta->setId($row['id']);
                 $consulta->setData($row['data']);
                 $consulta->setHora($row['hora']);
-                $consulta->setTipo($row['tipo']);
                 $consulta->setObservacoesEspecificas($row['observacoes_especificas']);
                 $consulta->setProcedimentosOuTratamentosRealizados($row['procedimentos_ou_tratamentos_realizados']);
 

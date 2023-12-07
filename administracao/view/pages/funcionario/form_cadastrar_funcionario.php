@@ -36,7 +36,7 @@ $p[] = $pDAO->listarPerfis();
                                     <h5 class="card-title mb-0">Cadastrar Funcionario</h5>
                                 </div>
                                 <div class="card-body">
-                                    <form action="/projeto-tcc-maria-rocha/controllers/funcionario/controller_cadastrar.php" method="post" enctype="multipart/form-data">
+                                    <form action="/marcia_rocha/controllers/funcionario/controller_cadastrar.php" method="post" enctype="multipart/form-data">
                                         <!-- Perfil -->
                                         <div class="mb-3">
                                             <label for="perfil" class="form-label">Perfil</label>

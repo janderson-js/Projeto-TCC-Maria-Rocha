@@ -74,7 +74,7 @@ include_once(dirname(__FILE__) . "/../../../../dao/MenuDAO.php");
                         </div>
                         <div class="modal-body">
 
-                            <form id="formEditar" action="/projeto-tcc-maria-rocha/controllers/menu/controller_alterar.php" method="post">
+                            <form id="formEditar" action="/marcia_rocha/controllers/menu/controller_alterar.php" method="post">
                                 <div class="mb-3">
                                     <label for="id" class="form-label">ID:</label>
                                     <input type="text" class="form-control" id="id" name="id" readonly>
@@ -129,7 +129,7 @@ include_once(dirname(__FILE__) . "/../../../../dao/MenuDAO.php");
                 scrollX: true,
                 autoWidth: false,
                 ajax: {
-                    url: "/Projeto-TCC-Maria-Rocha/controllers/menu/controller_listar_menu.php",
+                    url: "/marcia_rocha/controllers/menu/controller_listar_menu.php",
                     dataSrc: ''
                 },
                 columns: [{
@@ -176,7 +176,7 @@ include_once(dirname(__FILE__) . "/../../../../dao/MenuDAO.php");
 
             $.ajax({
                 type: 'GET',
-                url: '/Projeto-TCC-Maria-Rocha/controllers/menu/controller_carregar_menu.php',
+                url: '/marcia_rocha/controllers/menu/controller_carregar_menu.php',
                 data: {
                     id: id
                 },
@@ -202,7 +202,7 @@ include_once(dirname(__FILE__) . "/../../../../dao/MenuDAO.php");
             if (confirm('Deseja Excluir o Menu: ' + id + '  ' + titulo)) {
                 $.ajax({
                     type: 'GET',
-                    url: '/Projeto-TCC-Maria-Rocha/controllers/menu/controller_excluir.php',
+                    url: '/marcia_rocha/controllers/menu/controller_excluir.php',
                     data: {
                         id: id
                     },
@@ -228,7 +228,7 @@ include_once(dirname(__FILE__) . "/../../../../dao/MenuDAO.php");
 
 
         function addNovocadastro() {
-            window.location.href = "/projeto-tcc-maria-rocha/administracao/view/pages/menu/form_cadastrar_menu.php";
+            window.location.href = "/marcia_rocha/administracao/view/pages/menu/form_cadastrar_menu.php";
         }
     </script>
 </body>

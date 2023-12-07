@@ -1,5 +1,16 @@
 "use strict";
 
+document.addEventListener('DOMContentLoaded', function () {
+	var currentPage = window.location.href;
+	var menuItems = document.querySelectorAll('.rd-nav-item a');
+
+	menuItems.forEach(function (item) {
+	  if (currentPage.includes(item.getAttribute('href'))) {
+		item.parentElement.classList.add('active');
+	  }
+	});
+});
+
 (function () {
 	// Global variables
 	var userAgent = navigator.userAgent.toLowerCase(),

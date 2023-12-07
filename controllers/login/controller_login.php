@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    $_SESSION['usuario'] = $lDAO->Login($l);
 
    if($_SESSION['usuario'] != null){
-        header("location: /Projeto-TCC-Maria-Rocha/administracao/view/administracao.php");
+        header("location: /marcia_rocha/administracao/view/administracao.php");
    }
    var_dump($_SESSION['usuario']);
 }

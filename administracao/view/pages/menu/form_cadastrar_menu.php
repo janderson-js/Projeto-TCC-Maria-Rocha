@@ -28,7 +28,7 @@
                                     <h5 class="card-title mb-0">Cadastrar Menu</h5>
                                 </div>
                                 <div class="card-body">
-                                    <form action="/projeto-tcc-maria-rocha/controllers/menu/controller_cadastrar.php" method="post">
+                                    <form action="/marcia_rocha/controllers/menu/controller_cadastrar.php" method="post">
 
                                         <!-- titulo do menu -->
                                         <div class="mb-3">

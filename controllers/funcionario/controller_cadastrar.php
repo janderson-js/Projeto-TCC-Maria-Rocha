@@ -32,6 +32,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $fDAO->inserirFuncionario($f);
 
-    header("location: /projeto-tcc-maria-rocha/administracao/view/pages/funcionario/listar_funcionario.php");
+    header("location: /marcia_rocha/administracao/view/pages/funcionario/listar_funcionario.php");
 
 }

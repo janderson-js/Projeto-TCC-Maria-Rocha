@@ -2,11 +2,11 @@
 <html lang="pt-br">
 
 <head>
-    <script src="/projeto-tcc-maria-rocha/public/js/calendar.js"></script>
-    <script src="/projeto-tcc-maria-rocha/public/js/index.global.js"></script>
+    <script src="/marcia_rocha/public/js/calendar.js"></script>
+    <script src="/marcia_rocha/public/js/index.global.js"></script>
     <!-- Inicio do include head -->
     <?php include "../../../includes/head.php"; ?>
-    <link rel="stylesheet" href="/public/css/calendar.css">
+    <link rel="stylesheet" href="public/css/calendar.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <!-- Fim do include head -->
 
@@ -61,7 +61,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="agendamentoForm" action="/projeto-tcc-maria-rocha/controllers/agendamento/controller_inserirAgendamento.php" method="post">
+                    <form id="agendamentoForm" action="/marcia_rocha/controllers/agendamento/controller_inserirAgendamento.php" method="post">
                         <div id="step1" class="step">
                             <div class="mb-3">
                                 <label for="tipoAgendamento">Agendamento:</label>

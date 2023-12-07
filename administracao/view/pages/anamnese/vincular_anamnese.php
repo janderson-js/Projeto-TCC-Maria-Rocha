@@ -134,7 +134,7 @@
                 scrollX: true,
                 autoWidth: false,
                 ajax: {
-                    url: "/Projeto-TCC-Maria-Rocha/controllers/pacientes/controller_paciente_nao_vinculado_anamnese.php",
+                    url: "/marcia_rocha/controllers/pacientes/controller_paciente_nao_vinculado_anamnese.php",
                     dataSrc: ''
                 },
                 columns: [{
@@ -172,7 +172,7 @@
             if (confirm('Deseja vincular a anamnese ao paciente: ' + paciente)) {
                 $.ajax({
                     type: 'GET',
-                    url: '/Projeto-TCC-Maria-Rocha/controllers/anamnse/controller_vincular_anamnese.php',
+                    url: '/marcia_rocha/controllers/anamnse/controller_vincular_anamnese.php',
                     data: {
                         idAnamnese: idAnamnese,
                         idPaciente: idPaciente
@@ -204,7 +204,7 @@
                 scrollX: true,
                 autoWidth: false,
                 ajax: {
-                    url: "/Projeto-TCC-Maria-Rocha/controllers/anamnse/controller_anamnese_nao_vinculada.php",
+                    url: "/marcia_rocha/controllers/anamnse/controller_anamnese_nao_vinculada.php",
                     dataSrc: ''
                 },
                 columns: [{
@@ -280,7 +280,7 @@
         }
 
         function addNovocadastro() {
-            window.location.href = "/projeto-tcc-maria-rocha/administracao/view/pages/anamnese/form_cadastrar_anamnese.php";
+            window.location.href = "/marcia_rocha/administracao/view/pages/anamnese/form_cadastrar_anamnese.php";
         }
     </script>
 </body>
