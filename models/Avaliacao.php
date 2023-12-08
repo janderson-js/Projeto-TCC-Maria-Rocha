@@ -1,9 +1,9 @@
 <?php
 
 class Avaliacao{
-    private int $id;
-    private string $dataAvaliacao;
-    private string $horaAvaliacao;
+    private  $id;
+    private  $dataAvaliacao;
+    private  $horaAvaliacao;
     private string $observacoes;
     private string $diagnosticoInicial;
     private string $resultadoTesteExames;
@@ -12,36 +12,36 @@ class Avaliacao{
     private Funcionario $funcionario;
     
 
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
 
-    public function setId(int $id): self
+    public function setId($id)
     {
         $this->id = $id;
 
         return $this;
     }
 
-    public function getDataAvaliacao(): string
+    public function getDataAvaliacao()
     {
         return $this->dataAvaliacao;
     }
 
-    public function setDataAvaliacao(string $dataAvaliacao): self
+    public function setDataAvaliacao($dataAvaliacao)
     {
         $this->dataAvaliacao = $dataAvaliacao;
 
         return $this;
     }
 
-    public function getHoraAvaliacao(): string
+    public function getHoraAvaliacao()
     {
         return $this->horaAvaliacao;
     }
 
-    public function setHoraAvaliacao(string $horaAvaliacao): self
+    public function setHoraAvaliacao($horaAvaliacao)
     {
         $this->horaAvaliacao = $horaAvaliacao;
 

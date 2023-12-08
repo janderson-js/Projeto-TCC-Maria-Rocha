@@ -5,7 +5,7 @@ class DataBase{
     private static $instancia;
     private $conn;
 
-    private $host = "localhost:3307";
+    private $host = "localhost:3306";
     private $username = "root";
     private $password = "";
     private $database = "marcia_rocha";

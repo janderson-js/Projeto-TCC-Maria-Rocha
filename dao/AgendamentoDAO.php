@@ -1,7 +1,9 @@
 <?php
+include_once(dirname(__FILE__) . "/../dataBase/DataBase.php");
+include_once(dirname(__FILE__) . "/../models/Agendamento.php");
 
-include "../dataBase/DataBase.php";
-include "../models/Agendamento.php";
+
+
 
 class AgendamentoDAO
 {
@@ -14,52 +16,55 @@ class AgendamentoDAO
 
     public function inserirAgendamento(Agendamento $agendamento)
     {
-        $sqlInserirAgendamento = "INSERT INTO agendamento (
-            tipo, data_agendamento, hora_agendamento, data_registro_agendamento, 
-            data_alteracao, quem_registrou, quem_alterou, status_agendamento, cor,
+        $sqlInserirAgendamento = "INSERT INTO agendamentos (
+            tipo_agendamento, data_agendamento, hora_agendamento, data_registro_agendamento, quem_registro_agendamento, status_agendamento, cor,
             consulta_id, avaliacao_id
         ) VALUES (
-            :tipo, :dataAgendamento, :horaAgendamento, :dataRegistroAgendamento, 
-            :dataAlteracao, :quemRegistrou, :quemAlterou, :statusAgendamento, :cor,
+            :tipo_agendamento, :dataAgendamento, :horaAgendamento, :dataRegistroAgendamento, :quemRegistrou, :statusAgendamento, :cor,
             :consultaId, :avaliacaoId
         )";
-
+    
         try {
-
             if ($this->conn->getConexao() === null) {
                 $this->conn->reconectar();
             }
-
+    
             $stmt = $this->conn->getConexao()->prepare($sqlInserirAgendamento);
-            $stmt->bindValue(":tipo", $agendamento->getTipo(), PDO::PARAM_STR);
+            $stmt->bindValue(":tipo_agendamento", $agendamento->getTipo(), PDO::PARAM_STR);
             $stmt->bindValue(":dataAgendamento", $agendamento->getDataAgendamento(), PDO::PARAM_STR);
             $stmt->bindValue(":horaAgendamento", $agendamento->getHoraAgendamento(), PDO::PARAM_STR);
             $stmt->bindValue(":dataRegistroAgendamento", $agendamento->getDataRegistroAgendamento(), PDO::PARAM_STR);
-            $stmt->bindValue(":dataAlteracao", $agendamento->getDataAlteracao(), PDO::PARAM_STR);
             $stmt->bindValue(":quemRegistrou", $agendamento->getQuemRegistrou(), PDO::PARAM_STR);
-            $stmt->bindValue(":quemAlterou", $agendamento->getQuemAlterou(), PDO::PARAM_STR);
-            $stmt->bindValue(":statusAgendamento", $agendamento->getStatusAgendamento(), PDO::PARAM_STR);
+            $stmt->bindValue(":statusAgendamento", 'Agendado', PDO::PARAM_STR);
             $stmt->bindValue(":cor", $agendamento->getCor(), PDO::PARAM_STR);
-            $stmt->bindValue(":consultaId", $agendamento->getConsulta()->getId(), PDO::PARAM_INT);
-            $stmt->bindValue(":avaliacaoId", $agendamento->getAvaliacao()->getId(), PDO::PARAM_INT);
-
+    
+            // Vincula o parâmetro relevante dependendo do tipo de agendamento
+            if ($agendamento->getTipo() == "consulta") {
+                $stmt->bindValue(":consultaId", $agendamento->getConsulta()->getId(), PDO::PARAM_INT);
+                $stmt->bindValue(":avaliacaoId", null, PDO::PARAM_NULL); // Define como nulo para evitar problema de contagem de parâmetros
+            } else {
+                $stmt->bindValue(":consultaId", null, PDO::PARAM_NULL); // Define como nulo para evitar problema de contagem de parâmetros
+                $stmt->bindValue(":avaliacaoId", $agendamento->getAvaliacao()->getId(), PDO::PARAM_INT);
+            }
+    
             $stmt->execute();
         } catch (\PDOException $e) {
-            error_log("Erro ao inserir agendamento: " . $e->getMessage());
+            echo("Erro ao inserir agendamento: " . $e->getMessage());
         } finally {
             $this->conn->desconectar();
         }
     }
+    
 
     public function editarAgendamento(Agendamento $agendamento)
     {
-        $sqlEditarAgendamento = "UPDATE agendamento SET 
-            tipo=:tipo, 
+        $sqlEditarAgendamento = "UPDATE agendamentos SET 
+            tipo_agendamento=:tipo_agendamento, 
             data_agendamento=:dataAgendamento, 
             hora_agendamento=:horaAgendamento, 
             data_registro_agendamento=:dataRegistroAgendamento, 
             data_alteracao=:dataAlteracao, 
-            quem_registrou=:quemRegistrou, 
+            quem_registro_agendamento=:quemRegistrou, 
             quem_alterou=:quemAlterou, 
             status_agendamento=:statusAgendamento, 
             cor=:cor,
@@ -69,7 +74,7 @@ class AgendamentoDAO
 
         try {
             $stmt = $this->conn->getConexao()->prepare($sqlEditarAgendamento);
-            $stmt->bindValue(":tipo", $agendamento->getTipo(), PDO::PARAM_STR);
+            $stmt->bindValue(":tipo_agendamento", $agendamento->getTipo(), PDO::PARAM_STR);
             $stmt->bindValue(":dataAgendamento", $agendamento->getDataAgendamento(), PDO::PARAM_STR);
             $stmt->bindValue(":horaAgendamento", $agendamento->getHoraAgendamento(), PDO::PARAM_STR);
             $stmt->bindValue(":dataRegistroAgendamento", $agendamento->getDataRegistroAgendamento(), PDO::PARAM_STR);
@@ -92,7 +97,7 @@ class AgendamentoDAO
 
     public function excluirAgendamento(int $id)
     {
-        $sqlExcluirAgendamento = "DELETE FROM agendamento WHERE id=:id";
+        $sqlExcluirAgendamento = "DELETE FROM agendamentos WHERE id=:id";
 
         try {
             $stmt = $this->conn->getConexao()->prepare($sqlExcluirAgendamento);
@@ -108,7 +113,7 @@ class AgendamentoDAO
 
     public function carregarPorIdAgendamento(int $id)
     {
-        $sqlCarregarPorIdAgendamento = "SELECT * FROM agendamento WHERE id=:id";
+        $sqlCarregarPorIdAgendamento = "SELECT * FROM agendamentos WHERE id=:id";
 
         try {
             $stmt = $this->conn->getConexao()->prepare($sqlCarregarPorIdAgendamento);
@@ -119,17 +124,17 @@ class AgendamentoDAO
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if (!$result) {
-                return null; // Agendamento não encontrado
+                return null; // agendamentos não encontrado
             }
 
             $agendamento = new Agendamento();
             $agendamento->setId($result['id']);
-            $agendamento->setTipo($result['tipo']);
+            $agendamento->setTipo($result['tipo_agendamento']);
             $agendamento->setDataAgendamento($result['data_agendamento']);
             $agendamento->setHoraAgendamento($result['hora_agendamento']);
             $agendamento->setDataRegistroAgendamento($result['data_registro_agendamento']);
             $agendamento->setDataAlteracao($result['data_alteracao']);
-            $agendamento->setQuemRegistrou($result['quem_registrou']);
+            $agendamento->setQuemRegistrou($result['quem_registro_agendamento']);
             $agendamento->setQuemAlterou($result['quem_alterou']);
             $agendamento->setStatusAgendamento($result['status_agendamento']);
             $agendamento->setCor($result['cor']);
@@ -146,7 +151,7 @@ class AgendamentoDAO
 
             return $agendamento;
         } catch (\PDOException $e) {
-            error_log("Erro ao carregar agendamento por ID: " . $e->getMessage());
+            error_log("Erro ao carregar agendamentos por ID: " . $e->getMessage());
         } finally {
             $this->conn->desconectar();
         }
@@ -168,12 +173,12 @@ class AgendamentoDAO
             foreach ($result as $row) {
                 $agendamento = new Agendamento();
                 $agendamento->setId($row['id']);
-                $agendamento->setTipo($row['tipo']);
+                $agendamento->setTipo($row['tipo_agendamento']);
                 $agendamento->setDataAgendamento($row['data_agendamento']);
                 $agendamento->setHoraAgendamento($row['hora_agendamento']);
                 $agendamento->setDataRegistroAgendamento($row['data_registro_agendamento']);
                 $agendamento->setDataAlteracao($row['data_alteracao']);
-                $agendamento->setQuemRegistrou($row['quem_registrou']);
+                $agendamento->setQuemRegistrou($row['quem_registro_agendamento']);
                 $agendamento->setQuemAlterou($row['quem_alterou']);
                 $agendamento->setStatusAgendamento($row['status_agendamento']);
                 $agendamento->setCor($row['cor']);

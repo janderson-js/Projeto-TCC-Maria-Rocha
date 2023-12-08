@@ -1,9 +1,9 @@
 <?php
 
 class Consulta{
-    private int $id;
-    private string $data;
-    private string $hora;
+    private  $id;
+    private  $data;
+    private  $hora;
     private string $observacoesEspecificas;
     private string $procedimentosOuTratamentosRealizados;
 
@@ -12,36 +12,36 @@ class Consulta{
 
     
 
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
 
-    public function setId(int $id): self
+    public function setId(int $id)
     {
         $this->id = $id;
 
         return $this;
     }
 
-    public function getData(): string
+    public function getData()
     {
         return $this->data;
     }
 
-    public function setData(string $data): self
+    public function setData($data)
     {
         $this->data = $data;
 
         return $this;
     }
 
-    public function getHora(): string
+    public function getHora()
     {
         return $this->hora;
     }
 
-    public function setHora(string $hora): self
+    public function setHora($hora)
     {
         $this->hora = $hora;
 

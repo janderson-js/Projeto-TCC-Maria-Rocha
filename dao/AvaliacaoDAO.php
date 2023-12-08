@@ -1,7 +1,7 @@
 <?php
 
-include "../dataBase/DataBase.php";
-include "../models/Avaliacao.php";
+include_once(dirname(__FILE__) . "/../dataBase/DataBase.php");
+include_once(dirname(__FILE__) . "/../models/Avaliacao.php");
 
 class AvaliacaoDAO
 {
@@ -33,6 +33,10 @@ class AvaliacaoDAO
             $stmt->bindValue(":funcionarioId", $avaliacao->getFuncionario()->getId(), PDO::PARAM_INT);
 
             $stmt->execute();
+
+            $idInerido = $this->conn->getConexao()->lastInsertId();
+
+            return $idInerido;
         } catch (\PDOException $e) {
             error_log("Erro ao inserir avaliação: " . $e->getMessage());
         } finally {

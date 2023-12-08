@@ -1,7 +1,8 @@
 <?php
 
-include "../dataBase/DataBase.php";
-include "../models/Consulta.php";
+include_once(dirname(__FILE__) . "/../dataBase/DataBase.php");
+include_once(dirname(__FILE__) . "/../models/Consulta.php");
+
 
 class ConsultaDAO
 {
@@ -15,25 +16,28 @@ class ConsultaDAO
     public function inserirConsulta(Consulta $consulta)
     {
         $sqlInserirConsulta = "INSERT INTO consulta (
-            data, hora, observacoes_especificas, procedimentos_ou_tratamentos_realizados,
-            paciente_id, funcionario_id
+            data_consulta, hora_consulta, pacientes_id, funcionarios_id
         ) VALUES (
-            :data, :hora, :observacoesEspecificas, :procedimentosOuTratamentosRealizados,
-            :pacienteId, :funcionarioId
+            :data_consulta, :hora_consulta, :pacienteId, :funcionarioId
         )";
 
         try {
+            if ($this->conn->getConexao() === null) {
+                $this->conn->reconectar();
+            }
+
             $stmt = $this->conn->getConexao()->prepare($sqlInserirConsulta);
-            $stmt->bindValue(":data", $consulta->getData(), PDO::PARAM_STR);
-            $stmt->bindValue(":hora", $consulta->getHora(), PDO::PARAM_STR);
-            $stmt->bindValue(":observacoesEspecificas", $consulta->getObservacoesEspecificas(), PDO::PARAM_STR);
-            $stmt->bindValue(":procedimentosOuTratamentosRealizados", $consulta->getProcedimentosOuTratamentosRealizados(), PDO::PARAM_STR);
+            $stmt->bindValue(":data_consulta", $consulta->getData(), PDO::PARAM_STR);
+            $stmt->bindValue(":hora_consulta", $consulta->getHora(), PDO::PARAM_STR);
             $stmt->bindValue(":pacienteId", $consulta->getPaciente()->getId(), PDO::PARAM_INT);
             $stmt->bindValue(":funcionarioId", $consulta->getFuncionario()->getId(), PDO::PARAM_INT);
 
             $stmt->execute();
+            $idInserido = $this->conn->getConexao()->lastInsertId();
+
+            return $idInserido;
         } catch (\PDOException $e) {
-            error_log("Erro ao inserir consulta: " . $e->getMessage());
+            echo("Erro ao inserir consulta: " . $e->getMessage());
         } finally {
             $this->conn->desconectar();
         }
@@ -46,8 +50,8 @@ class ConsultaDAO
             hora=:hora, 
             observacoes_especificas=:observacoesEspecificas, 
             procedimentos_ou_tratamentos_realizados=:procedimentosOuTratamentosRealizados,
-            paciente_id=:pacienteId, 
-            funcionario_id=:funcionarioId
+            pacientes_id=:pacienteId, 
+            funcionarios_id=:funcionarioId
             WHERE id=:id";
 
         try {
@@ -62,7 +66,7 @@ class ConsultaDAO
 
             $stmt->execute();
         } catch (\PDOException $e) {
-            error_log("Erro ao editar consulta: " . $e->getMessage());
+            echo("Erro ao editar consulta: " . $e->getMessage());
         } finally {
             $this->conn->desconectar();
         }
@@ -78,7 +82,7 @@ class ConsultaDAO
 
             $stmt->execute();
         } catch (\PDOException $e) {
-            error_log("Erro ao excluir a consulta: " . $e->getMessage());
+            echo("Erro ao excluir a consulta: " . $e->getMessage());
         } finally {
             $this->conn->desconectar();
         }
@@ -89,6 +93,10 @@ class ConsultaDAO
         $sqlCarregarPorIdConsulta = "SELECT * FROM consulta WHERE id=:id";
 
         try {
+            if ($this->conn->getConexao() === null) {
+                $this->conn->reconectar();
+            }
+
             $stmt = $this->conn->getConexao()->prepare($sqlCarregarPorIdConsulta);
             $stmt->bindValue(":id", $id, PDO::PARAM_INT);
 
@@ -102,21 +110,21 @@ class ConsultaDAO
 
             $consulta = new Consulta();
             $consulta->setId($result['id']);
-            $consulta->setData($result['data']);
-            $consulta->setHora($result['hora']);
-            $consulta->setObservacoesEspecificas($result['observacoes_especificas']);
-            $consulta->setProcedimentosOuTratamentosRealizados($result['procedimentos_ou_tratamentos_realizados']);
+            $consulta->setData($result['data_consulta']);
+            $consulta->setHora($result['hora_consulta']);
+           // $consulta->setObservacoesEspecificas($result['observacoes_especificas']);
+            //$consulta->setProcedimentosOuTratamentosRealizados($result['procedimentos_ou_tratamentos_realizados']);
 
             // Carregar paciente e funcionário associados à consulta
             $pacienteDAO = new PacienteDAO();
-            $consulta->setPaciente($pacienteDAO->carregarPorIdPaciente($result['paciente_id']));
+            $consulta->setPaciente($pacienteDAO->carregarPorIdPaciente($result['pacientes_id']));
 
             $funcionarioDAO = new FuncionarioDAO();
-            $consulta->setFuncionario($funcionarioDAO->carregarPorIdFuncionario($result['funcionario_id']));
+            $consulta->setFuncionario($funcionarioDAO->carregarPorIdFuncionario($result['funcionarios_id']));
 
             return $consulta;
         } catch (\PDOException $e) {
-            error_log("Erro ao carregar por id a consulta: " . $e->getMessage());
+            echo("Erro ao carregar por id a consulta: " . $e->getMessage());
         } finally {
             $this->conn->desconectar();
         }
@@ -144,17 +152,17 @@ class ConsultaDAO
 
                 // Carregar paciente e funcionário associados à consulta
                 $pacienteDAO = new PacienteDAO();
-                $consulta->setPaciente($pacienteDAO->carregarPorIdPaciente($row['paciente_id']));
+                $consulta->setPaciente($pacienteDAO->carregarPorIdPaciente($row['pacientes_id']));
 
                 $funcionarioDAO = new FuncionarioDAO();
-                $consulta->setFuncionario($funcionarioDAO->carregarPorIdFuncionario($row['funcionario_id']));
+                $consulta->setFuncionario($funcionarioDAO->carregarPorIdFuncionario($row['funcionarios_id']));
 
                 $consultas[] = $consulta;
             }
 
             return $consultas;
         } catch (\PDOException $e) {
-            error_log("Erro ao listar consultas: " . $e->getMessage());
+            echo("Erro ao listar consultas: " . $e->getMessage());
         } finally {
             $this->conn->desconectar();
         }

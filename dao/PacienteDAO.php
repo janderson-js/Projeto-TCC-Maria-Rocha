@@ -148,7 +148,7 @@ class PacienteDAO
 
     public function carregarPorIdPaciente(int $id)
     {
-        $sqlCarregarPorIdPaciente = "SELECT * FROM paciente WHERE id=:id";
+        $sqlCarregarPorIdPaciente = "SELECT * FROM pacientes WHERE id=:id";
 
         try {
             if ($this->conn->getConexao() === null) {
