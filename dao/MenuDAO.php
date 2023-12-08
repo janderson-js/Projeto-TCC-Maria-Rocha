@@ -1,7 +1,7 @@
 <?php
 
-include_once(dirname(__FILE__) . "/../dataBase/DataBase.php");
-include_once(dirname(__FILE__) . "/../models/Menu.php");
+require_once(dirname(__FILE__) . "/../dataBase/DataBase.php");
+require_once(dirname(__FILE__) . "/../models/Menu.php");
 
 class MenuDAO
 {

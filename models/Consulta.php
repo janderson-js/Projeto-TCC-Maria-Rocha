@@ -95,4 +95,31 @@ class Consulta{
 
         return $this;
     }
+
+    public function toJson() {
+        $dataFormatada = date("d/m/Y", strtotime($this->getData()));
+    
+        return [
+            'id' => $this->getId(),
+            'data' => $dataFormatada,
+            'hora' => $this->getHora(),
+            'observacoesEspecificas' => $this->getObservacoesEspecificas(),
+            'procedimentosOuTratamentosRealizados' => $this->getProcedimentosOuTratamentosRealizados(),
+            'paciente' => $this->getPaciente()->toJson(),
+            'funcionario' => $this->getFuncionario()->toJson()
+        ];
+    }
+
+    public function toJsonAgenda() {
+        $dataFormatada = date("d/m/Y", strtotime($this->getData()));
+    
+        return [
+            'id' => $this->getId(),
+            'data' => $dataFormatada,
+            'hora' => $this->getHora(),
+            'paciente' => $this->getPaciente()->toJson(),
+            'funcionario' => $this->getFuncionario()->toJson()
+        ];
+    }
+    
 }

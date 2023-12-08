@@ -16,8 +16,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $servico = $_POST["servico"];
     $horario = $_POST["selecionarHorario"];
     $quemRegistrou = $_SESSION['usuario']['nome'];
-    $dataHora = new DateTime();
-    $timestamp = $dataHora->getTimestamp();
+    $dataHora = new DateTime("", new DateTimeZone('America/Sao_Paulo'));
+    
+
+
+    $dataRegistro = $dataHora->format('Y-m-d H:i:s');
+    var_dump($dataRegistro);
     // Exemplo de exibição dos dados
 
     //cria objeto dao e model Agendamento
@@ -42,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $idConsulta;
     $idAvaliacao;
-    if ($tipo == "Avaliacao") {
+    if ($tipo == "avaliacao") {
         //cria objeto dao e model Avaliacao
         $avaDAO =  new AvaliacaoDAO();
         
@@ -53,13 +57,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $ava->setFuncionario($f);
 
         $idAvaliacao = $avaDAO->inserirAvaliacao($ava);
-
+        
         $agen->setAvaliacao($avaDAO->carregarPorIdAvaliacao($idAvaliacao));
 
     } elseif ($tipo == "consulta") {
         //cria objeto dao e model Consulta
         $cDAO =  new ConsultaDAO();
-        $c = new Consulta();
 
         $c->setData($data);
         $c->setHora($horario);
@@ -67,20 +70,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $c->setFuncionario($f);
 
         $idConsulta = $cDAO->inserirConsulta($c);
-        var_dump($idConsulta);
-        $agen->setConsulta($cDAO->carregarPorIdConsulta($idConsulta));
+
+        $agen->setConsulta($cDAO->carregarPorIdConsultaAgenda($idConsulta));
         
     }
 
     $agen->setTipo($tipo);
     $agen->setDataAgendamento($data);
     $agen->setHoraAgendamento($horario);
-    $agen->setDataRegistroAgendamento($timestamp);
+    $agen->setDataRegistroAgendamento($dataRegistro);
     $agen->setQuemRegistrou($quemRegistrou);
-    $agen->setCor('#81c9fa');
+    $agen->setCor('#038554');
 
     $agenDAO->inserirAgendamento($agen);
 
 
-    //header('location:/marcia_rocha/administracao/view/pages/pacientes/teste.php?img=' . $nome_final);
+    header('location:/marcia_rocha/administracao/view/pages/agenda/agenda.php');
 }

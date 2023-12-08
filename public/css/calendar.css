@@ -30,6 +30,19 @@ body {
   }
 }
 
-.select2-container .select2-search__field {
-  z-index: 1000; /* ou outro valor adequado */
+.fc-event {
+  /* Adicione estilos CSS para o título do evento aqui */
+  color: #ffffff; /* Cor do texto */
+  background-color: #68ddbd; /* Cor do plano de fundo */
+  border: 1px solid #038554; /* Cor da borda */
+  border-radius: 5px; /* Raio da borda (para cantos arredondados) */
+  padding: 5px; /* Espaçamento interno */
+}
+
+.fc-event{
+  color: black;
+}
+.fc-list-event-graphic > .fc-list-event-dot,.fc-daygrid-event-dot{
+  background-color: #02492e;
+  border-color: #058563;
 }

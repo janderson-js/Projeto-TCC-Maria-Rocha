@@ -107,4 +107,32 @@ class Avaliacao{
 
         return $this;
     }
+
+    public function toJson() {
+        $dataAvaliacaoFormatada = date("d/m/Y", strtotime($this->getDataAvaliacao()));
+    
+        return [
+            'id' => $this->getId(),
+            'dataAvaliacao' => $dataAvaliacaoFormatada,
+            'horaAvaliacao' => $this->getHoraAvaliacao(),
+            'observacoes' => $this->getObservacoes(),
+            'diagnosticoInicial' => $this->getDiagnosticoInicial(),
+            'resultadoTesteExames' => $this->getResultadoTesteExames(),
+            'paciente' => $this->getPaciente()->toJson(),
+            'funcionario' => $this->getFuncionario()->toJson()
+        ];
+    }
+
+    public function toJsonAgenda() {
+        $dataAvaliacaoFormatada = date("d/m/Y", strtotime($this->getDataAvaliacao()));
+    
+        return [
+            'id' => $this->getId(),
+            'dataAvaliacao' => $dataAvaliacaoFormatada,
+            'horaAvaliacao' => $this->getHoraAvaliacao(),
+            'paciente' => $this->getPaciente()->toJson(),
+            'funcionario' => $this->getFuncionario()->toJson()
+        ];
+    }
+    
 }

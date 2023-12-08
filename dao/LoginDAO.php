@@ -1,8 +1,8 @@
 <?php
 
-include_once(dirname(__FILE__) . "/../dataBase/DataBase.php");
-include_once(dirname(__FILE__) . "/../models/Login.php");
-include_once(dirname(__FILE__) . "/../dao/PerfilDAO.php");
+require_once(dirname(__FILE__) . "/../dataBase/DataBase.php");
+require_once(dirname(__FILE__) . "/../models/Login.php");
+require_once(dirname(__FILE__) . "/../dao/PerfilDAO.php");
 
 class LoginDAO
 {

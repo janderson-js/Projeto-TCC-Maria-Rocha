@@ -1,6 +1,6 @@
 <?php
-include_once(dirname(__FILE__) . "/../dataBase/DataBase.php");
-include_once(dirname(__FILE__) . "/../models/Servico.php");
+require_once(dirname(__FILE__) . "/../dataBase/DataBase.php");
+require_once(dirname(__FILE__) . "/../models/Servico.php");
 
 class ServicoDAO {
     private $conn;

@@ -160,4 +160,43 @@ class Agendamento{
 
         return $this;
     }
+
+    public function toJson() {
+        $dataAgendamentoFormatada = date("d/m/Y", strtotime($this->getDataAgendamento()));
+        $dataRegistroAgendamentoFormatada = date("d/m/Y", strtotime($this->getDataRegistroAgendamento()));
+        $dataAlteracaoFormatada = date("d/m/Y", strtotime($this->getDataAlteracao()));
+    
+        return [
+            'id' => $this->getId(),
+            'tipo' => $this->getTipo(),
+            'dataAgendamento' => $dataAgendamentoFormatada,
+            'horaAgendamento' => $this->getHoraAgendamento(),
+            'dataRegistroAgendamento' => $dataRegistroAgendamentoFormatada,
+            'dataAlteracao' => $dataAlteracaoFormatada,
+            'quemRegistrou' => $this->getQuemRegistrou(),
+            'quemAlterou' => $this->getQuemAlterou(),
+            'statusAgendamento' => $this->getStatusAgendamento(),
+            'cor' => $this->getCor(),
+            'consulta' => $this->getConsulta()->toJson(),
+            'avaliacao' => $this->getAvaliacao()->toJson()
+        ];
+    }
+
+    public function toJsonAgenda() {
+        $data_inicio = date("Y-m-d", strtotime($this->getDataAgendamento()));
+        $hora_inicio = date("H:i", strtotime($this->getHoraAgendamento()));
+        $objeto = null;
+        if($this->getTipo() == 'consulta'){
+            $objeto = $this->getConsulta()->getPaciente()->getNome();
+        }elseif($this->getTipo() == 'avaliacao'){
+            $objeto = $this->getAvaliacao()->getPaciente()->getNome(); 
+        }
+        return [
+            'id' => $this->getId(),
+            'title' => $this->getTipo() . " - " . $objeto,
+            'start' => $data_inicio . 'T' . $hora_inicio,
+            'eventColor' => $this->getCor(),
+        ];
+    }
+    
 }

@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function carregaAgendamentosAJAX(info, successCallback, failureCallback) {
   $.ajax({
-    url: "lista_agendamento_json.php",
+    url: "/marcia_rocha/controllers/agendamento/controller_listar_agenda.php",
     type: "GET",
     data: { acao: "listaAgendamento" },
     dataType: "json",
