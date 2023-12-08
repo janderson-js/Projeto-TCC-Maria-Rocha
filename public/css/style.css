@@ -7985,12 +7985,12 @@ html.tablet .ui-to-top {
 }
 
 .rd-navbar-fixed .rd-nav-link {
-	color: #151515;
+	color: #daa520;
 }
 
 .rd-navbar-fixed .rd-megamenu-list > li > a,
 .rd-navbar-fixed .rd-navbar-dropdown > li > a {
-	color: #151515;
+	color: #000000;
 }
 
 .rd-navbar-fixed .rd-megamenu-list > li:hover > a,
