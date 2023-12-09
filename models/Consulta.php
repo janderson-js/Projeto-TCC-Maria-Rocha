@@ -9,7 +9,7 @@ class Consulta{
 
     private Paciente $paciente;
     private Funcionario $funcionario;
-
+    private Servico $servico;
     
 
     public function getId()
@@ -96,6 +96,19 @@ class Consulta{
         return $this;
     }
 
+    
+    public function getServico(): Servico
+    {
+        return $this->servico;
+    }
+
+    public function setServico(Servico $servico): self
+    {
+        $this->servico = $servico;
+
+        return $this;
+    }
+
     public function toJson() {
         $dataFormatada = date("d/m/Y", strtotime($this->getData()));
     
@@ -106,7 +119,8 @@ class Consulta{
             'observacoesEspecificas' => $this->getObservacoesEspecificas(),
             'procedimentosOuTratamentosRealizados' => $this->getProcedimentosOuTratamentosRealizados(),
             'paciente' => $this->getPaciente()->toJson(),
-            'funcionario' => $this->getFuncionario()->toJson()
+            'funcionario' => $this->getFuncionario()->toJson(),
+            'servico' => $this->getServico()->toJson(),
         ];
     }
 
@@ -118,8 +132,10 @@ class Consulta{
             'data' => $dataFormatada,
             'hora' => $this->getHora(),
             'paciente' => $this->getPaciente()->toJson(),
-            'funcionario' => $this->getFuncionario()->toJson()
+            'funcionario' => $this->getFuncionario()->toJson(),
+            'servico' => $this->getServico()->toJson(),
         ];
     }
     
+
 }

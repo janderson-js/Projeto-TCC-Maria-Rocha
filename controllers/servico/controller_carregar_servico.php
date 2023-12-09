@@ -8,5 +8,5 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
 
     $sDAO = new ServicoDAO();
-    $sDAO->carregaPorIdServicoJson($id);
+    $sDAO->carregaPorIdServicoJson(intval($id));
 }

@@ -1,10 +1,10 @@
 <?php
-require_once (dirname(__FILE__) . "/../dataBase/DataBase.php");
-require_once (dirname(__FILE__) . "/../models/Agendamento.php");
-require_once (dirname(__FILE__) . "/../dao/ConsultaDAO.php");
-require_once (dirname(__FILE__) . "/../dao/PacienteDAO.php");
-require_once (dirname(__FILE__) . "/../dao/FuncionarioDAO.php");
-require_once (dirname(__FILE__) . "/../dao/AvaliacaoDAO.php");
+require_once(dirname(__FILE__) . "/../dataBase/DataBase.php");
+require_once(dirname(__FILE__) . "/../models/Agendamento.php");
+require_once(dirname(__FILE__) . "/../dao/ConsultaDAO.php");
+require_once(dirname(__FILE__) . "/../dao/PacienteDAO.php");
+require_once(dirname(__FILE__) . "/../dao/FuncionarioDAO.php");
+require_once(dirname(__FILE__) . "/../dao/AvaliacaoDAO.php");
 
 
 
@@ -41,11 +41,12 @@ class AgendamentoDAO
             $stmt->bindValue(":statusAgendamento", 'Agendado', PDO::PARAM_STR);
             $stmt->bindValue(":cor", $agendamento->getCor(), PDO::PARAM_STR);
 
+            var_dump($agendamento->getTipo());
             // Vincula o parâmetro relevante dependendo do tipo de agendamento
             if ($agendamento->getTipo() == "consulta") {
                 $stmt->bindValue(":consultaId", $agendamento->getConsulta()->getId(), PDO::PARAM_INT);
                 $stmt->bindValue(":avaliacaoId", null, PDO::PARAM_NULL); // Define como nulo para evitar problema de contagem de parâmetros
-            } else {
+            } elseif ($agendamento->getTipo() == "avaliacao") {
                 $stmt->bindValue(":consultaId", null, PDO::PARAM_NULL); // Define como nulo para evitar problema de contagem de parâmetros
                 $stmt->bindValue(":avaliacaoId", $agendamento->getAvaliacao()->getId(), PDO::PARAM_INT);
             }
@@ -213,6 +214,51 @@ class AgendamentoDAO
             }
 
             return $agendamentos;
+        } catch (\PDOException $e) {
+            echo ("Erro ao listar agendamentos: " . $e->getMessage());
+        } finally {
+            $this->conn->desconectar();
+        }
+    }
+
+    public function listarHorariosFuncionario($dataAgen, $id)
+    {
+        $sqlListarAgendamentos = "
+        SELECT hora_agendamento
+        FROM agendamentos
+        WHERE
+            data_agendamento = :dataAgenda
+            AND (consulta_id IN (
+                    SELECT consulta_id
+                    FROM consulta
+                    WHERE funcionarios_id = :id
+                )
+                OR avaliacao_id IN (
+                    SELECT avaliacao_id
+                    FROM avaliacao
+                    WHERE funcionarios_id = :id
+                )
+            )
+            AND status_agendamento = 'Agendado'
+            AND (consulta_id IS NOT NULL OR avaliacao_id IS NOT NULL);";
+
+        try {
+            if ($this->conn->getConexao() === null) {
+                $this->conn->reconectar();
+            }
+            $stmt = $this->conn->getConexao()->prepare($sqlListarAgendamentos);
+            $stmt->bindValue(":dataAgenda", $dataAgen, PDO::PARAM_STR);
+            $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+            $stmt->execute();
+
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $horarios = [];
+
+            foreach ($result as $row) {
+                $horarios[] = date("H:i", strtotime($row['hora_agendamento']));
+            }
+
+            echo json_encode($horarios, JSON_UNESCAPED_UNICODE);
         } catch (\PDOException $e) {
             echo ("Erro ao listar agendamentos: " . $e->getMessage());
         } finally {

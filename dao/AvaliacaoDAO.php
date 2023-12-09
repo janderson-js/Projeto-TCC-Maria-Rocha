@@ -2,6 +2,7 @@
 
 require_once(dirname(__FILE__) . "/../dataBase/DataBase.php");
 require_once(dirname(__FILE__) . "/../models/Avaliacao.php");
+require_once(dirname(__FILE__) . "/../dao/ServicoDAO.php");
 if (!class_exists('AvaliacaoDAO')) {
     class AvaliacaoDAO
     {
@@ -15,10 +16,10 @@ if (!class_exists('AvaliacaoDAO')) {
         public function inserirAvaliacao(Avaliacao $avaliacao)
         {
             $sqlInserirAvaliacao = "INSERT INTO avaliacao (
-            data_avaliacao, hora_avaliacao, pacientes_id, funcionarios_id
-        ) VALUES (
-            :dataAvaliacao, :horaAvaliacao, :pacienteId, :funcionarioId
-        )";
+        data_avaliacao, hora_avaliacao, pacientes_id, funcionarios_id, servico_id
+    ) VALUES (
+        :dataAvaliacao, :horaAvaliacao, :pacienteId, :funcionarioId, :servicoId
+    )";
 
             try {
                 if ($this->conn->getConexao() === null) {
@@ -29,12 +30,13 @@ if (!class_exists('AvaliacaoDAO')) {
                 $stmt->bindValue(":horaAvaliacao", $avaliacao->gethoraAvaliacao(), PDO::PARAM_STR);
                 $stmt->bindValue(":pacienteId", $avaliacao->getPaciente()->getId(), PDO::PARAM_INT);
                 $stmt->bindValue(":funcionarioId", $avaliacao->getFuncionario()->getId(), PDO::PARAM_INT);
+                $stmt->bindValue(":servicoId", intval($avaliacao->getServico()->getId()), PDO::PARAM_INT);
 
                 $stmt->execute();
 
-                $idInerido = $this->conn->getConexao()->lastInsertId();
+                $idInserido = $this->conn->getConexao()->lastInsertId();
 
-                return $idInerido;
+                return $idInserido;
             } catch (\PDOException $e) {
                 echo ("Erro ao inserir avaliação: " . $e->getMessage());
             } finally {
@@ -42,7 +44,38 @@ if (!class_exists('AvaliacaoDAO')) {
             }
         }
 
+
         public function editarAvaliacao(Avaliacao $avaliacao)
+        {
+            $sqlEditarAvaliacao = "UPDATE avaliacao SET 
+            data_avaliacao=:dataAvaliacao, 
+            hora_avaliacao=:horaAvaliacao, 
+            pacientes_id=:pacienteId, 
+            funcionarios_id=:funcionarioId,
+            servico_id = :servico_id
+            WHERE id=:id";
+
+            try {
+                if ($this->conn->getConexao() === null) {
+                    $this->conn->reconectar();
+                }
+                $stmt = $this->conn->getConexao()->prepare($sqlEditarAvaliacao);
+                $stmt->bindValue(":dataAvaliacao", $avaliacao->getDataAvaliacao(), PDO::PARAM_STR);
+                $stmt->bindValue(":horaAvaliacao", $avaliacao->gethoraAvaliacao(), PDO::PARAM_STR);
+                $stmt->bindValue(":pacienteId", $avaliacao->getPaciente()->getId(), PDO::PARAM_INT);
+                $stmt->bindValue(":funcionarioId", $avaliacao->getFuncionario()->getId(), PDO::PARAM_INT);
+                $stmt->bindValue(":servico_id", $avaliacao->getServico()->getId(), PDO::PARAM_INT);
+                $stmt->bindValue(":id", $avaliacao->getId(), PDO::PARAM_INT);
+
+                $stmt->execute();
+            } catch (\PDOException $e) {
+                echo ("Erro ao editar avaliação: " . $e->getMessage());
+            } finally {
+                $this->conn->desconectar();
+            }
+        }
+
+        public function editarAvaliacaoCompleto(Avaliacao $avaliacao)
         {
             $sqlEditarAvaliacao = "UPDATE avaliacao SET 
             data_avaliacao=:dataAvaliacao, 
@@ -52,6 +85,7 @@ if (!class_exists('AvaliacaoDAO')) {
             resultado_teste_exames=:resultadoTesteExames,
             pacientes_id=:pacienteId, 
             funcionarios_id=:funcionarioId
+            servico_id=:servico_id
             WHERE id=:id";
 
             try {
@@ -66,6 +100,7 @@ if (!class_exists('AvaliacaoDAO')) {
                 $stmt->bindValue(":resultadoTesteExames", $avaliacao->getResultadoTesteExames(), PDO::PARAM_STR);
                 $stmt->bindValue(":pacienteId", $avaliacao->getPaciente()->getId(), PDO::PARAM_INT);
                 $stmt->bindValue(":funcionarioId", $avaliacao->getFuncionario()->getId(), PDO::PARAM_INT);
+                $stmt->bindValue(":servico_id", $avaliacao->getServico()->getId(), PDO::PARAM_INT);
                 $stmt->bindValue(":id", $avaliacao->getId(), PDO::PARAM_INT);
 
                 $stmt->execute();
@@ -97,7 +132,7 @@ if (!class_exists('AvaliacaoDAO')) {
 
         public function carregarPorIdAvaliacao(int $id)
         {
-            $sqlCarregarPorIdAvaliacao = "SELECT * FROM avaliacao WHERE id=:id";
+            $sqlCarregarPorIdAvaliacao = "SELECT id, data_avaliacao, hora_avaliacao ,pacientes_id, funcionarios_id, servico_id FROM avaliacao WHERE id=:id";
 
             try {
                 if ($this->conn->getConexao() === null) {
@@ -117,12 +152,17 @@ if (!class_exists('AvaliacaoDAO')) {
                 $avaliacao->setId($result['id']);
                 $avaliacao->setDataAvaliacao($result['data_avaliacao']);
                 $avaliacao->sethoraAvaliacao($result['hora_avaliacao']);
-                //$avaliacao->setObservacoes($result['observacoes']);
-                //$avaliacao->setDiagnosticoInicial($result['diagnostico_inicial']);
-                //$avaliacao->setResultadoTesteExames($result['resultado_teste_exames']);
+
+                $avaliacao->setObservacoes('');
+                $avaliacao->setDiagnosticoInicial('');
+                $avaliacao->setResultadoTesteExames('');
+
 
                 $pacienteDAO = new PacienteDAO();
                 $avaliacao->setPaciente($pacienteDAO->carregarPorIdPaciente($result['pacientes_id']));
+
+                $servicoDAO = new ServicoDAO();
+                $avaliacao->setServico($servicoDAO->carregaPorIdServico($result['servico_id']));
 
                 $funcionarioDAO = new FuncionarioDAO();
                 $avaliacao->setFuncionario($funcionarioDAO->carregarPorIdFuncionario($result['funcionarios_id']));
@@ -137,7 +177,7 @@ if (!class_exists('AvaliacaoDAO')) {
 
         public function listarAvaliacoes()
         {
-            $sqlListarAvaliacoes = "SELECT id, data_avaliacao, hora_avaliacao, pacientes_id, funcionarios_id FROM avaliacao";
+            $sqlListarAvaliacoes = "SELECT id, data_avaliacao, hora_avaliacao, pacientes_id, funcionarios_id, servico_id FROM avaliacao";
 
             try {
                 if ($this->conn->getConexao() === null) {
@@ -162,6 +202,10 @@ if (!class_exists('AvaliacaoDAO')) {
                     // Carregar paciente e funcionário associados à avaliação
                     $pacienteDAO = new PacienteDAO();
                     $avaliacao->setPaciente($pacienteDAO->carregarPorIdPaciente($row['pacientes_id']));
+
+
+                    $servicoDAO = new ServicoDAO();
+                    $avaliacao->setServico($servicoDAO->carregaPorIdServico($result['servico_id']));
 
                     $funcionarioDAO = new FuncionarioDAO();
                     $avaliacao->setFuncionario($funcionarioDAO->carregarPorIdFuncionario($row['funcionarios_id']));
