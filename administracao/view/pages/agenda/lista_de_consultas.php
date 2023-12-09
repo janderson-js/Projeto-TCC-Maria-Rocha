@@ -45,7 +45,6 @@ include_once(dirname(__FILE__) . "/../../../../dao/consultaDAO.php");
                                                 <th>Paciente</th>
                                                 <th>Funcionario</th>
                                                 <th>Serviço</th>
-                                                <th>ação</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -151,92 +150,16 @@ include_once(dirname(__FILE__) . "/../../../../dao/consultaDAO.php");
                     },
                     {
                         data: 'servico.nome',
-                    },
-                    {
-                        data: null,
-                        title: 'Ação',
-                        render: function(data, type, row) {
-                            
-                            return '<button class="btn btn-warning btn-editar" data-id="' + row.id + '"><i class="fa-solid fa-pen-to-square"></i></button> <button class="btn btn-danger btn-excluir" data-id="' + row.id + '"><i class="fa-solid fa-trash-can"></i></button>';
-                        }
                     }
                 ]
             });
 
-            // Evento de clique no botão editar
-            $('#listar-consulta tbody').on('click', 'button.btn-editar', function() {
-                var data = tabela.row($(this).parents('tr')).data();
-                editarDadoDataTable(data.id)
-                // Implemente a lógica de edição aqui
-            });
-
-            // Evento de clique no botão excluir
-            $('#listar-consulta tbody').on('click', 'button.btn-excluir', function() {
-                var data = tabela.row($(this).parents('tr')).data();
-                excluirDadoDataTable(data.id, data.titulo, tabela)
-                // Implemente a lógica de exclusão aqui
-            });
 
         });
 
-        function editarDadoDataTable(id) {
-            $("#editarDados").modal("show");
-
-            $.ajax({
-                type: 'GET',
-                url: '/marcia_rocha/controllers/consulta/controller_carregar_consulta.php',
-                data: {
-                    id: id
-                },
-                success: function(resposta) {
-                    // Lógica a ser executada quando a requisição for bem-sucedida
-                    $("#editarDados #formEditar #id").val(resposta[0].id);
-                    $("#editarDados #formEditar #titulo").val(resposta[0].titulo);
-                    $("#editarDados #formEditar #descricao").val(resposta[0].descricao);
-                    $("#editarDados #formEditar #url").val(resposta[0].url);
-
-                },
-                error: function(xhr, status, error) {
-                    // Lógica a ser executada em caso de erro na requisição
-                    console.error('Erro na requisição:', xhr.responseText);
-                    console.error('Status:', status);
-                    console.error('Erro:', error);
-                }
-            });
-        }
-
-        function excluirDadoDataTable(id, titulo, tabela) {
-
-            if (confirm('Deseja Excluir o consulta: ' + id + '  ' + titulo)) {
-                $.ajax({
-                    type: 'GET',
-                    url: '/marcia_rocha/controllers/consulta/controller_excluir.php',
-                    data: {
-                        id: id
-                    },
-                    success: function(resposta) {
-                        // Lógica a ser executada quando a requisição for bem-sucedida
-                        tabela.ajax.reload();
-
-                    },
-                    error: function(xhr, status, error) {
-                        // Lógica a ser executada em caso de erro na requisição
-                        console.error('Erro na requisição:', xhr.responseText);
-                        console.error('Status:', status);
-                        console.error('Erro:', error);
-                    }
-                });
-            }
-        }
-
-        function enviarFormEditar() {
-            var form = document.getElementById("formEditar");
-            form.submit();
-        }
-
 
         function addNovocadastro() {
-            window.location.href = "/marcia_rocha/administracao/view/pages/consulta/form_cadastrar_consulta.php";
+            window.location.href = "/marcia_rocha/administracao/view/pages/agenda/agenda.php";
         }
     </script>
 </body>
