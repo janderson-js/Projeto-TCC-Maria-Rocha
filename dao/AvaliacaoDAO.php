@@ -3,6 +3,9 @@
 require_once(dirname(__FILE__) . "/../dataBase/DataBase.php");
 require_once(dirname(__FILE__) . "/../models/Avaliacao.php");
 require_once(dirname(__FILE__) . "/../dao/ServicoDAO.php");
+require_once(dirname(__FILE__) . "/../dao/FuncionarioDAO.php");
+require_once(dirname(__FILE__) . "/../dao/PacienteDAO.php");
+
 if (!class_exists('AvaliacaoDAO')) {
     class AvaliacaoDAO
     {
@@ -220,5 +223,51 @@ if (!class_exists('AvaliacaoDAO')) {
                 $this->conn->desconectar();
             }
         }
+
+        public function listarAvaliacaoJson()
+        {
+            $sqlListarConsultas = "SELECT id, data_consulta, hora_consulta, pacientes_id, funcionarios_id, servicos_id FROM consulta";
+
+            try {
+                if ($this->conn->getConexao() === null) {
+                    $this->conn->reconectar();
+                }
+                $stmt = $this->conn->getConexao()->prepare($sqlListarConsultas);
+                $stmt->execute();
+
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                $avaliacoes = [];
+
+                foreach ($result as $row) {
+                    $avaliacao = new Avaliacao();
+                    $avaliacao->setId($row['id']);
+                    $avaliacao->setDataAvaliacao($row['data_consulta']);
+                    $avaliacao->setHoraAvaliacao($row['hora_consulta']);
+
+                    // Carregar paciente e funcionário associados à consulta
+                    $pacienteDAO = new PacienteDAO();
+                    $avaliacao->setPaciente($pacienteDAO->carregarPorIdPaciente($row['pacientes_id']));
+
+
+                    $servicoDAO = new ServicoDAO();
+                    $avaliacao->setServico($servicoDAO->carregaPorIdServico(intval($row['servicos_id'])));
+
+                    $funcionarioDAO = new FuncionarioDAO();
+                    $avaliacao->setFuncionario($funcionarioDAO->carregarPorIdFuncionario($row['funcionarios_id']));
+
+                    $avaliacoes[] = $avaliacao->toJsonAgenda();
+
+                }
+
+                header('Content-Type: application/json');
+                echo json_encode($avaliacoes, JSON_UNESCAPED_UNICODE);
+            } catch (\PDOException $e) {
+                echo ("Erro ao listar consultas: " . $e->getMessage());
+            } finally {
+                $this->conn->desconectar();
+            }
+        }
     }
+    
 }

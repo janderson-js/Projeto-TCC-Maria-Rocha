@@ -363,4 +363,41 @@ class AgendamentoDAO
             $this->conn->desconectar();
         }
     }
+
+    public function listarAgendamentoJson()
+        {
+            $sqlListarConsultas = "SELECT id, tipo_agendamento, data_agendamento, hora_agendamento, status_agendamento FROM agendamentos";
+
+            try {
+                if ($this->conn->getConexao() === null) {
+                    $this->conn->reconectar();
+                }
+                $stmt = $this->conn->getConexao()->prepare($sqlListarConsultas);
+                $stmt->execute();
+
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                $agendamentos = [];
+                foreach ($result as $row) {
+                    $agendamento = new Agendamento();
+                    $agendamento->setId($row['id']);
+                    $agendamento->setDataAgendamento($row['data_agendamento']);
+                    $agendamento->setHoraAgendamento($row['hora_agendamento']);
+                    $agendamento->setStatusAgendamento($row['status_agendamento']);
+                    $agendamento->setTipo($row['tipo_agendamento']);
+
+                   
+
+                    $agendamentos[] = $agendamento->toListaJson();
+
+                }
+
+                header('Content-Type: application/json');
+                echo json_encode($agendamentos, JSON_UNESCAPED_UNICODE);
+            } catch (\PDOException $e) {
+                echo ("Erro ao listar consultas: " . $e->getMessage());
+            } finally {
+                $this->conn->desconectar();
+            }
+        }
 }

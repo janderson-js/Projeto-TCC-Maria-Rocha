@@ -182,6 +182,19 @@ class Agendamento{
         ];
     }
 
+    public function toListaJson() {
+        $dataAgendamentoFormatada = date("d/m/Y", strtotime($this->getDataAgendamento()));
+
+    
+        return [
+            'id' => $this->getId(),
+            'tipo' => $this->getTipo(),
+            'dataAgendamento' => $dataAgendamentoFormatada,
+            'horaAgendamento' => $this->getHoraAgendamento(),
+            'statusAgendamento' => $this->getStatusAgendamento(),
+        ];
+    }
+
     public function toJsonAgenda() {
         $data_inicio = date("Y-m-d", strtotime($this->getDataAgendamento()));
         $hora_inicio = date("H:i", strtotime($this->getHoraAgendamento()));

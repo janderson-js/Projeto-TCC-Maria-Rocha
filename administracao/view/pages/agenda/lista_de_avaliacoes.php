@@ -31,7 +31,7 @@ include_once(dirname(__FILE__) . "/../../../../dao/avaliacaoDAO.php");
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header d-flex justify-content-between">
-                                    <h5 class="card-title mb-0">Lista avaliacaos</h5>
+                                    <h5 class="card-title mb-0">Lista avaliacões</h5>
                                     <button type="button" onclick="addNovocadastro()" class="btn btn-success">Novo Cadastro</button>
                                 </div>
                                 <div class="card-body">
@@ -66,42 +66,6 @@ include_once(dirname(__FILE__) . "/../../../../dao/avaliacaoDAO.php");
                     text-overflow: ellipsis;
                 }
             </style>
-            <div id="editarDados" class="modal" data-bs-backdrop="static" tabindex="-1">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Editar dados</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-
-                            <form id="formEditar" action="/marcia_rocha/controllers/avaliacao/controller_alterar.php" method="post">
-                                <div class="mb-3">
-                                    <label for="id" class="form-label">ID:</label>
-                                    <input type="text" class="form-control" id="id" name="id" readonly>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="titulo" class="form-label">Titulo:</label>
-                                    <input type="text" class="form-control" id="titulo" name="titulo">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="descricao" class="form-label">Descrição</label>
-                                    <input type="text" class="form-control" id="descricao" name="descricao">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="url" class="form-label">Url: </label>
-                                    <input type="text" class="form-control" id="url" name="url">
-                                </div>
-                            </form>
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                            <button type="button" onclick="enviarFormEditar()" class="btn btn-primary">Salvar mudanças</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <!-- Inicio do include do Footer -->
             <?php include_once(dirname(__FILE__) . "/../../../includes/footer.php"); ?>
@@ -130,17 +94,17 @@ include_once(dirname(__FILE__) . "/../../../../dao/avaliacaoDAO.php");
                 scrollX: true,
                 autoWidth: false,
                 ajax: {
-                    url: "/marcia_rocha/controllers/agendamento/controller_listar_avaliacao.php",
+                    url: "/marcia_rocha/controllers/agendamento/controller_listar_avaliacoes.php",
                     dataSrc: ''
                 },
                 columns: [{
                         data: 'id'
                     },
                     {
-                        data: 'data'
+                        data: 'dataAvaliacao'
                     },
                     {
-                        data: 'hora'
+                        data: 'horaAvaliacao'
                     },
                     {
                         data: 'paciente.nome',
