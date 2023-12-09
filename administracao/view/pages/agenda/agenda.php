@@ -14,6 +14,7 @@ $s[] = $sDAO->listarServicos();
 $f[] = $fDAO->listarFuncionarios();
 
 
+
 ?>
 
 <!DOCTYPE html>
@@ -96,8 +97,8 @@ $f[] = $fDAO->listarFuncionarios();
                             <!-- Perfil -->
                             <div class="mb-3">
                                 <label for="paciente" class="form-label">Paciente:</label>
-                                <select id="paciente" name="paciente"   class="select2">
-                                <option value="" selected>Escolha o Funcionario...</option>
+                                <select id="paciente" name="paciente" class="select2">
+                                    <option value="" selected>Escolha o Funcionario...</option>
                                     <?php foreach ($p[0] as $paciente) : ?>
                                         <option value="<?php echo $paciente->getId(); ?>">
                                             <?php echo $paciente->getNome(); ?>
@@ -116,8 +117,8 @@ $f[] = $fDAO->listarFuncionarios();
                             </div>
                             <div class="mb-3">
                                 <label for="funcionario">Funcionario:</label>
-                                <select id="funcionario" name="funcionario"  class="select2">
-                                <option value="" selected>Escolha o Funcionario...</option>
+                                <select id="funcionario" name="funcionario" class="select2">
+                                    <option value="" selected>Escolha o Funcionario...</option>
                                     <?php foreach ($f[0] as $funcionario) : ?>
                                         <option value="<?php echo $funcionario->getId(); ?>">
                                             <?php echo $funcionario->getNome(); ?>
@@ -131,8 +132,8 @@ $f[] = $fDAO->listarFuncionarios();
                         <div id="step4" class="step" style="display: none;">
                             <div class="mb-3">
                                 <label for="tipoAgendamento">Servico:</label>
-                                <select id="servico" name="servico"  class="select2">
-                                <option value="" selected>Escolha o Funcionario...</option>
+                                <select id="servico" name="servico" class="select2">
+                                    <option value="" selected>Escolha o Funcionario...</option>
                                     <?php foreach ($s[0] as $servico) : ?>
                                         <option value="<?php echo $servico->getId(); ?>">
                                             <?php echo $servico->getNome(); ?>
@@ -199,89 +200,6 @@ $f[] = $fDAO->listarFuncionarios();
         </div>
     </div>
 
-
-    <div class="modal" id="modalAgendamento1" data-bs-backdrop="static" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Cadastrar agendamento.</h5>
-                    <button type="button" onclick="hiddenForms();" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-
-                    <div id="seletor">
-                        <label for="">Tipo de Agendamento:</label>
-                        <select id="selecionarOpcao" class="form-select" onchange="mostrarOcultarFormulario();" aria-label="Default select example">
-                            <option value="0" selected>Selecione o tipo do agendamento...</option>
-                            <option value="formAvaliacao">Avaliação</option>
-                            <option value="formConsulta">Consulta</option>
-                        </select>
-                    </div>
-
-                    <form action="" hidden method="post" id="formConsulta">
-                        <caption>Consulta</caption>
-                        <input type="text" hidden value="Consulta" id="tipo">
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Data: </label>
-                            <input type="date" class="form-control" id="data" name="data" aria-describedby="emailHelp">
-                        </div>
-                        <div id="div-funcionario">
-                            <div id="funcionario" class="mb-3">
-                                <label for="selecionarHorario">Funcionário:</label>
-                                <select class="form-select" onchange="esconderHorarios();" id="selectF">
-                                    <option value="0" selected>Selecione um dos funcionario disponiveis...</option>
-                                    <option value="formAvaliacao">Alguem ai</option>
-                                    <option value="formConsulta">alguem ai Novamente</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div id="div-horario" hidden>
-                            <div id="horarios" class="mb-3">
-                                <label for="selecionarHorario">horário:</label>
-                                <select class="form-select" id="selecionarHorario">
-                                    <option selected>Selecione um dos hotrarios disponiveis...</option>
-                                    <!-- Gerando as opções com intervalo de 30 minutos -->
-                                    <?php
-                                    $horaInicial = strtotime('07:00');
-                                    $horaFinal = strtotime('18:00');
-
-                                    while ($horaInicial <= $horaFinal) {
-                                        $horarioFormatado = date('H:i', $horaInicial);
-                                        echo "<option value='$horarioFormatado'>$horarioFormatado</option>";
-                                        $horaInicial = strtotime('+30 minutes', $horaInicial);
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-
-                    <form action="" hidden method="post" id="formAvaliacao">
-                        <caption>Avaliação</caption>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-                </div>
-                <div class="modal-footer justify-content-md-start">
-                    <div class="d-grid gap-2 d-md-flex">
-                        <button id="voltar" type="button" onclick="seletorTipo();" class="btn btn-info"><i class="fa-solid fa-arrow-left"></i></i></button>
-                        <button class="btn btn-primary me-md-2" type="button">Button</button>
-                        <button type="button" onclick="hiddenForms();" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Fim Modal para cadastrar evento no calendar -->
 
     <!-- Inicio Modal para editar evento no calendar -->
@@ -294,11 +212,58 @@ $f[] = $fDAO->listarFuncionarios();
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Modal body text goes here.</p>
+                    <form action="/marcia_rocha/controllers/agendamento/controller_alterar.php" method="post" id="formEditarAgendamento">
+
+                    <input type="text" name="idPaciente" id="idPaciente" hidden>
+                    <input type="text" name="idTipo" id="idTipo" hidden>
+                    <input type="text" name="cor" id="cor" hidden>
+
+                        <div class="mb-3">
+                            <label for="id">ID: </label>
+                            <input type="text" class="form-control" name="id" id="id" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tipo">Tipo: </label>
+                            <input type="text" class="form-control" id="tipo" name="tipo" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="paciente">Paciente: </label>
+                            <input type="text" class="form-control" id="paciente" name="paciente" readonly>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="funcionario">Funcionario:</label>
+                            <select id="funcionario" class="form-control" name="funcionario">
+                                <option value="" selected>Escolha o Funcionario...</option>
+                                <?php foreach ($f[0] as $funcionario) : ?>
+                                    <option value="<?php echo $funcionario->getId(); ?>">
+                                        <?php echo $funcionario->getNome(); ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="paciente">Paciente: </label>
+                            <input type="date" class="form-control" id="data" name="data" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="paciente">Horario: </label>
+                            <input type="time" class="form-control" id="time" name="time" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="status">Status Agendamento: </label>
+                            <select name="status" class="form-control" id="status">
+                                <option value="Concluido">Concluido</option>
+                                <option value="Agendado">Agendado</option>
+                                <option value="Cancelado">Cancelar</option>
+                            </select>
+                        </div>
+
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-primary" onclick="enviaForm()">Save changes</button>
                 </div>
             </div>
         </div>
@@ -311,8 +276,14 @@ $f[] = $fDAO->listarFuncionarios();
 
 
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <!-- Fim do include dos arquivos js -->
     <script>
+        function enviaForm() {
+            var form = document.getElementById('formEditarAgendamento');
+            form.submit();
+        }
+
         $('.select2').select2({
             placeholder: 'Selecione uma opção...',
             dropdownParent: '#modalAgendamento'
@@ -363,7 +334,7 @@ $f[] = $fDAO->listarFuncionarios();
                         return false;
                     }
                     $("#agendamentoForm #r-paciente").val(textoSelecionado.trim());
-                    
+
                     break;
                 case 3:
                     // Validar campos da etapa 2
@@ -417,7 +388,6 @@ $f[] = $fDAO->listarFuncionarios();
                 var funcionario = $('#funcionario').val();
                 var servico = $('#servico').val();
                 var horario = $("#horario").val();
-
             }
         }
     </script>

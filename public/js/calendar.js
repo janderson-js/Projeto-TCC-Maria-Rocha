@@ -145,7 +145,8 @@ function carregaAgendamentosAJAX(info, successCallback, failureCallback) {
     data: { acao: "listaAgendamento" },
     dataType: "json",
     success: function (response) {
-      successCallback(response); // Passa os eventos para o FullCalendar
+      successCallback(response);
+       
     },
     error: function () {
       failureCallback("Houve um erro ao buscar os Agendamentos pelo Ajax."); // Trata erros
@@ -157,27 +158,24 @@ function colocaDadosFormEditaAgendamento(id) {
   var agendamentoID = id;
 
   $.ajax({
-    url: "lista_agendamento_json.php",
+    url: "/marcia_rocha/controllers/agendamento/controller_carregarPorID.php",
     type: "GET",
-    data: { acao: "carregaPorIdAgendamento", id: agendamentoID },
+    data: {  id: agendamentoID },
     dataType: "json",
     success: function (data) {
-      var primeiroAgendamento = data[0]; // Acesse o primeiro agendamento no array
-      var id = primeiroAgendamento.id;
-      var data_registro_agendamento =
-        primeiroAgendamento.data_registro_agendamento;
-      var start = primeiroAgendamento.start;
-      var startTime = primeiroAgendamento.startTime;
-      var status_agendamento = primeiroAgendamento.status_agendamento;
-      var title = primeiroAgendamento.title;
-      var color = primeiroAgendamento.color;
+     console.log(data[0]);
+      $('#modalEditarAgendamento #formEditarAgendamento #id').val(data[0].id);
+      $('#modalEditarAgendamento #formEditarAgendamento #tipo').val(data[0].tipo);
+      $('#modalEditarAgendamento #formEditarAgendamento #paciente').val(data[0].paciente.nome);
+      $('#modalEditarAgendamento #formEditarAgendamento #idPaciente').val(data[0].paciente.id);
+      $('#modalEditarAgendamento #formEditarAgendamento #funcionario').val(data[0].funcionario.id);
+      const dataFormatada = moment(data[0].start).format("YYYY-MM-DD");
+      $('#modalEditarAgendamento #formEditarAgendamento #data').val(dataFormatada);
+      $('#modalEditarAgendamento #formEditarAgendamento #time').val(data[0].time);
+      $('#modalEditarAgendamento #formEditarAgendamento #status').val(data[0].status);
+      $('#modalEditarAgendamento #formEditarAgendamento #idTipo').val(data[0].objeto.id);
+      $('#modalEditarAgendamento #formEditarAgendamento #cor').val(data[0].cor);
 
-      $("#modalEditarAgendamento #dataAgendamento").val(start);
-      $("#modalEditarAgendamento #horaAgendamento").val(startTime);
-      $("#modalEditarAgendamento #titulo").val(title);
-      $("#modalEditarAgendamento #cor").val(color);
-      $("#modalEditarAgendamento #status").val(status_agendamento);
-      $("#modalEditarAgendamento #idFormEditar").val(id);
     },
     error: function () {
       failureCallback(

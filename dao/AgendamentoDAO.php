@@ -64,10 +64,8 @@ class AgendamentoDAO
         $sqlEditarAgendamento = "UPDATE agendamentos SET  
             data_agendamento=:dataAgendamento, 
             hora_agendamento=:horaAgendamento, 
-            data_registro_agendamento=:dataRegistroAgendamento, 
-            data_alteracao=:dataAlteracao, 
-            quem_registro_agendamento=:quemRegistrou, 
-            quem_alterou=:quemAlterou, 
+            data_alteracao_agendamento=:dataAlteracao,  
+            quem_alterou_agendamento=:quemAlterou, 
             status_agendamento=:statusAgendamento, 
             cor=:cor,
             consulta_id=:consultaId, 
@@ -81,9 +79,7 @@ class AgendamentoDAO
             $stmt = $this->conn->getConexao()->prepare($sqlEditarAgendamento);
             $stmt->bindValue(":dataAgendamento", $agendamento->getDataAgendamento(), PDO::PARAM_STR);
             $stmt->bindValue(":horaAgendamento", $agendamento->getHoraAgendamento(), PDO::PARAM_STR);
-            $stmt->bindValue(":dataRegistroAgendamento", $agendamento->getDataRegistroAgendamento(), PDO::PARAM_STR);
             $stmt->bindValue(":dataAlteracao", $agendamento->getDataAlteracao(), PDO::PARAM_STR);
-            $stmt->bindValue(":quemRegistrou", $agendamento->getQuemRegistrou(), PDO::PARAM_STR);
             $stmt->bindValue(":quemAlterou", $agendamento->getQuemAlterou(), PDO::PARAM_STR);
             $stmt->bindValue(":statusAgendamento", $agendamento->getStatusAgendamento(), PDO::PARAM_STR);
             $stmt->bindValue(":cor", $agendamento->getCor(), PDO::PARAM_STR);
@@ -150,9 +146,9 @@ class AgendamentoDAO
             $agendamento->setDataAgendamento($result['data_agendamento']);
             $agendamento->setHoraAgendamento($result['hora_agendamento']);
             $agendamento->setDataRegistroAgendamento($result['data_registro_agendamento']);
-            $agendamento->setDataAlteracao($result['data_alteracao']);
+            $agendamento->setDataAlteracao($result['data_alteracao_agendamento']);
             $agendamento->setQuemRegistrou($result['quem_registro_agendamento']);
-            $agendamento->setQuemAlterou($result['quem_alterou']);
+            $agendamento->setQuemAlterou($result['quem_alterou_agendamento']);
             $agendamento->setStatusAgendamento($result['status_agendamento']);
             $agendamento->setCor($result['cor']);
 
@@ -197,9 +193,9 @@ class AgendamentoDAO
                 $agendamento->setDataAgendamento($row['data_agendamento']);
                 $agendamento->setHoraAgendamento($row['hora_agendamento']);
                 $agendamento->setDataRegistroAgendamento($row['data_registro_agendamento']);
-                $agendamento->setDataAlteracao($row['data_alteracao']);
+                $agendamento->setDataAlteracao($row['data_alteracao_agendamento']);
                 $agendamento->setQuemRegistrou($row['quem_registro_agendamento']);
-                $agendamento->setQuemAlterou($row['quem_alterou']);
+                $agendamento->setQuemAlterou($row['quem_alterou_agendamento']);
                 $agendamento->setStatusAgendamento($row['status_agendamento']);
                 $agendamento->setCor($row['cor']);
 
@@ -261,7 +257,54 @@ class AgendamentoDAO
                     $agendamento->setAvaliacao($avaliacao);
                 }
 
+                $agendamentos[] = $agendamento->toJsonAgenda();
+            }
 
+            header('Content-Type: application/json');
+            echo json_encode($agendamentos, JSON_UNESCAPED_UNICODE);
+        } catch (\PDOException $e) {
+            echo ("Erro ao listar agendamentos: " . $e->getMessage());
+        } finally {
+            $this->conn->desconectar();
+        }
+    }
+
+    public function carregarPorIdAgendamentoJsonAgenda($id)
+    {
+        $sqlListarAgendamentos = "SELECT * FROM agendamentos where id=:id";
+
+        try {
+            if ($this->conn->getConexao() === null) {
+                $this->conn->reconectar();
+            }
+            $stmt = $this->conn->getConexao()->prepare($sqlListarAgendamentos);
+            $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+            $stmt->execute();
+
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            $agendamentos = [];
+
+            foreach ($result as $row) {
+                $agendamento = new Agendamento();
+                $agendamento->setId($row['id']);
+                $agendamento->setTipo($row['tipo_agendamento']);
+                $agendamento->setDataAgendamento($row['data_agendamento']);
+                $agendamento->setHoraAgendamento($row['hora_agendamento']);
+                $agendamento->setStatusAgendamento($row['status_agendamento']);
+                $agendamento->setCor($row['cor']);
+
+                // Recuperar a consulta associada ao agendamento
+                if ($row['consulta_id'] != null) {
+                    $consultaDAO = new ConsultaDAO();
+                    $consulta = $consultaDAO->carregarPorIdConsultaAgenda($row['consulta_id']);
+                    $agendamento->setConsulta($consulta);
+                } elseif ($row['avaliacao_id'] != null) {
+                    // Recuperar a avaliação associada ao agendamento
+                    $avaliacaoDAO = new AvaliacaoDAO();
+                    $avaliacao = $avaliacaoDAO->carregarPorIdAvaliacao($row['avaliacao_id']);
+                    $agendamento->setAvaliacao($avaliacao);
+                }
 
                 $agendamentos[] = $agendamento->toJsonAgenda();
             }

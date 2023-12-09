@@ -48,6 +48,31 @@ if (!class_exists('ConsultaDAO')) {
             $sqlEditarConsulta = "UPDATE consulta SET 
             data=:data, 
             hora=:hora, 
+            pacientes_id=:pacienteId, 
+            funcionarios_id=:funcionarioId
+            WHERE id=:id";
+
+            try {
+                $stmt = $this->conn->getConexao()->prepare($sqlEditarConsulta);
+                $stmt->bindValue(":data", $consulta->getData(), PDO::PARAM_STR);
+                $stmt->bindValue(":hora", $consulta->getHora(), PDO::PARAM_STR);
+                $stmt->bindValue(":pacienteId", $consulta->getPaciente()->getId(), PDO::PARAM_INT);
+                $stmt->bindValue(":funcionarioId", $consulta->getFuncionario()->getId(), PDO::PARAM_INT);
+                $stmt->bindValue(":id", $consulta->getId(), PDO::PARAM_INT);
+
+                $stmt->execute();
+            } catch (\PDOException $e) {
+                echo ("Erro ao editar consulta: " . $e->getMessage());
+            } finally {
+                $this->conn->desconectar();
+            }
+        }
+
+        public function editarConsultaCompleto(Consulta $consulta)
+        {
+            $sqlEditarConsulta = "UPDATE consulta SET 
+            data=:data, 
+            hora=:hora, 
             observacoes_especificas=:observacoesEspecificas, 
             procedimentos_ou_tratamentos_realizados=:procedimentosOuTratamentosRealizados,
             pacientes_id=:pacienteId, 

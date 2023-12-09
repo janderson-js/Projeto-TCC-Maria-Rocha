@@ -185,17 +185,40 @@ class Agendamento{
     public function toJsonAgenda() {
         $data_inicio = date("Y-m-d", strtotime($this->getDataAgendamento()));
         $hora_inicio = date("H:i", strtotime($this->getHoraAgendamento()));
+
+        $objetoPaciente = null;
+        $nomePaciente = null;
+
+        $objetoFuncionario = null;
         $objeto = null;
+
         if($this->getTipo() == 'consulta'){
-            $objeto = $this->getConsulta()->getPaciente()->getNome();
+            $nomePaciente = $this->getConsulta()->getPaciente()->getNome();
+            $objetoPaciente = $this->getConsulta()->getPaciente();
+            $objetoFuncionario = $this->getConsulta()->getFuncionario();
+
+            $objeto = $this->getConsulta()->toJson();
+
         }elseif($this->getTipo() == 'avaliacao'){
-            $objeto = $this->getAvaliacao()->getPaciente()->getNome(); 
+           $nomePaciente = $this->getAvaliacao()->getPaciente()->getNome();
+            $objetoPaciente = $this->getAvaliacao()->getPaciente();
+            $objetoFuncionario = $this->getAvaliacao()->getFuncionario();
+
+            $objeto = $this->getAvaliacao()->toJson();
+
         }
         return [
             'id' => $this->getId(),
-            'title' => $this->getTipo() . " - " . $objeto,
+            'title' => $this->getTipo() . " - " . $nomePaciente,
             'start' => $data_inicio . 'T' . $hora_inicio,
             'eventColor' => $this->getCor(),
+            'funcionario' => $objetoFuncionario->toJson(),
+            'paciente' => $objetoPaciente->toJson(),
+            'tipo' => $this->getTipo(),
+            'time' => $this->getHoraAgendamento(),
+            'status' => $this->getStatusAgendamento(),
+            'cor' => $this->getCor(),
+            'objeto' => $objeto,
         ];
     }
     

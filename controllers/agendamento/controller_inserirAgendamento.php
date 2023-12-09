@@ -21,7 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     $dataRegistro = $dataHora->format('Y-m-d H:i:s');
-    var_dump($dataRegistro);
     // Exemplo de exibição dos dados
 
     //cria objeto dao e model Agendamento
