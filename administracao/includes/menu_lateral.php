@@ -39,6 +39,24 @@ $perfil = $_SESSION['usuario']['perfil'];
                     </a>
                 </li>
 
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/agenda/lista_de_consultas.php">
+                        <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Lista de Consultas</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/agenda/lista_de_avaliacoes.php">
+                        <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Lista de Avalições</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/agenda/lista_de_agendamentos.php">
+                        <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Lista de Agendamentos</span>
+                    </a>
+                </li>
+
                 <li class="sidebar-header">
                     Gerenciar Pacientes & Anamneses
                 </li>

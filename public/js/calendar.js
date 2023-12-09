@@ -106,7 +106,6 @@ document.addEventListener("DOMContentLoaded", function () {
           var dataFormatada = dataClicada.toISOString().split("T")[0];
 
           $("#modalAgendamento #agendamentoForm #data").val(dataFormatada);
-          console.log(dataFormatada);
         }
       }
       // Adicionando um ouvinte de evento para o evento de mudança
@@ -163,7 +162,6 @@ function colocaDadosFormEditaAgendamento(id) {
     data: {  id: agendamentoID },
     dataType: "json",
     success: function (data) {
-     console.log(data[0]);
       $('#modalEditarAgendamento #formEditarAgendamento #id').val(data[0].id);
       $('#modalEditarAgendamento #formEditarAgendamento #tipo').val(data[0].tipo);
       $('#modalEditarAgendamento #formEditarAgendamento #paciente').val(data[0].paciente.nome);
@@ -175,6 +173,8 @@ function colocaDadosFormEditaAgendamento(id) {
       $('#modalEditarAgendamento #formEditarAgendamento #status').val(data[0].status);
       $('#modalEditarAgendamento #formEditarAgendamento #idTipo').val(data[0].objeto.id);
       $('#modalEditarAgendamento #formEditarAgendamento #cor').val(data[0].cor);
+      $('#modalEditarAgendamento #formEditarAgendamento #servico').val(data[0].objeto.servico.id);
+      
 
     },
     error: function () {

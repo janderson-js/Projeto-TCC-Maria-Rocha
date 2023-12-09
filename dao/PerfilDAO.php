@@ -3,6 +3,7 @@
 require_once(dirname(__FILE__) . "/../dataBase/DataBase.php");
 require_once(dirname(__FILE__) . "/../models/Perfil.php");
 
+if (!class_exists('PerfilDAO')) {
 class PerfilDAO
 {
     private $conn;
@@ -217,4 +218,5 @@ class PerfilDAO
             $this->conn->desconectar();
         }
     }
+}
 }

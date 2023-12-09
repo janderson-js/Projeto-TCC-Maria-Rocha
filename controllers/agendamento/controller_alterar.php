@@ -3,6 +3,7 @@ session_start();
 include("../../dao/AgendamentoDAO.php");
 include("../../dao/PacienteDAO.php");
 include("../../dao/FuncionarioDAO.php");
+include("../../dao/ServicoDAO.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -10,6 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $idPAciente = $_POST['idPaciente'];
     $tipo = $_POST['tipo'];
     $tipoAgendamento = $_POST['idTipo'];
+    $servico = $_POST['servico'];
     $paciente = $_POST['paciente'];
     $funcionario = $_POST['funcionario'];
     $data = $_POST['data'];
@@ -24,36 +26,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $agen = new Agendamento();
 
     $pDAO = new PacienteDAO();
-
+    $sDAO = new ServicoDAO();
 
     $fDAO = new FuncionarioDAO();
 
     $c = new Consulta();
     $a = new Avaliacao();
 
-    if($tipo == "Consulta"){
+
+    if($tipo == "consulta"){
       
         $cDAO = new ConsultaDAO();
-        $c->setPaciente($pDAO->carregarPorIdPaciente($paciente));
-        $c->setFuncionario($fDAO->carregarPorIdFuncionario($funcionario));
+        $c->setPaciente($pDAO->carregarPorIdPaciente(intval($idPAciente)));
+        $c->setFuncionario($fDAO->carregarPorIdFuncionario(intval($funcionario)));
         $c->setHora($hora);
         $c->setData($data);
         $c->setId($tipoAgendamento);
+        $c->setServico($sDAO->carregaPorIdServico(intval($servico)));
 
         $cDAO->editarConsulta($c);
 
        
-    }elseif($tipo == "Avalicao"){
+    }elseif($tipo == "avaliacao"){
         
         $aDAO = new AvaliacaoDAO();
-        $a->setPaciente($pDAO->carregarPorIdPaciente($paciente));
-        $a->setFuncionario($fDAO->carregarPorIdFuncionario($funcionario));
+        $a->setPaciente($pDAO->carregarPorIdPaciente(intval($idPAciente)));
+        $a->setFuncionario($fDAO->carregarPorIdFuncionario(intval($funcionario)));
         $a->setHoraAvaliacao($hora);
         $a->setDataAvaliacao($data);
         $a->setId($tipoAgendamento);
+        $a->setServico($sDAO->carregaPorIdServico(intval($servico)));
 
         $aDAO->editarAvaliacao($a);
 
+       
+        
         
     }
     $agen->setId(intval($id));
@@ -65,10 +72,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $agen->setStatusAgendamento($status);
     $agen->setCor($cor);
     $agen->setConsulta($c);
-
+    $agen->setAvaliacao($a);
 
     $agenDAO->editarAgendamento($agen);
-    $agen->setAvaliacao($a);
+
+    header('location:/marcia_rocha/administracao/view/pages/agenda/agenda.php');
+    
 }
 
 ?>

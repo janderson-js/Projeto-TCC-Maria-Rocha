@@ -10,6 +10,7 @@ class Avaliacao{
 
     private Paciente $paciente;
     private Funcionario $funcionario;
+    private Servico $servico;
     
 
     public function getId()
@@ -108,6 +109,18 @@ class Avaliacao{
         return $this;
     }
 
+    public function getServico(): Servico
+    {
+        return $this->servico;
+    }
+
+    public function setServico(Servico $servico): self
+    {
+        $this->servico = $servico;
+
+        return $this;
+    }
+
     public function toJson() {
         $dataAvaliacaoFormatada = date("d/m/Y", strtotime($this->getDataAvaliacao()));
     
@@ -119,7 +132,8 @@ class Avaliacao{
             'diagnosticoInicial' => $this->getDiagnosticoInicial(),
             'resultadoTesteExames' => $this->getResultadoTesteExames(),
             'paciente' => $this->getPaciente()->toJson(),
-            'funcionario' => $this->getFuncionario()->toJson()
+            'funcionario' => $this->getFuncionario()->toJson(),
+            'servico' => $this->getServico()->toJson()
         ];
     }
 
@@ -131,8 +145,11 @@ class Avaliacao{
             'dataAvaliacao' => $dataAvaliacaoFormatada,
             'horaAvaliacao' => $this->getHoraAvaliacao(),
             'paciente' => $this->getPaciente()->toJson(),
-            'funcionario' => $this->getFuncionario()->toJson()
+            'funcionario' => $this->getFuncionario()->toJson(),
+            'servico' => $this->getServico()->toJson()
         ];
     }
     
+
+
 }
