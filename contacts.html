@@ -72,7 +72,7 @@
                       <li>
                         <div class="unit unit-spacing-xs">
                           <div class="unit-left"><span class="icon mdi mdi-phone"></span></div>
-                          <div class="unit-body"><a class="address" href="hhttps://wa.me/5561999798747?text=Prezada Márcia. Desejo formalmente agendar uma avaliação."target="_blank">(61) 99979-8747 </a></div>
+                          <div class="unit-body"><a class="address" href="https://wa.me/5561999798747?text=Prezada Márcia. Desejo agendar uma avaliação."target="_blank">(61) 99979-8747 </a></div>
                         </div>
                       </li>
                       <li>
@@ -96,7 +96,7 @@
                       </li>
                       <li class="rd-nav-item"><a class="rd-nav-link" href="/marcia_rocha/about-us.html">Sobre nós</a>
                       </li>
-                      <li class="rd-nav-item"><a class="rd-nav-link" href="/marcia_rocha/contacts.html">Contacts</a>
+                      <li class="rd-nav-item"><a class="rd-nav-link" href="/marcia_rocha/contacts.html">Contatos</a>
                       </li>
                       <li class="rd-nav-item"><a class="rd-nav-link" href="/marcia_rocha/view/login.php">Entrar</a>
                       </li>
@@ -130,46 +130,47 @@
           <div class="row row-60 justify-content-center">
             <div class="col-lg-8">
               <h4 class="text-spacing-25 text-transform-none" id="color_text3">Entrar em contato</h4>
-              <form class="rd-form rd-mailform" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
+              <form class="rd-form rd-mailform" id="formulario" data-form-output="form-output-global" data-form-type="contact" method="post">
                 <div class="row row-20 gutters-20">
-                  <div class="col-md-6">
-                    <div class="form-wrap">
-                      <input class="form-input" id="contact-your-name-5" type="text" name="name" data-constraints="@Required">
-                      <label class="form-label" for="contact-your-name-5">Nome*</label>
+                  <div class="col-md-6 col-lg-4 oh-desktop">
+                    <div class="form-wrap wow slideInDown">
+                      <input class="form-input" id="nome_1" type="text" name="name" data-constraints="@Required">
+                      <label class="form-label" for="nome_1">Nome*</label>
                     </div>
                   </div>
-                  <div class="col-md-6">
-                    <div class="form-wrap">
-                      <input class="form-input" id="contact-email-5" type="email" name="email" data-constraints="@Email @Required">
-                      <label class="form-label" for="contact-email-5">E-mail*</label>
+                  <div class="col-md-6 col-lg-4 oh-desktop">
+                    <div class="form-wrap wow slideInDown">
+                      <input class="form-input" id="numer" type="numer" name="name" data-constraints="@Required">
+                      <label class="form-label" for="numer">Telefone*</label>
                     </div>
                   </div>
-                  <div class="col-md-6">
-                    <div class="form-wrap">
-                      <!--Select 2-->
-                      <select class="form-input" data-minimum-results-for-search="Infinity" data-constraints="@Required">
-                        <option value="1">Ventosaterapia</option>
-                        <option value="2">Reeducação Postural Global</option>
-                        <option value="3">Liberação Miofascial</option>
-                        <option value="4">Pilates</option>
-                        <option value="5">Fisioterapia Ortopédica</option>
-                      </select>
+                  <div class="col-md-6 col-lg-4 oh-desktop">
+                    <div class="form-wrap wow slideInUp">
+                      <input class="form-input" id="email_1" type="email" name="email" data-constraints="@Email @Required">
+                      <label class="form-label" for="email_1">E-mail*</label>
                     </div>
                   </div>
-                  <div class="col-md-6">
-                    <div class="form-wrap">
-                      <input class="form-input" id="contact-phone-5" type="text" name="phone" data-constraints="@Numeric">
-                      <label class="form-label" for="contact-phone-5">Telefone*</label>
-                    </div>
-                  </div>
+                  
                   <div class="col-12">
-                    <div class="form-wrap">
-                      <label class="form-label" for="contact-message-5">Mensagem</label>
-                      <textarea class="form-input textarea-lg" id="contact-message-5" name="message" data-constraints="@Required"></textarea>
+                    <div class="form-wrap wow fadeIn">
+                      <label class="form-label" for="message_1">Mesagem</label>
+                      <textarea class="form-input textarea-lg" id="message_1" name="message" data-constraints="@Required"></textarea>
                     </div>
                   </div>
                 </div>
-                <button class="button button-secondary button-winona" type="submit">Contate-nós</button>
+                <div class="group-custom-1 group-middle oh-desktop">
+                  <button class="button button-lg button-primary button-winona wow fadeInRight" type="submit">Enviar Mensagem</button>
+                  <!-- Quote Classic-->
+                  <article class="quote-classic quote-classic-3 wow slideInDown">
+                    <div class="quote-classic-text">
+                      <p class="q">Prezado(a) Paciente,<br>
+                        Esperamos que esteja bem. Gostaríamos de solicitar sua colaboração para compartilhar sua experiência conosco, a fim de que possamos aprimorar nossos serviços. Por favor, relate sua vivência acima, fornecendo-nos valiosas informações que contribuirão significativamente para o aperfeiçoamento contínuo de nossas operações. <br>
+                        Agradecemos antecipadamente pela sua atenção e colaboração. <br>
+                        Atenciosamente, <br>
+                        Marcia Rocha</p>
+                    </div>
+                  </article>
+                </div>
               </form>
             </div>
             <div class="col-lg-4">
@@ -188,7 +189,7 @@
                     <p class="aside-contacts-title">Telefone</p>
                     <div class="unit unit-spacing-xs justify-content-center justify-content-md-start">
                       <div class="unit-left"><span class="icon mdi mdi-phone"></span></div>
-                      <div class="unit-body"><a class="phone" href="hhttps://wa.me/5561999798747?text=Prezada Márcia. Desejo formalmente agendar uma avaliação."target="_blank">(61) 99979-8747</a></div>
+                      <div class="unit-body"><a class="phone" href="https://wa.me/5561999798747?text=Prezada Márcia. Desejo agendar uma avaliação."target="_blank">(61) 99979-8747</a></div>
                     </div>
                   </div>
                   <div class="col-sm-6 col-lg-12 aside-contacts-item">
@@ -235,16 +236,6 @@
                 </ul>
               </div>
               <div class="col-lg-4 col-xl-5">
-                <!-- RD Mailform-->
-                <form class="rd-form rd-mailform rd-form-inline rd-form-inline-sm oh-desktop" data-form-output="form-output-global" data-form-type="subscribe" method="post" action="bat/rd-mailform.php">
-                  <div class="form-wrap wow slideInUp">
-                    <input class="form-input" id="subscribe-form-2-email" type="email" name="email" data-constraints="@Email @Required"/>
-                    <label class="form-label" for="subscribe-form-2-email">Digite seu e-mail</label>
-                  </div>
-                  <div class="form-button form-button-2 wow slideInRight">
-                    <button class="button button-sm button-icon-3 button-primary button-winona" type="submit"><span class="d-none d-xl-inline-block">Se inscrever</span><span class="icon mdi mdi-telegram d-xl-none"></span></button>
-                  </div>
-                </form>
               </div>
             </div>
           </div>
@@ -263,7 +254,7 @@
                   <div class="footer-modern-contacts wow slideInUp">
                     <div class="unit unit-spacing-sm align-items-center">
                       <div class="unit-left"><span class="icon icon-24 mdi mdi-phone"></span></div>
-                      <div class="unit-body"><a class="phone" href="hhttps://wa.me/5561999798747?text=Prezada Márcia. Desejo formalmente agendar uma avaliação."target="_blank">(61) 99979-8747 </a></div>
+                      <div class="unit-body"><a class="phone" href="https://wa.me/5561999798747?text=Prezada Márcia. Desejo agendar uma avaliação."target="_blank">(61) 99979-8747 </a></div>
                     </div>
                   </div>
                   <div class="footer-modern-contacts wow slideInDown">
@@ -299,9 +290,9 @@
       </footer>
     </div>
     <!-- Global Mailform Output-->
-    <div class="snackbars" id="form-output-global"></div>
     <!-- Javascript-->
     <script src="public/js/core.min.js"></script>
     <script src="public/js/script.js"></script>
+    <script src="public/js/formulario_contatos.js"></script>
   </body>
 </html>
