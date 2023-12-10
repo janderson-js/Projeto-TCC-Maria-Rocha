@@ -19,6 +19,7 @@ $p[] = $pDAO->listarPerfis();
     <!-- DataTables Responsive CSS e JS -->
     <link href="https://cdn.datatables.net/responsive/2.2.7/responsive.min.css" rel="stylesheet">
 
+    <title>Listar Paciente</title>
 </head>
 
 <body>

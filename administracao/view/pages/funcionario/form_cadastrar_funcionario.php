@@ -13,6 +13,7 @@ $p[] = $pDAO->listarPerfis();
     <!-- Inicio do include head -->
     <?php include(__DIR__ . "../../../../includes/head.php"); ?>
     <!-- Fim do include head -->
+    <title>Cadastrar Funcionário</title>
 </head>
 
 <body>

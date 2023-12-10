@@ -6,7 +6,7 @@ $perfil = $_SESSION['usuario']['perfil'];
 
 <nav id="sidebar" class="sidebar js-sidebar">
     <div class="sidebar-content js-simplebar">
-        <a class="sidebar-brand" href="/marcia_rocha/view/administracao/view/administracao.php">
+        <a class="sidebar-brand" href="/marcia_rocha/administracao/view/administracao.php">
             <span class="align-middle">Márcia Rocha</span>
         </a>
 
@@ -24,7 +24,7 @@ $perfil = $_SESSION['usuario']['perfil'];
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/marcia_rocha/view/index.php">
+                    <a class="sidebar-link" href="/marcia_rocha/index.html">
                         <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Meu Site</span>
                     </a>
                 </li>

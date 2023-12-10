@@ -12,7 +12,7 @@ include_once(dirname(__FILE__) . "/../../../../dao/consultaDAO.php");
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
 
-
+    <title>Lista de Consulta</title>
 
 </head>
 

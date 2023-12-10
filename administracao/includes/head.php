@@ -18,11 +18,11 @@ if($_SESSION['usuario'] == null){
 <meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
 <link rel="preconnect" href="https://fonts.gstatic.com">
-<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
+<link rel="icon" href="/marcia_rocha/public/img/Marciarocha.png" type="image/x-icon">
 
 <link rel="canonical" href="https://demo-basic.adminkit.io/" />
 
-<title>Dashboard</title>
+
 
 <link href="/marcia_rocha/administracao/css/app.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">

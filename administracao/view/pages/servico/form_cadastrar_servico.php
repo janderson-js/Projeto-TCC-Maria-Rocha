@@ -5,6 +5,8 @@
     <!-- Inicio do include head -->
     <?php include(__DIR__ . "../../../../includes/head.php"); ?>
     <!-- Fim do include head -->
+
+    <title>Cadastrar Serviço</title>
 </head>
 
 <body>
