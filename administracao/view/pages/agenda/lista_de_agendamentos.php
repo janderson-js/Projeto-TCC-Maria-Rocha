@@ -1,4 +1,10 @@
 <?php
+ob_start();
+session_start();
+
+if($_SESSION['usuario'] == null){
+    header('location: /marcia_rocha/view/login.php');
+}
 include_once(dirname(__FILE__) . "/../../../../dao/agendamentoDAO.php");
 ?>
 

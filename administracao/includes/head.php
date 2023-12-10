@@ -1,13 +1,4 @@
 
-<?php
-session_start();
-
-if($_SESSION['usuario'] == null){
-    header('location: /marcia_rocha/view/login.php');
-}
-
-
-?>
 
 
 <meta charset="utf-8">
