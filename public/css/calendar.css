@@ -30,6 +30,12 @@ body {
   }
 }
 
+@media (max-width: 400px) {
+  #calendar {
+      font-size: 8px;
+  }
+}
+
 .fc-event {
   /* Adicione estilos CSS para o título do evento aqui */
   color: #ffffff; /* Cor do texto */
@@ -45,4 +51,8 @@ body {
 .fc-list-event-graphic > .fc-list-event-dot,.fc-daygrid-event-dot{
   background-color: #02492e;
   border-color: #058563;
+}
+
+.fc-v-event .fc-event-main{
+  color: black;
 }

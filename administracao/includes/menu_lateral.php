@@ -35,25 +35,25 @@ $perfil = $_SESSION['usuario']['perfil'];
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/agenda/agenda.php">
-                        <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Agenda</span>
+                    <i class="fa-regular fa-calendar"></i> <span class="align-middle">Agenda</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/agenda/lista_de_consultas.php">
-                        <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Lista de Consultas</span>
+                        <i class="fa-solid fa-list"></i><span class="align-middle">Lista de Consultas</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/agenda/lista_de_avaliacoes.php">
-                        <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Lista de Avalições</span>
+                        <i class="fa-solid fa-list"></i><span class="align-middle">Lista de Avalições</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/agenda/lista_de_agendamentos.php">
-                        <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Lista de Agendamentos</span>
+                        <i class="fa-solid fa-list"></i><span class="align-middle">Lista de Agendamentos</span>
                     </a>
                 </li>
 
@@ -63,25 +63,25 @@ $perfil = $_SESSION['usuario']['perfil'];
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/pacientes/listar_pacientes.php">
-                        <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Listar Pacientes</span>
+                        <i class="fa-solid fa-list"></i> <span class="align-middle">Listar Pacientes</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/pacientes/form_cadastrar.php">
-                        <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Cadastrar Paciente</span>
+                    <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Cadastrar Paciente</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/anamnese/listar_anamnese.php">
-                        <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Listar Anamneses</span>
+                        <i class="fa-solid fa-list"></i> <span class="align-middle">Listar Anamneses</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/anamnese/form_cadastrar_anamnese.php">
-                        <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Cadastrar Anamnse</span>
+                    <i class="fa-regular fa-clipboard"></i> <span class="align-middle">Cadastrar Anamnse</span>
                     </a>
                 </li>
 
@@ -97,7 +97,7 @@ $perfil = $_SESSION['usuario']['perfil'];
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/funcionario/listar_funcionario.php">
-                        <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Listar Funcionários</span>
+                    <i class="fa-solid fa-list"></i> <span class="align-middle">Listar Funcionários</span>
                     </a>
                 </li>
 
@@ -112,13 +112,13 @@ $perfil = $_SESSION['usuario']['perfil'];
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/servico/listar_servico.php">
-                        <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Listar Serviço</span>
+                    <i class="fa-solid fa-list"></i> <span class="align-middle">Listar Serviço</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/servico/form_cadastrar_servico.php">
-                        <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Cadastrar Serviço</span>
+                    <i class="fa-regular fa-clipboard"></i> <span class="align-middle">Cadastrar Serviço</span>
                     </a>
                 </li>
 
@@ -128,12 +128,12 @@ $perfil = $_SESSION['usuario']['perfil'];
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/menu/listar_menu.php">
-                        <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Listar Menus</span>
+                    <i class="fa-solid fa-list"></i> <span class="align-middle">Listar Menus</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/menu/form_cadastrar_menu.php">
-                        <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Cadastrar Menu</span>
+                    <i class="fa-regular fa-clipboard"></i> <span class="align-middle">Cadastrar Menu</span>
                     </a>
                 </li>
 
@@ -143,13 +143,13 @@ $perfil = $_SESSION['usuario']['perfil'];
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/perfil/listar_perfil.php">
-                        <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Listar Perfis</span>
+                    <i class="fa-solid fa-list"></i> <span class="align-middle">Listar Perfis</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/perfil/form_cadastrar_perfil.php">
-                        <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Cadastrar Perfil</span>
+                    <i class="fa-regular fa-clipboard"></i> <span class="align-middle">Cadastrar Perfil</span>
                     </a>
                 </li>
 
@@ -186,7 +186,7 @@ $perfil = $_SESSION['usuario']['perfil'];
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/agenda/agenda.php">
-                        <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Agenda</span>
+                    <i class="fa-regular fa-calendar"></i> <span class="align-middle">Agenda</span>
                     </a>
                 </li>
 
@@ -196,25 +196,25 @@ $perfil = $_SESSION['usuario']['perfil'];
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/pacientes/listar_pacientes.php">
-                        <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Listar Pacientes</span>
+                        <i class="fa-solid fa-list"></i> <span class="align-middle">Listar Pacientes</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/pacientes/form_cadastrar.php">
-                        <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Cadastrar Paciente</span>
+                    <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Cadastrar Paciente</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/anamnese/listar_anamnese.php">
-                        <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Listar Anamneses</span>
+                        <i class="fa-solid fa-list"></i> <span class="align-middle">Listar Anamneses</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/anamnese/form_cadastrar_anamnese.php">
-                        <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Cadastrar Anamnse</span>
+                    <i class="fa-regular fa-clipboard"></i> <span class="align-middle">Cadastrar Anamnse</span>
                     </a>
                 </li>
 
@@ -230,7 +230,7 @@ $perfil = $_SESSION['usuario']['perfil'];
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/funcionario/listar_funcionario.php">
-                        <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Listar Funcionários</span>
+                    <i class="fa-solid fa-list"></i> <span class="align-middle">Listar Funcionários</span>
                     </a>
                 </li>
 
@@ -245,13 +245,13 @@ $perfil = $_SESSION['usuario']['perfil'];
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/servico/listar_servico.php">
-                        <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Listar Serviço</span>
+                    <i class="fa-solid fa-list"></i> <span class="align-middle">Listar Serviço</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/servico/form_cadastrar_servico.php">
-                        <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Cadastrar Serviço</span>
+                    <i class="fa-regular fa-clipboard"></i> <span class="align-middle">Cadastrar Serviço</span>
                     </a>
                 </li>
 
@@ -287,7 +287,7 @@ $perfil = $_SESSION['usuario']['perfil'];
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/agenda/agenda.php">
-                        <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Agenda</span>
+                    <i class="fa-regular fa-calendar"></i> <span class="align-middle">Agenda</span>
                     </a>
                 </li>
 
@@ -297,25 +297,25 @@ $perfil = $_SESSION['usuario']['perfil'];
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/pacientes/listar_pacientes.php">
-                        <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Listar Pacientes</span>
+                    <i class="fa-solid fa-list"></i> <span class="align-middle">Listar Pacientes</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/pacientes/form_cadastrar.php">
-                        <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Cadastrar Paciente</span>
+                    <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Cadastrar Paciente</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/anamnese/listar_anamnese.php">
-                        <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Listar Anamneses</span>
+                        <i class="fa-solid fa-list"></i> <span class="align-middle">Listar Anamneses</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/anamnese/form_cadastrar_anamnese.php">
-                        <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Cadastrar Anamnse</span>
+                    <i class="fa-regular fa-clipboard"></i> <span class="align-middle">Cadastrar Anamnse</span>
                     </a>
                 </li>
 
@@ -360,7 +360,7 @@ $perfil = $_SESSION['usuario']['perfil'];
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/agenda/agenda.php">
-                        <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Agenda</span>
+                    <i class="fa-regular fa-calendar"></i> <span class="align-middle">Agenda</span>
                     </a>
                 </li>
 
@@ -370,19 +370,19 @@ $perfil = $_SESSION['usuario']['perfil'];
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/pacientes/listar_pacientes.php">
-                        <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Listar Pacientes</span>
+                    <i class="fa-solid fa-list"></i><span class="align-middle">Listar Pacientes</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/anamnese/listar_anamnese.php">
-                        <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Listar Anamneses</span>
+                    <i class="fa-solid fa-list"></i> <span class="align-middle">Listar Anamneses</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/marcia_rocha/administracao/view/pages/anamnese/form_cadastrar_anamnese.php">
-                        <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Cadastrar Anamnse</span>
+                    <i class="fa-regular fa-clipboard"></i> <span class="align-middle">Cadastrar Anamnse</span>
                     </a>
                 </li>
 
