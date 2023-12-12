@@ -18,7 +18,7 @@ $p[] = $pDAO->listarPacientes();
 
 $s[] = $sDAO->listarServicos();
 
-$f[] = $fDAO->listarFuncionarios();
+$f[] = $fDAO->listarFuncionariosServicos();
 
 ?>
 
